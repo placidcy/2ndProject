@@ -4,10 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SemiProjectApplication {
+public class CareerBoardProjectApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SemiProjectApplication.class, args);
+		SpringApplication.run(CareerBoardProjectApplication.class, args);
 	}
-
 }
