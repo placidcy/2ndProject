@@ -18,6 +18,6 @@ public class UserSO {
 		}
 		
 		user.changePassword(oldPassword, newPassword);
-		userDao.update(user);
+		userDao.updatePasswordUserInfo(user);
 	}
 }

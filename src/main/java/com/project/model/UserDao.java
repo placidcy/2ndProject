@@ -11,25 +11,54 @@ public class UserDao {
 	private final JdbcTemplate jdbcTemplate;
 
 	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	private String sql;
+
 	public UserDao(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
 	public UserDO selectById(String user_id) {
-		UserDO results = null;
+		UserDO userDo = null;
+		this.sql = "select user_id, name, nickname, email, password, to_char(create_date, 'YYYY-MM-DD HH24:MI:SS') create_date from userinfo where user_id = ?";
+		
 		try {
-			results = jdbcTemplate.queryForObject("select * from userinfo where user_id = ?", new UserRowMapper(), user_id);
+			userDo = this.jdbcTemplate.queryForObject(sql, new UserRowMapper(), user_id);
 		}
 		catch(EmptyResultDataAccessException e) {
 			e.printStackTrace();
 		}
 		
-		return results;
+		return userDo;
 	}
 	
-	public void update(UserDO user) {
-		jdbcTemplate.update("update userinfo set password = ? where user_id = ?", user.getPassword(), user.getUser_id());
+//	public void update(UserDO user) {
+//		jdbcTemplate.update("update userinfo set password = ? where user_id = ?", user.getPassword(), user.getUser_id());
+//	}
+	
+	public int updateNicknameUserInfo(UserDO userInfo) {
+		this.sql = "update userinfo set nickname = ? where user_id = ? ";
+		
+		int rowCount = 0;
+		
+		rowCount = this.jdbcTemplate.update(sql, userInfo.getNickname(), userInfo.getUser_id());
+		
+		return rowCount;
 	}
+
+	public int updatePasswordUserInfo(UserDO userInfo) {
+		this.sql = "update userinfo set password = ? where user_id = ? ";
+		
+		int rowCount = 0;
+		
+		rowCount = this.jdbcTemplate.update(sql, userInfo.getPassword(), userInfo.getUser_id());
+		
+		return rowCount;
+	}
+	
+	
+
+	
 
 	public UserDO login(String user_id, String password) {
 		UserDO result;
