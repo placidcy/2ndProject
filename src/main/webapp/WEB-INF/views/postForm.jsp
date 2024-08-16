@@ -26,7 +26,7 @@
     <button id="write">글쓰기</button>
     <div id="profile">
     <img src="images/anonymous.jpg" alt="anonymous" id="profileImg"/>
-	<p class="profileText">{postCount} {replyCount}</p>
+	<p class="profileText">${postCount} ${replyCount}</p>
     </div>
     <hr />
     <p>인기 Topic</p>
