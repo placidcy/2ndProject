@@ -5,8 +5,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>비밀번호 변경 페이지</title>
-	<script src="changePasswd.js"></script>
-	<link rel="stylesheet" href="changePasswd.css" />
+	<script src="resources/js/changePasswd.js"></script>
+	<link rel="stylesheet" href="resources/css/changePasswd.css" />
 </head>
 <body>
 	<div id="container">
