@@ -6,8 +6,8 @@
 <head>
  <meta charset="UTF-8" />
  <title>게시글 작성 페이지</title>
- <script src="postForm.js"></script>   
- <link rel="stylesheet" href="postForm.css" />
+ <script src="resources/js/postForm.js"></script>   
+ <link rel="stylesheet" href="resources/css/postForm.css" />
 </head>
 
 <body>
@@ -25,7 +25,7 @@
 <div id="leftBox">
     <button id="write">글쓰기</button>
     <div id="profile">
-    <img src="images/anonymous.jpg" alt="anonymous" id="profileImg"/>
+    <img src="resources/images/anonymous.jpg" alt="anonymous" id="profileImg"/>
 	<p class="profileText">${postCount} ${replyCount}</p>
     </div>
     <hr />

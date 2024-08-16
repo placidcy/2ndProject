@@ -3,15 +3,12 @@ package com.project.model;
 import com.project.exception.WrongIdPasswordException;
 import javax.sql.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class UserDao {
 	private final JdbcTemplate jdbcTemplate;
-
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
+	
 	private String sql;
 
 	public UserDao(DataSource dataSource) {
