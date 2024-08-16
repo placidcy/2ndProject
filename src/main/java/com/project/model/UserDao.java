@@ -10,17 +10,16 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class UserDao {
 	private final JdbcTemplate jdbcTemplate;
 
-	@Autowired
-	private JdbcTemplate jdbcTemplate;
 	private String sql;
 
+	@Autowired
 	public UserDao(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
 	public UserDO selectById(String user_id) {
 		UserDO userDo = null;
-		this.sql = "select user_id, name, nickname, email, password, to_char(create_date, 'YYYY-MM-DD HH24:MI:SS') create_date from userinfo where user_id = ?";
+		this.sql = "select user_id, name, nickname, email, password, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') create_date from userinfo where user_id = ?";
 		
 		try {
 			userDo = this.jdbcTemplate.queryForObject(sql, new UserRowMapper(), user_id);
