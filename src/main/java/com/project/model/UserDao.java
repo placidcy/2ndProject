@@ -29,9 +29,6 @@ public class UserDao {
 		return userDo;
 	}
 	
-//	public void update(UserDO user) {
-//		jdbcTemplate.update("update userinfo set password = ? where user_id = ?", user.getPassword(), user.getUser_id());
-//	}
 	
 	public int updateNicknameUserInfo(UserDO userInfo) {
 		this.sql = "update userinfo set nickname = ? where user_id = ? ";
