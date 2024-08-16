@@ -3,24 +3,23 @@ package com.project.model;
 import com.project.exception.WrongIdPasswordException;
 import javax.sql.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class UserDao {
 	private final JdbcTemplate jdbcTemplate;
-	
+
 	private String sql;
 
 	@Autowired
-	private JdbcTemplate jdbcTemplate;
-	
 	public UserDao(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
 	public UserDO selectById(String user_id) {
 		UserDO userDo = null;
-		this.sql = "select user_id, name, nickname, email, password, to_char(create_date, 'YYYY-MM-DD HH24:MI:SS') create_date from userinfo where user_id = ?";
+		this.sql = "select user_id, name, nickname, email, password, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') create_date from userinfo where user_id = ?";
 		
 		try {
 			userDo = this.jdbcTemplate.queryForObject(sql, new UserRowMapper(), user_id);
@@ -32,6 +31,9 @@ public class UserDao {
 		return userDo;
 	}
 	
+//	public void update(UserDO user) {
+//		jdbcTemplate.update("update userinfo set password = ? where user_id = ?", user.getPassword(), user.getUser_id());
+//	}
 	
 	public int updateNicknameUserInfo(UserDO userInfo) {
 		this.sql = "update userinfo set nickname = ? where user_id = ? ";
