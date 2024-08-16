@@ -1,15 +1,17 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="login.css">
+	<script src="resources/js/login.js"></script>
+    <link rel="stylesheet" href="resources/css/login.css">
 </head>
 <body>
 <div id="container">
     <div id="logo">직장IN</div>
-    <form action="#" method="POST">
+    <form action="/loginProcess" method="POST">
         <div class="input-section">
             <input type="text" id="userId" placeholder="아이디"/>
             <input type="password" id="password" placeholder="비밀번호"/>
