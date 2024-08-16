@@ -1,8 +1,11 @@
 package com.project.config;
 
+import com.project.model.PostDao;
+import com.project.model.UserDao;
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 
 @Configuration
@@ -24,5 +27,17 @@ public class BeanConfig {
 		return ds;
 	}
 	
-	
+	@Bean
+	public JdbcTemplate jdbcTemplate(DataSource dataSource) {
+		return new JdbcTemplate(dataSource);
+	}
+
+	@Bean
+	public UserDao userDao(DataSource dataSource) {
+		return new UserDao(dataSource);
+	}
+	@Bean
+	public PostDao postDao(DataSource dataSource) {
+		return new PostDao(dataSource);
+	}
 }

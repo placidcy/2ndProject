@@ -1,30 +1,19 @@
 package com.project.model;
 
-import java.sql.*;
+import com.project.exception.WrongIdPasswordException;
+import javax.sql.*;
 
-import org.apache.tomcat.jdbc.pool.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class UserDao {
+	private final JdbcTemplate jdbcTemplate;
+
+	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	private String sql;
-	
-	public UserDao() {
-		DataSource ds = new DataSource();
-		ds.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-		ds.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
-		ds.setUsername("scott");
-		ds.setPassword("tiger");
-		ds.setInitialSize(5);
-		ds.setMinIdle(5);
-		ds.setMaxIdle(10);
-		ds.setMinEvictableIdleTimeMillis(60000 * 3);
-		ds.setTimeBetweenEvictionRunsMillis(1000 * 10);
-		
-		this.jdbcTemplate = new JdbcTemplate(ds);
-	}	
-	
+
 	public UserDao(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
@@ -70,5 +59,19 @@ public class UserDao {
 	
 
 	
+
+	public UserDO login(String user_id, String password) {
+		UserDO result;
+		try {
+			result = jdbcTemplate.queryForObject("select * from userinfo where user_id = ? and password = ?",
+					new UserRowMapper(),
+					user_id, password
+			);
+		} catch(EmptyResultDataAccessException e) {
+			throw new WrongIdPasswordException();
+		}
+
+		return result;
+	}
 
 }
