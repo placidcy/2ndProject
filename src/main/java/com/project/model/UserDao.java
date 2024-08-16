@@ -11,6 +11,9 @@ public class UserDao {
 	
 	private String sql;
 
+	@Autowired
+	private JdbcTemplate jdbcTemplate;
+	
 	public UserDao(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
