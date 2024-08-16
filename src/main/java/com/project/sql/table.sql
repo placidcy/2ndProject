@@ -23,7 +23,10 @@ create table userinfo(
 , nickname varchar2(100) constraint user_nickname_uq unique
 , email varchar2(100) constraint user_email_uq unique
 , password varchar2(100) constraint user_password_nn not null
-,created_date date default sysdate
+, created_date date default sysdate
+, constraint userinfo_name_uq unique (name)
+, constraint userinfo_nickname_uq unique (nickname)
+, constraint userinfo_email_uq unique (email)
 );
 
 create table career (
