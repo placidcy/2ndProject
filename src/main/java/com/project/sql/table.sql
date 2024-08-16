@@ -1,3 +1,11 @@
+drop sequence seq_career_career_id;
+drop sequence seq_post_post_id;
+drop sequence seq_reply_reply_id;
+drop table userinfo;
+drop table career;
+drop table post;
+drop table reply;
+
 create sequence seq_career_career_id
     start with 1
     increment by 1
@@ -19,11 +27,11 @@ create sequence seq_reply_reply_id
 
 create table userinfo(
  user_id varchar2(100) constraint user_user_id_pk primary key
-, name varchar2(100) constraint user_name_uq unique
-, nickname varchar2(100) constraint user_nickname_uq unique
-, email varchar2(100) constraint user_email_uq unique
+, name varchar2(100) constraint user_name_nn not null
+, nickname varchar2(100) constraint user_nickname_nn not null
+, email varchar2(100) constraint user_email_nn not null
 , password varchar2(100) constraint user_password_nn not null
-, created_date date default sysdate
+,created_date date default sysdate
 , constraint userinfo_name_uq unique (name)
 , constraint userinfo_nickname_uq unique (nickname)
 , constraint userinfo_email_uq unique (email)
