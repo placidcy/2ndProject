@@ -23,7 +23,8 @@ public class PostPreparedStatement implements PreparedStatementCreator{
 	
 	@Override
 	public PreparedStatement createPreparedStatement(Connection conn) throws SQLException{
-		String sql = "insert into post (post_id, title, content, tags, user_id, position) values (seq_post_post_id.nextval, ?, ?, ?, ?, ?)";
+		String sql = "insert into post (post_id, title, content, tags, user_id, position) "
+				+ "values (seq_post_post_id.nextval, ?, ?, ?, ?, ?)";
 		PreparedStatement pstmt = null;
 		if(keyColumns.length > 0) {
 			pstmt = conn.prepareStatement(sql, keyColumns);
