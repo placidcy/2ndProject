@@ -12,3 +12,15 @@ insert into post (post_id, title, content, tags, user_id, position) values (seq_
 테스트 쿼리
 insert into post (post_id, title, content, tags, user_id, position) values (seq_post_post_id.nextval, '첫 면접 경험 공유', '저의 첫 면접 경험이 생각보다 긴장되고 힘들었는데, 여러분도 그런 경험이 있으신가요?
         면접 때 떨지 않고 잘 답변하는 방법이 있으면 알려주세요!', '#첫면접,#경험공유', 'USER001', '웹');
+        
+4. 내가 글을 게시한 횟수
+select count(*) from (select * from post where user_id = ?);
+   
+테스트 쿼리
+select count(*) from (select * from post where user_id = 'USER001');
+
+5. 내가 답변을 작성한 횟수
+select count(*) from (select * from reply where user_id = ?);
+   
+테스트 쿼리
+select count(*) from (select * from reply where user_id = 'USER001');
