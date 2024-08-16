@@ -47,22 +47,22 @@ public class UserDao {
 //		jdbcTemplate.update("update userinfo set password = ? where user_id = ?", user.getPassword(), user.getUser_id());
 //	}
 	
-	public int updateNicknameUserInfo(UserDO userInfo) {
+	public int updateNicknameUserInfo(UserDO user) {
 		this.sql = "update userinfo set nickname = ? where user_id = ? ";
 		
 		int rowCount = 0;
 		
-		rowCount = this.jdbcTemplate.update(sql, userInfo.getNickname(), userInfo.getUser_id());
+		rowCount = this.jdbcTemplate.update(sql, user.getNickname(), user.getUser_id());
 		
 		return rowCount;
 	}
 
-	public int updatePasswordUserInfo(UserDO userInfo) {
+	public int updatePasswordUserInfo(UserDO user) {
 		this.sql = "update userinfo set password = ? where user_id = ? ";
 		
 		int rowCount = 0;
 		
-		rowCount = this.jdbcTemplate.update(sql, userInfo.getPassword(), userInfo.getUser_id());
+		rowCount = this.jdbcTemplate.update(sql, user.getPassword(), user.getUser_id());
 		
 		return rowCount;
 	}
