@@ -8,7 +8,6 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class UserDao {
-	private final JdbcTemplate jdbcTemplate;
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
