@@ -1,0 +1,96 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Pretendard-Regular';
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+header, container {
+    width: 1200px;
+}
+
+header {
+    margin: 50px 0;
+}
+
+a {
+    text-decoration-line: none;
+}
+
+.logo {
+    color: #204AB6;
+    float: left;
+}
+
+.searchBox {
+    display: inline-block;
+    position: relative;
+    width: 400px;
+    margin-left: 20px;
+}
+
+.searchBox input {
+    width: 100%;
+    border: 2px solid #204AB6;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 14px;
+}
+
+container {
+    margin: 0;
+}
+
+.sideNavWrap {
+    float: left;
+    width: 300px;
+    background-color: white;
+    text-align: center;
+    padding: 10px 0;
+    border: 1px solid gray;
+
+}
+
+.sideNavWrap button {
+    width: 280px;
+    height: 50px;
+    background-color: #204AB6;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 3px 0 gray;
+}
+
+.sideNavWrap button:hover {
+    background-color: #092d86;
+}
+
+.contentWrap {
+    float: right;
+    width: 850px;
+    border: 1px solid gray;
+    padding: 20px;
+}
+
+.warning {
+    background-color: antiquewhite;
+    padding: 20px 25px;
+}
+
+.warning ul {
+    list-style-position: inside;
+    padding-left: 0;
+}
+
+.commentWrap .page {
+    text-align: center;
+}
