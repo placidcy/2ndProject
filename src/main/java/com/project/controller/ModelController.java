@@ -37,6 +37,17 @@ public class ModelController {
 	public String mainHandler() {
 		return "main/main";
 	}
+
+	@GetMapping("/signup")
+	public String signupHandler() {
+		return "signup/signup";
+	}
+
+	@GetMapping("/editProfile")
+	public String editProfileHandler() {
+		return "profile/editProfile";
+	}
+
 	
 	
 	
