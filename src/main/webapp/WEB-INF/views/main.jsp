@@ -35,33 +35,33 @@
     </header>
 
     <div class="container">
-        <aside class="sidebar">
-            <div class="sidebar-container">
+        <jsp:include page="sidebar/sidebar.jsp" />
+<%--        <aside class="sidebar">--%>
+<%--            <div class="sidebar-container">--%>
 
-                 <a href="<c:url value='/postForm' />"><button class="writeBtn">글쓰기</button></a>
-                <div id="profile" class="profile">
-                    로그인 후 이용하세요
+<%--                 <a href="<c:url value='/postForm' />"><button class="writeBtn">글쓰기</button></a>--%>
+<%--                <div id="profile" class="profile">--%>
+<%--                    로그인 후 이용하세요--%>
 
-                </div>
+<%--                </div>--%>
 
-                <div class="best-post">
-                    인기 토픽
-                </div>
-            </div>
-        </aside>
+<%--                <div class="best-post">--%>
+<%--                    인기 토픽--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </aside>--%>
 
         <main class="content">
-            <div class="tabs">
+<%--            <div class="tabs">--%>
 <%--                <button class="scrap">스크랩</button>--%>
 <%--                <button class="all">전체</button>--%>
-                글 목록
-
-            </div>
+<%--            </div>--%>
             <div class="post-container">
+                글 목록
                 <c:forEach items="${postList}" var="post">
                     <div class="post">
                         <div class="tags">
-                            <span>${post.position}</span>
+                            <span> # ${post.position}</span>
                         </div>
                         <div class="title">
                             <a href="#">${post.title}</a>
