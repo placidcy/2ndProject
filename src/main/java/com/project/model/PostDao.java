@@ -33,4 +33,9 @@ public class PostDao {
 		return this.jdbcTemplate.queryForObject(sql, Integer.class, user_id);	
 	}
 	
+	public List<PostDO> searchPost(String searchValue){
+		this.sql = "select * from post where title like '%?%' or content like '%?%'";
+		return this.jdbcTemplate.query(sql, new PostRowMapper(), searchValue, searchValue);
+	}
+	
 }
