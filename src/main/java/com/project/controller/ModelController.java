@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.model.PostDao;
+import com.project.model.ReplyDao;
 import com.project.model.UserDO;
 import com.project.model.UserSO;
 
@@ -26,6 +27,9 @@ public class ModelController {
 	@Autowired
 	private PostDao postDao;
 	
+	@Autowired
+	private ReplyDao replyDao;
+	
 	@GetMapping("/changePasswd")	 
 	public String changePasswdHandler() {
 		return "changePasswd";
@@ -43,8 +47,7 @@ public class ModelController {
 		if(session != null) {
 			String user_id = (String)session.getAttribute("user_id");
 			model.addAttribute("postCount", postDao.countPost(user_id));	
-		}else {
-			model.addAttribute("postCount", "0");	
+			model.addAttribute("replyCount", replyDao.countReply(user_id));
 		}
 		return "postForm";
 	}

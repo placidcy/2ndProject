@@ -1,7 +1,7 @@
 package com.project.config;
 
-import com.project.model.PostDao;
-import com.project.model.UserDao;
+import com.project.model.*;
+
 import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -39,5 +39,10 @@ public class BeanConfig {
 	@Bean
 	public PostDao postDao(DataSource dataSource) {
 		return new PostDao(dataSource);
+	}
+	
+	@Bean
+	public ReplyDao replyDao(DataSource dataSource){
+		return new ReplyDao(dataSource);
 	}
 }
