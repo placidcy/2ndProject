@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
@@ -10,7 +11,7 @@
 </head>
 <body>
 	<div id="container">
-		<header><a href="메인페이지">직장IN</a></header>
+		<header><a href="<c:url value='/main' />">직장IN</a></header>
 		
 		<form method="POST" action="#" id="agreementForm">
 			<div id="selectedAllSection">
