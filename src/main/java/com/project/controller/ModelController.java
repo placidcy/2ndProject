@@ -40,7 +40,7 @@ public class ModelController {
 	
 	@PostMapping("/changePasswdProcess")
 	public String changePasswdProcessHandler() {
-		return "main/main";
+		return "main";
 	}
 	
 	@GetMapping("/postForm")	 
@@ -57,12 +57,12 @@ public class ModelController {
 	
 	@PostMapping("/postFormProcess")
 	public String postFormProcessHandler() {
-		return "main/main";
+		return "main";
 	}
 	
 	@GetMapping("/login")	 
 	public String loginHandler() {
-		return "login/login";
+		return "login";
 	}
 	
 	@PostMapping("/loginProcess")	 
@@ -84,7 +84,7 @@ public class ModelController {
 	@GetMapping("/main")	 
 	public String mainHandler(Model model) {
 //		List<PostDO> postList = postService.getAllPost();
-		return "main/main";
+		return "main";
 	}
 	
 	@GetMapping("/detailPage")
