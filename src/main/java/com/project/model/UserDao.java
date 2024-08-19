@@ -32,8 +32,13 @@ public class UserDao {
 		
 		return userDo;
 	}
-	
-	
+
+	public int insertUser(UserDO user) {
+		String sql = "INSERT INTO userinfo (user_id, name, nickname, email, password) VALUES (?, ?, ?, ?, ?)";
+		return jdbcTemplate.update(sql, user.getUser_id(), user.getName(), user.getNickname(), user.getEmail(), user.getPassword());
+	}
+
+
 	public int updateNicknameUserInfo(UserDO user) {
 		this.sql = "update userinfo set nickname = ? where user_id = ? ";
 		

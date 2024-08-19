@@ -1,6 +1,7 @@
 package com.project.model;
 
 import com.project.model.response.LoginUserResponse;
+import com.project.model.request.SignupRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,7 +18,14 @@ public class UserSO {
 	public UserSO() {
 	}
 
-	
+	@Transactional
+	public void SignupUser(SignupRequest request) {
+		UserDO user = new UserDO(request.getUser_id(), request.getName(), request.getNickname(), request.getEmail(), request.getPassword(), null);
+		userDao.insertUser(user);  // insertUser 메서드를 UserDao에 추가해야 함
+	}
+
+
+
 	@Transactional
 	public void changePassword(String user_id, String oldPasswd, String newPasswd) {
 		UserDO user = userDao.selectById(user_id);

@@ -2,6 +2,7 @@ package com.project.controller;
 
 import com.project.model.UserSO;
 import com.project.model.request.LoginRequest;
+import com.project.model.request.SignupRequest;
 import com.project.model.response.LoginUserResponse;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -43,6 +44,17 @@ public class UserController {
         } catch (Exception e) {
             session.setAttribute("loginFailMsg", "로그인에 실패했습니다. 다시 시도해주세요.");
             return "redirect:/login";
+        }
+    }
+
+    @PostMapping("/signup")
+    public String signupHandler(SignupRequest request, HttpSession session, HttpServletResponse response) {
+        try {
+            userSO.SignupUser(request);
+            return "redirect:/main";
+        } catch (Exception e) {
+            session.setAttribute("signFailMsg", "회원가입에 실패했습니다. 다시 시도해주세요.");
+            return "redirect:/signup";
         }
     }
 
