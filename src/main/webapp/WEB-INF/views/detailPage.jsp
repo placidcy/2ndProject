@@ -1,14 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>상세 페이지</title>
-    <link rel="stylesheet" href="detailPage.css" />
+    <link rel="stylesheet" href="resources/css/detailPage.css" />
 </head>
 <body>
     <header>
-        <a href=""><h1 class="logo">직장IN</h1></a>
+        <a href="<c:url value='/main' />"><h1 class="logo">직장IN</h1></a>
         <div class="searchBox">
             <form action="" method="POST">
                 <input type="text" name="searchBar" placeholder="검색어를 입력하세요." />

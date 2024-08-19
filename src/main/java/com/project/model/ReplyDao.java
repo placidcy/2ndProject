@@ -40,7 +40,7 @@ public class ReplyDao {
 
 				PreparedStatement pstmt = conn.prepareStatement(sql, new String [] { "reply_id" });
 				pstmt.setString(1, reply.getUser_id());
-				pstmt.setInt(2, reply.getPost_id());
+				pstmt.setLong(2, reply.getPost_id());
 				pstmt.setString(3, reply.getContent());
 				pstmt.setInt(4, reply.getLikes());
 				return pstmt;

@@ -80,7 +80,10 @@ public class ModelController {
 		return "main/main";
 	}
 	
-	
+	@GetMapping("/detailPage")
+	public String detailPageView() {
+		return "detailPage";
+	}
 	
 	
 	

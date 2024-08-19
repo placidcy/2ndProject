@@ -7,7 +7,7 @@ public class ReplyDO {
 	private String created_at;
 	private int likes;
 	private String user_id;
-	private int post_id;
+	private long post_id;
 	
 	public ReplyDO() {
 		
@@ -45,7 +45,7 @@ public class ReplyDO {
 		this.user_id = user_id;
 	}
 
-	public int getPost_id() {
+	public long getPost_id() {
 		return post_id;
 	}
 
