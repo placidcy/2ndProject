@@ -12,3 +12,4 @@ VALUES ('USER004', '정다은', 'Dani_J', 'daeun.jung@example.com', 'WonderWoman
 
 INSERT INTO userinfo (user_id, name, nickname, email, password)
 VALUES ('USER005', '최현준', 'HyunJoon', 'hyunjun.choi@example.com', 'Eve@Password123');
+

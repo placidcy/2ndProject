@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html>
@@ -10,8 +11,8 @@
 </head>
 <body>
 	<div id="container">
-		<header><a href="메인페이지">직장IN</a></header>
-		<form method="POST" action="changePasswd" id="changePasswdForm">
+		<header><a href="<c:url value='/main' />"><h1 class="logo">직장IN</h1></a></header>
+		<form method="POST" action="changePasswdProcess" id="changePasswdForm">
 			<input type="password" name="oldPasswd" id="oldPasswd" placeholder="현재 비밀번호"/>
 			<br />
 			<input type="password" name="newPasswd" id="newPasswd" placeholder="새로운 비밀번호"/>

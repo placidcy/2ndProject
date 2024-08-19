@@ -3,68 +3,72 @@ package com.project.model;
 import com.project.exception.WrongIdPasswordException;
 import javax.sql.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class UserDao {
-	private final JdbcTemplate jdbcTemplate;
 
+	private final JdbcTemplate jdbcTemplate; 
 	private String sql;
 
-	@Autowired
-	public UserDao(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	public UserDao(DataSource ds) {
+		this.jdbcTemplate = new JdbcTemplate(ds);
 	}
 	
 	public UserDO selectById(String user_id) {
 		UserDO userDo = null;
-		this.sql = "select user_id, name, nickname, email, password, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') create_date from userinfo where user_id = ?";
+
+		this.sql = "select user_id, name, nickname, email, password, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date "
+				+ "from userinfo "
+				+ "where user_id = ?";
 		
 		try {
 			userDo = this.jdbcTemplate.queryForObject(sql, new UserRowMapper(), user_id);
 		}
 		catch(EmptyResultDataAccessException e) {
-			e.printStackTrace();
+			System.out.println("user_id = " + user_id);
+			throw new WrongIdPasswordException();
 		}
 		
 		return userDo;
 	}
 	
 	
-	public int updateNicknameUserInfo(UserDO userInfo) {
+	public int updateNicknameUserInfo(UserDO user) {
 		this.sql = "update userinfo set nickname = ? where user_id = ? ";
 		
 		int rowCount = 0;
 		
-		rowCount = this.jdbcTemplate.update(sql, userInfo.getNickname(), userInfo.getUser_id());
+		rowCount = this.jdbcTemplate.update(sql, user.getNickname(), user.getUser_id());
 		
 		return rowCount;
 	}
 
-	public int updatePasswordUserInfo(UserDO userInfo) {
+	public int updatePasswordUserInfo(UserDO user) {
 		this.sql = "update userinfo set password = ? where user_id = ? ";
 		
 		int rowCount = 0;
 		
-		rowCount = this.jdbcTemplate.update(sql, userInfo.getPassword(), userInfo.getUser_id());
+		rowCount = this.jdbcTemplate.update(sql, user.getPassword(), user.getUser_id());
 		
 		return rowCount;
 	}
 	
 
 	public UserDO login(String user_id, String password) {
-		UserDO result;
+		UserDO user = null;
 		try {
-			result = jdbcTemplate.queryForObject("select * from userinfo where user_id = ? and password = ?",
+			user = jdbcTemplate.queryForObject("select user_id, name, nickname, email, password, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date from userinfo where user_id = ? and password = ?",
 					new UserRowMapper(),
 					user_id, password
 			);
+
 		} catch(EmptyResultDataAccessException e) {
 			throw new WrongIdPasswordException();
 		}
-
-		return result;
+		return user;
 	}
+	
+	
 
 }

@@ -1,35 +1,85 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    font-family: 'Pretendard-Regular';
+    max-width: 1200px;
+    margin: 0;
+}
+body {
+	background-color: #f7f7f7;
+}
 #container{
-	width: 1000px;
-	background-color: white;
-margin:auto;
-margin-top: 80px;
+	width: 940px;
+	background-color: #f7f7f7;
+	margin:auto;
 }
-#leftBox{
-	float:left;
-	flex-direction: column;
-	width:200px;
-	height:400px;
-	border:2px solid gray;
-	padding:10px;
-	margin-top:20px;
+
+.logo {
+    color: #204AB6;
+    float: left;
 }
-#write{
-width:200px;
+
+
+.sidebar {
+    margin-left: 60px;
+    width: 200px;
+    background-color: white;
+    box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.1);
 }
-#profile{
-	margin-top:20px;
+
+.sidebar-container {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
+
+.writeBtn {
+    padding: 10px;
+    width: 100%;
+    border-radius: 12px;
+    background-color: #204AB6;
+
+    color: white;
+    font-size: 20px;
+}
+.profile {
+    padding: 60px 30px;
+    margin-top: 20px;
+    font-size: 14px;
+    color: #888;
+    background-color: lightgray;
+    margin-bottom: 20px;
+}
+
+.best-post {
+    padding-top: 20px;
+    margin-bottom: 20px;
+
+    border-top: 1px solid #ddd;
+}
+
 .profileText{
 	text-align: center;
 }
 #profileImg{
 	width: 80%;
-	margin-left:20px;
+	margin-left:12px;
 }
+
+.main{
+	display: flex;
+}
+
 #sectionBox{
-	float:left;
-	position:fixed;
-	margin-left:240px;
+	margin-left:40px;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.1);
 }
 #questionForm{
 	clear:both;
@@ -37,11 +87,43 @@ width:200px;
 	height:500px;
 	padding:20px;
 	margin:20px;
-	border:2px solid gray;
 }
 #title, #tag{
 	width:500px;
 }
 a{
 text-decoration-line: none;
+}
+header{
+	padding:20px;
+	margin-left:60px;
+	margin-bottom:40px;
+	background-color: white;
+	box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.1);
+}
+header button{
+	width: 50px;
+	height: 40px;
+	border: 2px solid #204AB6;
+	border-radius: 10px;
+	padding: 3px;
+	font-size: 14px;
+	background-color: white;
+}
+#searchDisplay{
+	display:flex;
+}
+.searchBox {
+    display: inline-block;
+    position: relative;
+    width: 400px;
+    margin-left: 40px;
+}
+
+.searchBox input {
+    width: 100%;
+    border: 2px solid #204AB6;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 14px;
 }
