@@ -10,15 +10,6 @@ function getCookie(name) {
     return null;
 }
 
-
-
-function loginHandler() {
-    const username = document.getElementById('user_id').value;
-    const saveId = document.getElementById('saveId').checked;
-}
-
-
-
 function init() {
     const userId = getCookie('user_id');
     console.log(userId);
@@ -26,8 +17,6 @@ function init() {
         document.getElementById('userId').value = userId;
         document.getElementById('saveId').checked = true;
     }
-
-    document.getElementById('login-button').addEventListener('click', loginHandler);
 }
 
 window.addEventListener('load', init);
