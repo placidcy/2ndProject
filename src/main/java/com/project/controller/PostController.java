@@ -21,7 +21,7 @@ public class PostController {
     public String mainHandler(Model model) {
 		PostMainResponse postList = postSO.getAllPost();
         model.addAttribute("postList", postList.getPostList());
-        return "/main";
+        return "main";
     }
 
 
