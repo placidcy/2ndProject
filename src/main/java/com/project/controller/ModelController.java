@@ -8,12 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.project.model.PostDao;
-import com.project.model.ReplyDao;
-import com.project.model.UserDO;
-import com.project.model.UserSO;
-import com.project.model.request.LoginRequest;
-import com.project.model.response.LoginUserResponse;
+import com.project.model.*;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -40,7 +35,7 @@ public class ModelController {
 	
 	@PostMapping("/changePasswdProcess")
 	public String changePasswdProcessHandler() {
-		return "main";
+		return "redirect:/main";
 	}
 	
 	@GetMapping("/postForm")	 
@@ -56,7 +51,12 @@ public class ModelController {
 	}
 	
 	@PostMapping("/postFormProcess")
-	public String postFormProcessHandler() {
+	public String postFormProcessHandler(PostDO postDO, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if(session != null) {
+			String user_id = (String)session.getAttribute("user_id");
+			postDao.insertPost(postDO, user_id);
+		}
 		return "main";
 	}
 	

@@ -18,6 +18,7 @@ public class Test {
 		UserDao userDao = new UserDao(ds);
 		UserDO userInfo = userDao.selectById("USER005");
 		System.out.print(userInfo.getName());
+		
 	}
 
 }
