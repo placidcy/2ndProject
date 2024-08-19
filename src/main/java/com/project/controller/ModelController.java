@@ -28,6 +28,9 @@ public class ModelController {
 	@Autowired
 	private ReplyDao replyDao;
 	
+	@Autowired
+	private UserDao userDao;
+	
 	@GetMapping("/changePasswd")	 
 	public String changePasswdHandler() {
 		return "changePasswd";
@@ -70,7 +73,9 @@ public class ModelController {
 		String view = "redirect:/login";
 		
 		if(userSO.checkLogin(userInfo.getUser_id(), userInfo.getPassword())) {
+			session.setAttribute("userNickname", userDao.login(userInfo.getUser_id(), userInfo.getPassword()));
 			session.setAttribute("user_id", userInfo.getUser_id());
+			
 			if(userInfo.isRememberId()) {
 				Cookie cookie = new Cookie("user_id", userInfo.getUser_id());
 				response.addCookie(cookie);	

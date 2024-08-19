@@ -68,5 +68,7 @@ public class UserDao {
 		}
 		return user.getNickname();
 	}
+	
+	
 
 }
