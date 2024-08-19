@@ -12,6 +12,8 @@ import com.project.model.PostDao;
 import com.project.model.ReplyDao;
 import com.project.model.UserDO;
 import com.project.model.UserSO;
+import com.project.model.request.LoginRequest;
+import com.project.model.response.LoginUserResponse;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -90,6 +92,15 @@ public class ModelController {
 		return "detailPage";
 	}
 	
+	@GetMapping("/findID")
+	public String findIDHandler() {
+		return "findID";
+	}
+	
+	@GetMapping("/agreement")
+	public String agreementHandler() {
+		return "agreement";
+	}
 	
 	
 }
