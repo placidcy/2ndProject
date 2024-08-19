@@ -1,5 +1,6 @@
 package com.project.model;
 
+import com.project.model.response.PostMainResponse;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -11,8 +12,9 @@ public class PostSO {
 		this.postDao = postDao;
 	}
 
-	public List<PostDO> getAllPost() {
-		return postDao.selectAllPost();
+	public PostMainResponse getAllPost() {
+		return new PostMainResponse(postDao.selectAllPost());
+
 	}
 	
 	/* 

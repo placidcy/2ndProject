@@ -25,9 +25,8 @@ public class PostDao {
 
 	public List<PostDO> selectAllPost() {
 		//-- 메인페이지 게시글 조회
-		//SELECT post_id, title, content, position, view_count, created_date FROM post;
 		return this.jdbcTemplate
-				.query("SELECT post_id, title, content, position, view_count, created_date FROM post",
+				.query("SELECT post_id, title, content, position, view_count, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') create_date FROM post",
 						new PostRowMapper());
 	}
 	

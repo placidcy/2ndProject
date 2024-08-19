@@ -15,7 +15,7 @@ function init() {
     if (user) {
         // user = JSON.parse(user);
         profile.innerHTML = "<div class='profile-image'>\n" +
-            "    <img src='resources/static/images/anonymous.jpg' alt='profile'>\n" +
+            "    <img src='resources/images/anonymous.jpg' alt='profile'>\n" +
             "</div>\n" +
             "<div class='profile-info'>\n" +
             "    <div>닉네임 : " + user.nickname + "</div>\n" +
