@@ -14,24 +14,30 @@
 <body>
 <div id="container">
 	<header>
-	 <a href="<c:url value='/main' />">직장IN</a>
-	 <form method="POST" action="" id="searchform">
-	 <input type="text" placeholder="제목으로 검색해보세요." id="searchValue" />
-	 <input type="submit" value="검색" />
-	 </form>
+		 <a href="<c:url value='/main' />"><h1 class="logo">직장IN</h1></a>
+		 <div class="searchBox">
+		 <form method="POST" action="" id="searchform">
+		 <input type="text" name="searchBar" placeholder="제목으로 검색해보세요." id="searchValue" />
+		 </div>
+		 </form>
 	</header>
-
-	<hr />
 	
-<div id="leftBox">
-    <button id="write">글쓰기</button>
-    <div id="profile">
-    <img src="resources/images/anonymous.jpg" alt="anonymous" id="profileImg"/>
-	<p class="profileText">게시글: ${postCount} &nbsp&nbsp댓글: ${replyCount}</p>
-    </div>
-    <hr />
-    <p>인기 Topic</p>
- </div>
+	
+<div class="main">
+<aside class="sidebar">
+	<div class="sidebar-container">
+	    <a href="<c:url value='/postForm' />"><button class="writeBtn">글쓰기</button></a>
+	    <div class="profile">
+	    <img src="resources/images/anonymous.jpg" alt="anonymous" id="profileImg"/>
+		<p class="profileText">게시글: ${postCount} <p class="profileText">댓글: ${replyCount}</p></p>
+	    </div>
+    
+		<div class="best-post">
+	    <p>인기 Topic</p>
+		</div>
+	</div>
+ </aside>
+ 
  
  <div id="sectionBox">
 	
@@ -58,7 +64,7 @@
  		<!--submitForm, cancelForm 액션 추가하고 컨트롤러 생성 해야함-->
 	</form>
  </div>
-
+</div>
 </div>
 </body>
 </html>

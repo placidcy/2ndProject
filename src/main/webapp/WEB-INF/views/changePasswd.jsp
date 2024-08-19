@@ -11,7 +11,7 @@
 </head>
 <body>
 	<div id="container">
-		<header><a href="<c:url value='/main' />">직장IN</a></header>
+		<header><a href="<c:url value='/main' />"><h1 class="logo">직장IN</h1></a></header>
 		<form method="POST" action="changePasswdProcess" id="changePasswdForm">
 			<input type="password" name="oldPasswd" id="oldPasswd" placeholder="현재 비밀번호"/>
 			<br />
