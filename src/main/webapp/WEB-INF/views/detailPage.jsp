@@ -20,7 +20,7 @@
 
     <container>
         <section class="sideNavWrap">
-            <button>글쓰기</button>
+             <a href="<c:url value='/postForm' />"><button>글쓰기</button></a>
             <div class="infoBox">
                 <dl>
                     <dt>닉네임</dt>
