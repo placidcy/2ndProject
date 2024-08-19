@@ -4,7 +4,6 @@ function submitHandler(event){
 	let title = document.querySelector('#title');
 	let tag = document.querySelector('#tag');
 	let content = document.querySelector('#content');
-	let rightTag = false;
 	
 	if(!jobCheck.value){
 		position.value=null;
