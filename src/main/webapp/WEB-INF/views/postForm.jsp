@@ -32,7 +32,7 @@
 	    <a href="<c:url value='/postForm' />"><button class="writeBtn">글쓰기</button></a>
 	    <div class="profile">
 	    <img src="resources/images/anonymous.jpg" alt="anonymous" id="profileImg"/>
-		<p class="profileText">${userNickname}</p>
+		<p class="profileText">${auth.nickname}</p>
 		<p class="profileText">게시글: ${postCount} <p class="profileText">댓글: ${replyCount}</p></p>
 	    </div>
     
