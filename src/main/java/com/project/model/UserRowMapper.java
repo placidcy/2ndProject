@@ -14,7 +14,6 @@ public class UserRowMapper implements RowMapper<UserDO>{
 				rs.getString("nickname"),
 				rs.getString("email"),
 				rs.getString("password"),
-				rs.getTimestamp("created_date").toLocalDateTime().toString());
-		return user;
+				rs.getString("created_date"));
 	}
 }
