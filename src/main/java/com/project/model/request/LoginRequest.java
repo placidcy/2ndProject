@@ -3,6 +3,7 @@ package com.project.model.request;
 public class LoginRequest {
     String user_id;
     String password;
+    boolean rememberId;
 
     public LoginRequest() {
     }
@@ -21,5 +22,13 @@ public class LoginRequest {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setRememberId(boolean rememberId) {
+        this.rememberId = rememberId;
+    }
+
+    public boolean isRememberId() {
+        return rememberId;
     }
 }

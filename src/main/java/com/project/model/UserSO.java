@@ -30,15 +30,11 @@ public class UserSO {
 	}
 
 
-	public String login(String user_id, String password) {
-        return userDao.login(user_id, password);
-  }
-
 	public LoginUserResponse findUser(String user_id) {
 		UserDO user = userDao.selectById(user_id);
 
 		return new LoginUserResponse(user.getUser_id(), user.getNickname());
-  }
+  	}
 	
 	public boolean checkLogin(String user_id, String password) {
 		boolean result = false;
@@ -51,5 +47,16 @@ public class UserSO {
 		
         return result;
 
+	}
+
+	public LoginUserResponse login(String user_id, String password) {
+		UserDO user;
+		try {
+			user = userDao.login(user_id, password);
+		} catch (WrongIdPasswordException e) {
+			throw new WrongIdPasswordException();
+		}
+
+		return new LoginUserResponse(user.getUser_id(), user.getNickname());
 	}
 }

@@ -2,14 +2,17 @@ package com.project.controller;
 
 
 
+import com.project.model.PostDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import com.project.model.*;
+import com.project.model.PostDao;
+import com.project.model.ReplyDao;
+import com.project.model.UserDO;
+import com.project.model.UserSO;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -29,23 +32,14 @@ public class ModelController {
 	@Autowired
 	private ReplyDao replyDao;
 	
-	@Autowired
-	private UserDao userDao;
-	
 	@GetMapping("/changePasswd")	 
 	public String changePasswdHandler() {
 		return "changePasswd";
 	}
 	
 	@PostMapping("/changePasswdProcess")
-	public String changePasswdProcessHandler(HttpServletRequest request, UserDO userInfo) {
-		HttpSession session = request.getSession();
-		
-		if(session != null) {
-			String user_id = (String)session.getAttribute("user_id");
-			userSO.changePassword(user_id, userInfo.getOldPasswd(), userInfo.getNewPasswd());
-		}
-		return "redirect:/main";
+	public String changePasswdProcessHandler() {
+		return "main/main";
 	}
 	
 	@GetMapping("/postForm")	 
@@ -70,59 +64,17 @@ public class ModelController {
 		return "main";
 	}
 	
-	@GetMapping("/login")	 
-	public String loginHandler() {
-		return "login";
-	}
-	
-	@PostMapping("/loginProcess")	 
-	public String loginProcessHandler(UserDO userInfo, HttpSession session, HttpServletResponse response) {
-		String view = "redirect:/login";
-		
-		if(userSO.checkLogin(userInfo.getUser_id(), userInfo.getPassword())) {
-			session.setAttribute("userNickname", userDao.login(userInfo.getUser_id(), userInfo.getPassword()));
-			session.setAttribute("user_id", userInfo.getUser_id());
-			Cookie cookie = new Cookie("user_id", userInfo.getUser_id());
-			
-			if(userInfo.isRememberId()) {
-				cookie.setMaxAge(24*60*60*30);
-			}else {
-				cookie.setMaxAge(0);
-			}
-			response.addCookie(cookie);	
-			
-			view = "redirect:/main";
-		}
-		return view;
-	}
-	
-	@GetMapping("/main")	 
-	public String mainHandler(Model model) {
-//		List<PostDO> postList = postService.getAllPost();
-		return "main";
-	}
+//	@GetMapping("/main")
+//	public String mainHandler(Model model) {
+////		List<PostDO> postList = postService.getAllPost();
+//		return "main/main";
+//	}
 	
 	@GetMapping("/detailPage")
 	public String detailPageView() {
 		return "detailPage";
 	}
 	
-	@GetMapping("/findID")
-	public String findIDHandler() {
-		return "findID";
-	}
-	
-	@GetMapping("/agreement")
-	public String agreementHandler() {
-		return "agreement";
-	}
-	
-	@PostMapping("/search")
-	public String searchHandler(@RequestParam(value="searchBar", 
-		    required = false, defaultValue="") String searchValue, HttpSession session) {
-		session.setAttribute("searchPosts", postDao.searchPost(searchValue));
-		return "redirect:/main";
-	}
 	
 	
 }

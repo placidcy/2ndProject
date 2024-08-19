@@ -55,7 +55,7 @@ public class UserDao {
 	}
 	
 
-	public String login(String user_id, String password) {
+	public UserDO login(String user_id, String password) {
 		UserDO user = null;
 		try {
 			user = jdbcTemplate.queryForObject("select user_id, name, nickname, email, password, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date from userinfo where user_id = ? and password = ?",
@@ -66,7 +66,7 @@ public class UserDao {
 		} catch(EmptyResultDataAccessException e) {
 			throw new WrongIdPasswordException();
 		}
-		return user.getNickname();
+		return user;
 	}
 	
 	

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -27,7 +28,7 @@
         </div>
 
 
-        <a href="<c:url value='/login' />"><button>로그인</button></a>
+        <a href="<c:url value='/login' />"><button id = "loginBtn">로그인</button></a>
         <a href="<c:url value='/regist' />"><button>회원가입</button></a>
 
     </header>
@@ -37,7 +38,7 @@
             <div class="sidebar-container">
 
                  <a href="<c:url value='/postForm' />"><button class="writeBtn">글쓰기</button></a>
-                <div class="profile">
+                <div id="profile" class="profile">
                     로그인 후 이용하세요
 
                 </div>
@@ -56,65 +57,25 @@
 
             </div>
             <div class="post-container">
-                <div class="post">
-                    <div class="tags">
-                        <span>태그1</span>
-                        <span>태그2</span>
-                        <span>태그3</span>
+                <c:forEach items="${postList}" var="post">
+                    <div class="post">
+                        <div class="tags">
+                            <span>${post.position}</span>
+                        </div>
+                        <div class="title">
+                            <a href="#">${post.title}</a>
+                        </div>
+                        <div class="post-content">
+                            ${post.content}
+                        </div>
+                        <div class="info">
+                            <span> 조회수 : ${post.view_count}</span>
+                            <span>추천수</span>
+                            <span>댓글수</span>
+                            <span>${post.created_date}</span>
+                        </div>
                     </div>
-                    <div class="title">
-                        <a href="#">제목</a>
-                    </div>
-                    <div class="post-content">
-                        내용
-                    </div>
-                    <div class="info">
-                        <span>조회수</span>
-                        <span>추천수</span>
-                        <span>댓글수</span>
-                        <span>날짜</span>
-                    </div>
-                </div>
-
-                <div class="post">
-                    <div class="tags">
-                        <span>태그1</span>
-                        <span>태그2</span>
-                        <span>태그3</span>
-                    </div>
-                    <div class="title">
-                        <a href="#">제목</a>
-                    </div>
-                    <div class="post-content">
-                        내용
-                    </div>
-                    <div class="info">
-                        <span>조회수</span>
-                        <span>추천수</span>
-                        <span>댓글수</span>
-                        <span>날짜</span>
-                    </div>
-                </div>
-
-                <div class="post">
-                    <div class="tags">
-                        <span>태그1</span>
-                        <span>태그2</span>
-                        <span>태그3</span>
-                    </div>
-                    <div class="title">
-                        <a href="#">제목</a>
-                    </div>
-                    <div class="post-content">
-                        내용
-                    </div>
-                    <div class="info">
-                        <span>조회수</span>
-                        <span>추천수</span>
-                        <span>댓글수</span>
-                        <span>날짜</span>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
         </main>
     </div>
