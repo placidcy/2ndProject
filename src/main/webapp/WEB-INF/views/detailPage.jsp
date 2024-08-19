@@ -41,21 +41,22 @@
         <section class="contentWrap">
             <section class="content">
                 <div class="top">
-                    <a href=""><span>태그</span></a>
-                    <button>스크랩</button>
-                    <h3>제목</h3>
+                    <a href=""><span>${postInfo.positon}</span></a>
+                    <h3>${postInfo.title}</h3>
                 </div>
                 <div class="date">
-                    <span>작성일</span>
+                    <span>${postInfo.created_date}</span>
                 </div>
                 <div class="post">
-                    <p>내용</p>
+                    <p>${postInfo.content}</p>
                 </div>
                 <div  class="author">
-                    <p>작성자 정보</p>
+                    <p>${postInfo.nickname}</p>
                 </div>
                 <div class="tagBox">
-                    <a href=""><span>#태그</span></a>
+	                <c:forEach var="post" items="">
+	                    <span># ${postInfo.tags}</span>
+	                </c:forEach>
                 </div>
             </section>
             
@@ -79,13 +80,18 @@
             </section>
 
             <section class="commentWrap">
-                <h4 class="total-comment">답변 0</h4>
-                <div class="comment">
-                    <p>닉네임 <span>경력</span></p>
-                    <p>댓글 내용</p>
-                    <span>작성일</span> <button>수정</button> <button>삭제</button>
-                    <hr />
-                </div>
+                <h4 class="total-comment">답변 #{replyList.size()}</h4>
+                <c:forEach var="reply" items="${repliesList}">
+	                <div class="comment">
+	                    <p>${reply.nickname} <span>${reply.career}</span></p>
+	                    <p>${reply.content}</p>
+	                    <span>${reply.create_at}</span> 
+	                    <div class="buttons">
+		                    <button>수정</button> <button>삭제</button>
+	                    </div>
+	                    <hr />
+	                </div>
+                </c:forEach>
                 <div class="page">
                     <button>1</button> <button>2</button> <button>3</button> <button>></button> 
                 </div>

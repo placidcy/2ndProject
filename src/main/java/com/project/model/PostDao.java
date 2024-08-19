@@ -28,11 +28,8 @@ public class PostDao {
 	}
 	
 	public PostDO selectPostById(long post_id) {
-		PostDO postDo = null;
-		
 		this.sql = "select position, title, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') create_date, user_id, content, tags from post where post_id = ?";
-		postDo = this.jdbcTemplate.queryForObject(sql, new PostRowMapper(), post_id);
-		return postDo;
+		return this.jdbcTemplate.queryForObject(sql, new PostRowMapper(), post_id);
 	}
 	
 	public int countPost(String user_id) {

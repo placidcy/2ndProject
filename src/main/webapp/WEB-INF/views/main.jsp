@@ -63,7 +63,7 @@
                             <span>${post.position}</span>
                         </div>
                         <div class="title">
-                            <a href="#">${post.title}</a>
+                            <a href="/detailPageProcess?post_id=${post.post_id}">${post.title}</a>
                         </div>
                         <div class="post-content">
                             ${post.content}

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.model.PostDao;
 import com.project.model.ReplyDao;
@@ -70,10 +71,10 @@ public class ModelController {
 //		return "main/main";
 //	}
 	
-	@GetMapping("/detailPage")
-	public String detailPageView() {
-		return "detailPage";
-	}
+//	@GetMapping("/detail")
+//	public String detailPageView() {
+//		return "detailPage";
+//	}
 	
 	
 	
