@@ -4,7 +4,7 @@ function loginHandler() {
 }
 
 function logoutHandler() {
-    sessionStorage.removeItem('user');
+    sessionStorage.removeItem('auth');
     location.reload();
 }
 
@@ -12,15 +12,14 @@ function init() {
     let profile = document.querySelector('#profile');
     let loginBtn = document.querySelector('#loginBtn');
     let user = JSON.parse(sessionStorage.getItem('auth'));
-    console.log(user.nickname);
     if (user) {
         // user = JSON.parse(user);
         profile.innerHTML = "<div class='profile-image'>\n" +
-            "    <img src='static/images/anonymous.jpg' alt='profile'>\n" +
+            "    <img src='resources/static/images/anonymous.jpg' alt='profile'>\n" +
             "</div>\n" +
             "<div class='profile-info'>\n" +
-            "    <span>닉네임 : " + user.nickname + "</span>\n" +
-            "    <span>게시글 : ??</span>\n" +
+            "    <div>닉네임 : " + user.nickname + "</div>\n" +
+            "    <div>게시글 : ??</div>\n" +
             "</div>";
         loginBtn.innerHTML = '로그아웃';
         loginBtn.addEventListener('click', logoutHandler);

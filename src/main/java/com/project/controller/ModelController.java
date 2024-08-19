@@ -58,26 +58,26 @@ public class ModelController {
 		return "main/main";
 	}
 	
-	@GetMapping("/login")	 
-	public String loginHandler() {
-		return "login/login";
-	}
+//	@GetMapping("/login")
+//	public String loginHandler() {
+//		return "login/login";
+//	}
 	
-	@PostMapping("/loginProcess")	 
-	public String loginProcessHandler(UserDO userInfo, HttpSession session, HttpServletResponse response) {
-		String view = "redirect:/login";
-		
-		if(userSO.checkLogin(userInfo.getUser_id(), userInfo.getPassword())) {
-			session.setAttribute("user_id", userInfo.getUser_id());
-			if(userInfo.isRememberId()) {
-				Cookie cookie = new Cookie("user_id", userInfo.getUser_id());
-				response.addCookie(cookie);	
-			}
-			
-			view = "redirect:/main";
-		}
-		return view;
-	}
+//	@PostMapping("/loginProcess")
+//	public String loginProcessHandler(UserDO userInfo, HttpSession session, HttpServletResponse response) {
+//		String view = "redirect:/login";
+//
+//		if(userSO.checkLogin(userInfo.getUser_id(), userInfo.getPassword())) {
+//			session.setAttribute("user_id", userInfo.getUser_id());
+//			if(userInfo.isRememberId()) {
+//				Cookie cookie = new Cookie("user_id", userInfo.getUser_id());
+//				response.addCookie(cookie);
+//			}
+//
+//			view = "redirect:/main";
+//		}
+//		return view;
+//	}
 	
 	@GetMapping("/main")	 
 	public String mainHandler(Model model) {

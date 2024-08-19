@@ -27,7 +27,7 @@
         </div>
 
 
-        <a href="<c:url value='/login' />"><button>로그인</button></a>
+        <a href="<c:url value='/login' />"><button id = "loginBtn">로그인</button></a>
         <a href="<c:url value='/regist' />"><button>회원가입</button></a>
 
     </header>
@@ -37,7 +37,7 @@
             <div class="sidebar-container">
 
                  <a href="<c:url value='/postForm' />"><button class="writeBtn">글쓰기</button></a>
-                <div class="profile">
+                <div id="profile" class="profile">
                     로그인 후 이용하세요
 
                 </div>

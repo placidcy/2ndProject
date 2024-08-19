@@ -11,28 +11,10 @@ function getCookie(name) {
 }
 
 
-function setCookie(name, value, days) {
-    let cookieString = `${name} = ${value || ''} ;`;
-
-    if (days) {
-        const date = new Date();
-        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-        cookieString += `expires=${date.toUTCString()} ;`;
-    }
-
-    document.cookie = `${cookieString} path=/`;
-}
-
-
 
 function loginHandler() {
     const username = document.getElementById('user_id').value;
     const saveId = document.getElementById('saveId').checked;
-    if(saveId) {
-        setCookie('saveId', username, 30);
-    } else {
-        setCookie('saveId', '', 0);
-    }
 }
 
 
