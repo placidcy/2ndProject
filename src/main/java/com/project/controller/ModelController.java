@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.model.*;
 
@@ -117,7 +118,9 @@ public class ModelController {
 	}
 	
 	@PostMapping("/search")
-	public String searchHandler() {
+	public String searchHandler(@RequestParam(value="searchBar", 
+		    required = false, defaultValue="") String searchValue, HttpSession session) {
+		session.setAttribute("searchPosts", postDao.searchPost(searchValue));
 		return "redirect:/main";
 	}
 	
