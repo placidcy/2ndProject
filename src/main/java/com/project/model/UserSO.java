@@ -19,13 +19,13 @@ public class UserSO {
 
 	
 	@Transactional
-	public void changePassword(String user_id, String oldPassword, String newPassword) {
+	public void changePassword(String user_id, String oldPasswd, String newPasswd) {
 		UserDO user = userDao.selectById(user_id);
 		if(user == null) {
 			throw new MemberNotFoundException();
 		}
 		
-		user.changePassword(oldPassword, newPassword);
+		user.changePassword(oldPasswd, newPasswd);
 		userDao.updatePasswordUserInfo(user);
 	}
 

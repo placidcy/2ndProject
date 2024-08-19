@@ -37,7 +37,13 @@ public class ModelController {
 	}
 	
 	@PostMapping("/changePasswdProcess")
-	public String changePasswdProcessHandler() {
+	public String changePasswdProcessHandler(HttpServletRequest request, UserDO userInfo) {
+		HttpSession session = request.getSession();
+		
+		if(session != null) {
+			String user_id = (String)session.getAttribute("user_id");
+			userSO.changePassword(user_id, userInfo.getOldPasswd(), userInfo.getNewPasswd());
+		}
 		return "redirect:/main";
 	}
 	
@@ -75,11 +81,14 @@ public class ModelController {
 		if(userSO.checkLogin(userInfo.getUser_id(), userInfo.getPassword())) {
 			session.setAttribute("userNickname", userDao.login(userInfo.getUser_id(), userInfo.getPassword()));
 			session.setAttribute("user_id", userInfo.getUser_id());
+			Cookie cookie = new Cookie("user_id", userInfo.getUser_id());
 			
 			if(userInfo.isRememberId()) {
-				Cookie cookie = new Cookie("user_id", userInfo.getUser_id());
-				response.addCookie(cookie);	
+				cookie.setMaxAge(24*60*60*30);
+			}else {
+				cookie.setMaxAge(0);
 			}
+			response.addCookie(cookie);	
 			
 			view = "redirect:/main";
 		}
