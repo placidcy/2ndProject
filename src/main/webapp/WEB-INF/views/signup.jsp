@@ -12,9 +12,9 @@
 <div class="container">
     <h1 class="title">직장IN</h1>
     <h2 class="section-title">[필수] 회원 정보 입력</h2>
-    <form class="signup-form" method="POST" action="signup">
+    <form class="signup-form" method="POST" action="signupProgress">
         <div class="input-group">
-            <input type="text" name="userId" id="userid" placeholder="아이디">
+            <input type="text" name="user_id" id="userid" placeholder="아이디">
         </div>
 
         <div class="input-group">
@@ -41,6 +41,7 @@
 
         <h2 class="section-title">[선택] 선호 직종</h2>
 
+        <input type="hidden" name="preference" id="preference">
         <div class="job-preferences">
             <button class="preference-btn" value="secure" type="button">보안</button>
             <button class="preference-btn" value="server" type="button">서버</button>

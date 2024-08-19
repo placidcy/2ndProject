@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.project.model.PostDao;
 import com.project.model.ReplyDao;
 import com.project.model.UserSO;
+import com.project.model.UserDO;
 import com.project.model.response.LoginUserResponse;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -33,19 +34,19 @@ public class ModelController {
 		return "changePasswd";
 	}
 	
-//	@PostMapping("/changePasswdProcess")
-//	public String changePasswdProcessHandler(UserDO userDO, HttpSession session) {
-//		try {
-//			LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
-//			String user_id = user.getUser_id();
-//			userSO.changePassword(user_id, userDO.getOldPasswd(), userDO.getNewPasswd());
-//			return "redirect:/main";
-//		}
-//		catch(Exception e) {
-//			return "redirect:/changePasswd";
-//		}
-//
-//	}
+	@PostMapping("/changePasswdProcess")
+	public String changePasswdProcessHandler(UserDO userDO, HttpSession session) {
+		try {
+			LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
+			String user_id = user.getUser_id();
+			userSO.changePassword(user_id, userDO.getOldPasswd(), userDO.getNewPasswd());
+			return "redirect:/main";
+		}
+		catch(Exception e) {
+			return "redirect:/changePasswd";
+		}
+
+	}
 	
 	@GetMapping("/postForm")	 
 	public String postFormHandler(HttpServletRequest request, Model model) {
@@ -73,11 +74,6 @@ public class ModelController {
 	@GetMapping("/detailPage")
 	public String detailPageView() {
 		return "detailPage";
-	}
-
-	@GetMapping("/signup")
-	public String signupHandler() {
-		return "signup";
 	}
 
 	@GetMapping("/editProfile")

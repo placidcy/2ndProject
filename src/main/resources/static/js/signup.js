@@ -74,20 +74,10 @@ document.addEventListener('DOMContentLoaded', function() {
     //선호 직종 선택
     document.querySelectorAll('.preference-btn').forEach(button => {
         button.addEventListener('click', function () {
-            document.querySelectorAll('.preference-btn').forEach(btn => {
-                if (!button.name) {
-                    btn.classList.remove('selected');
-                }
-                btn.removeAttribute('name');
-            });
-
+            document.querySelectorAll('.preference-btn').forEach(btn => btn.classList.remove('selected'));
 
             button.classList.toggle('selected');
-            if (button.classList.contains('selected')) {
-                button.setAttribute('name', 'preference');
-            } else {
-                button.removeAttribute('name');
-            }
+            document.getElementById('preference').value = document.querySelector('.preference-btn.selected').value;
         });
     });
 
@@ -96,13 +86,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!validateForm()) {
             event.preventDefault();
         } else {
-            console.log("아이디 : ", document.getElementById('userid').value);
-            console.log("비밀번호 : ", document.getElementById('password').value);
-            console.log("비밀번호 확인 : ", document.getElementById('confirm-password').value);
-            console.log("이름 : ", document.getElementById('name').value);
-            console.log("닉네임 : ", document.getElementById('nickname').value);
-            console.log("이메일 : ", document.getElementById('email').value);
-            console.log("선호 직종 : ", document.querySelector('.preference-btn[name="preference"]').value);
             alert("회원가입이 완료되었습니다.");
         }
     });
