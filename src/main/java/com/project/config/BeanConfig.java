@@ -15,9 +15,9 @@ public class BeanConfig {
 	public DataSource dataSource() {
 		DataSource ds = new DataSource();
 		ds.setDriverClassName("oracle.jdbc.driver.OracleDriver");
-		ds.setUrl("jdbc:oracle:thin:@localhost:1522:XE");
-		ds.setUsername("system");
-		ds.setPassword("oracle");
+		ds.setUrl("jdbc:oracle:thin:@localhost:1521:XE");
+		ds.setUsername("scott");
+		ds.setPassword("tiger");
 		ds.setInitialSize(5);
 		ds.setMinIdle(5);
 		ds.setMaxIdle(10);
