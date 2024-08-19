@@ -80,7 +80,7 @@
             </section>
 
             <section class="commentWrap">
-                <h4 class="total-comment">답변 #{replyList.size()}</h4>
+                <h4 class="total-comment">답변 #{repliesList.size()}</h4>
                 <c:forEach var="reply" items="${repliesList}">
 	                <div class="comment">
 	                    <p>${reply.nickname} <span>${reply.career}</span></p>

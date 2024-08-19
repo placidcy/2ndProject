@@ -16,16 +16,16 @@ import com.project.model.ReplySO;
 public class DetailPageController {
 
 	@Autowired
-	private PostSO postSo;
+	private PostSO post;
 	@Autowired
-	private ReplySO replySo;
+	private ReplySO reply;
 	
 	@GetMapping("/detailPageProcess")
 	public String detailPageView(@RequestParam("post_id") long post_id, Model model) {
-		PostDO postInfo = postSo.getPostById(post_id);
+		PostDO postInfo = post.getPostById(post_id);
 		model.addAttribute("postInfo", postInfo);
 
-		List<ReplyDO> repliesList = replySo.getRepliesByPostId(post_id);
+		List<ReplyDO> repliesList = reply.getRepliesByPostId(post_id);
 		model.addAttribute("repliesList", repliesList);
 		
 		return "detailPage";
