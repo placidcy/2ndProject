@@ -12,7 +12,7 @@
     <header>
         <a href="<c:url value='/main' />"><h1 class="logo">직장IN</h1></a>
         <div class="searchBox">
-            <form action="" method="POST">
+            <form action="#" method="POST">
                 <input type="text" name="searchBar" placeholder="검색어를 입력하세요." />
             </form>
         </div>
@@ -60,7 +60,7 @@
                 </div>
             </section>
             
-            <form action="" method="POST">
+            <form action="#" method="POST">
                 <input type="text" name="commentBar" id="commentBar" placeholder="답변을 남겨주세요." />
                 <button>등록</button>
             </form>
@@ -87,7 +87,8 @@
 	                    <p>${repliesList.content}</p>
 	                    <span>${repliesList.create_at}</span> 
 	                    <div class="buttons">
-		                    <button>수정</button> <button>삭제</button>
+		                    <a href="<c:url value='/modify' />"><button>수정</button></a> 
+		                    <a href="<c:url value='/delete' />"><button>삭제</button></a>
 	                    </div>
 	                    <hr />
 	                </div>
