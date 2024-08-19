@@ -7,12 +7,13 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/resources/css/main.css">
     <script>
-        console.log("${auth.nickname}");
-        // auth 변수를 sessionStorage에 저장
-        if (sessionStorage.getItem('auth') === null) {
-            sessionStorage.setItem('auth',
-                '{"nickname": "${auth.nickname}" }'
-            );
+        let auth = ${auth.nickname != null ? 'true' : null};
+
+        if (auth) {
+            // auth 객체가 존재할 경우 sessionStorage에 저장
+            sessionStorage.setItem('auth', JSON.stringify({
+                nickname: "${auth != null ? auth.nickname : ''}"
+            }));
         }
     </script>
     <script src="/resources/js/mainPg.js"></script>
@@ -28,8 +29,8 @@
         </div>
 
 
-        <a href="<c:url value='/login' />"><button id = "loginBtn">로그인</button></a>
-        <a href="<c:url value='/regist' />"><button>회원가입</button></a>
+        <a><button id = "loginBtn">로그인</button></a>
+        <a><button id = "signUpOrMyPageBtn">회원가입</button></a>
 
     </header>
 
