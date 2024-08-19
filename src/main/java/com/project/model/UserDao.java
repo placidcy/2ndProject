@@ -17,13 +17,17 @@ public class UserDao {
 	
 	public UserDO selectById(String user_id) {
 		UserDO userDo = null;
-		this.sql = "select user_id, name, nickname, email, password, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date from userinfo where user_id = ?";
+
+		this.sql = "select user_id, name, nickname, email, password, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') create_date "
+				+ "from userinfo "
+				+ "where user_id = ?";
 		
 		try {
 			userDo = this.jdbcTemplate.queryForObject(sql, new UserRowMapper(), user_id);
 		}
 		catch(EmptyResultDataAccessException e) {
-			e.printStackTrace();
+			System.out.println("user_id = " + user_id);
+			throw new WrongIdPasswordException();
 		}
 		
 		return userDo;
@@ -51,18 +55,18 @@ public class UserDao {
 	}
 	
 
-	public UserDO login(String user_id, String password) {
-		UserDO result;
+	public String login(String user_id, String password) {
+		UserDO user = null;
 		try {
 			result = jdbcTemplate.queryForObject("select user_id, name, nickname, email, password, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date from userinfo where user_id = ? and password = ?",
 					new UserRowMapper(),
 					user_id, password
 			);
+
 		} catch(EmptyResultDataAccessException e) {
 			throw new WrongIdPasswordException();
 		}
-
-		return result;
+		return user.getNickname();
 	}
 
 }

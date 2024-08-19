@@ -12,7 +12,7 @@
 <body>
 <div id="container">
     <div id="logo">직장IN</div>
-    <form action="/loginProcess" method="POST">
+    <form action="loginProcess" method="POST" >
         <div class="input-section">
             <input type="text" name="user_id"" id="userId" placeholder="아이디"/>
             <input type="password" name="password" id="password" placeholder="비밀번호"/>
