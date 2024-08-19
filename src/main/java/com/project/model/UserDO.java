@@ -9,6 +9,9 @@ public class UserDO {
 	private String nickname;
 	private String email;
 	private String password;
+	private String oldPasswd;
+	private String newPasswd;
+	private String confirmNewPasswd;
 	private String created_date;
 	private boolean rememberId;
 	
@@ -84,5 +87,30 @@ public class UserDO {
 	public void setRememberId(boolean rememberId) {
 		this.rememberId = rememberId;
 	}
+
+	public String getOldPasswd() {
+		return oldPasswd;
+	}
+
+	public void setOldPasswd(String oldPasswd) {
+		this.oldPasswd = oldPasswd;
+	}
+
+	public String getNewPasswd() {
+		return newPasswd;
+	}
+
+	public void setNewPasswd(String newPasswd) {
+		this.newPasswd = newPasswd;
+	}
+
+	public String getConfirmNewPasswd() {
+		return confirmNewPasswd;
+	}
+
+	public void setConfirmNewPasswd(String confirmNewPasswd) {
+		this.confirmNewPasswd = confirmNewPasswd;
+	}
+	
 	
 }
