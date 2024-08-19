@@ -116,5 +116,10 @@ public class ModelController {
 		return "agreement";
 	}
 	
+	@PostMapping("/search")
+	public String searchHandler() {
+		return "redirect:/main";
+	}
+	
 	
 }

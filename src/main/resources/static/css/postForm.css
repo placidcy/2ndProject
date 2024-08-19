@@ -8,13 +8,15 @@
 * {
     font-family: 'Pretendard-Regular';
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 0;
+}
+body {
+	background-color: #f7f7f7;
 }
 #container{
-	width: 1000px;
-	background-color: white;
+	width: 940px;
+	background-color: #f7f7f7;
 	margin:auto;
-	margin-top: 80px;
 }
 
 .logo {
@@ -25,7 +27,6 @@
 
 .sidebar {
     margin-left: 60px;
-    margin-top: 50px;
     width: 200px;
     background-color: white;
     box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.1);
@@ -75,8 +76,10 @@
 }
 
 #sectionBox{
-	margin-top: 20px;
-	margin-left:0px;
+	margin-left:40px;
+	background-color: white;
+	border-radius: 10px;
+	box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.1);
 }
 #questionForm{
 	clear:both;
@@ -84,9 +87,6 @@
 	height:500px;
 	padding:20px;
 	margin:20px;
-	border:2px solid rgb(192, 192, 192);
-	border-radius: 2px;
-	
 }
 #title, #tag{
 	width:500px;
@@ -95,7 +95,23 @@ a{
 text-decoration-line: none;
 }
 header{
-	margin-left:80px;
+	padding:20px;
+	margin-left:60px;
+	margin-bottom:40px;
+	background-color: white;
+	box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.1);
+}
+header button{
+	width: 50px;
+	height: 40px;
+	border: 2px solid #204AB6;
+	border-radius: 10px;
+	padding: 3px;
+	font-size: 14px;
+	background-color: white;
+}
+#searchDisplay{
+	display:flex;
 }
 .searchBox {
     display: inline-block;
