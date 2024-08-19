@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.model.PostDao;
 import com.project.model.ReplyDao;
-import com.project.model.UserDO;
 import com.project.model.UserSO;
+import com.project.model.UserDO;
 import com.project.model.response.LoginUserResponse;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -41,12 +41,12 @@ public class ModelController {
 			LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
 			String user_id = user.getUser_id();
 			userSO.changePassword(user_id, userDO.getOldPasswd(), userDO.getNewPasswd());
-			return "redirect:/main";	
+			return "redirect:/main";
 		}
 		catch(Exception e) {
-			return "redirect:/changePasswd";	
+			return "redirect:/changePasswd";
 		}
-		
+
 	}
 	
 	@GetMapping("/postForm")	 
@@ -75,21 +75,6 @@ public class ModelController {
 //	public String detailPageView() {
 //		return "detailPage";
 //	}
-
-	@PostMapping("/loginProcess")	 
-	public String loginProcessHandler() {
-		return "main/main";
-	}
-	
-	@GetMapping("/main")	 
-	public String mainHandler() {
-		return "main/main";
-	}
-
-	@GetMapping("/signup")
-	public String signupHandler() {
-		return "signup/signup";
-	}
 
 	@GetMapping("/editProfile")
 	public String editProfileHandler() {
