@@ -60,7 +60,7 @@
  		<br />
  		<input type="text" name="tag" id="tag" placeholder="#태그 입력(#으로 구분해주세요.)"/>
  		<hr />
-		<input type="submit" value="질문하기" id="submitBtn"/> <a href="/main"><button>취소</button></a>
+		<input type="submit" value="질문하기" id="submitBtn"/> <a href="<c:url value='/main' />"><button type="button">취소</button></a>
  		<!--submitForm, cancelForm 액션 추가하고 컨트롤러 생성 해야함-->
 	</form>
  </div>
