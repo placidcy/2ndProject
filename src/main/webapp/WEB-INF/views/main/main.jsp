@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -26,15 +26,19 @@
             <input type="text" placeholder="궁금한 내용을 검색해보세요 !"/>
         </div>
 
-        <button id = loginBtn>로그인</button>
-        <button>회원가입</button>
+
+        <a href="<c:url value='/login' />"><button>로그인</button></a>
+        <a href="<c:url value='/regist' />"><button>회원가입</button></a>
+
     </header>
 
     <div class="container">
         <aside class="sidebar">
             <div class="sidebar-container">
-                <button class="writeBtn">글쓰기</button>
-                <div class="profile" id="profile">
+
+                 <a href="<c:url value='/postForm' />"><button class="writeBtn">글쓰기</button></a>
+                <div class="profile">
+                    로그인 후 이용하세요
 
                 </div>
 

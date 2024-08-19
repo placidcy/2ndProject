@@ -10,3 +10,4 @@ VALUES (seq_career_career_id.NEXTVAL, 'USER002', '보안 시스템즈', '보안'
 INSERT INTO career (career_id, user_id, company_name, position, joined_date, retired_date, is_employed)
 VALUES (seq_career_career_id.NEXTVAL, 'USER003', '게임 마스터즈', '게임', TO_DATE('2019-10-10', 'YYYY-MM-DD'), NULL, '1');
 
+commit;

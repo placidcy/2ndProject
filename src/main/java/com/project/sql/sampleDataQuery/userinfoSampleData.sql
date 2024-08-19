@@ -13,7 +13,3 @@ VALUES ('USER004', '정다은', 'Dani_J', 'daeun.jung@example.com', 'WonderWoman
 INSERT INTO userinfo (user_id, name, nickname, email, password)
 VALUES ('USER005', '최현준', 'HyunJoon', 'hyunjun.choi@example.com', 'Eve@Password123');
 
-select user_id, name, nickname, email, password, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') create_date
-from userinfo
-where user_id='USER001' and password='1234';
-

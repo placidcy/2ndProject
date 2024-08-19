@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -13,13 +14,11 @@
     <div id="logo">직장IN</div>
     <form action="loginProcess" method="POST" >
         <div class="input-section">
-            <label for="user_id" hidden="hidden">아이디</label>
-            <input type="text" name="user_id" id="user_id" placeholder="아이디"/>
-            <label for="password" hidden="hidden">비밀번호</label>
+            <input type="text" name="user_id"" id="userId" placeholder="아이디"/>
             <input type="password" name="password" id="password" placeholder="비밀번호"/>
             <div class="options">
                 <label>
-                    <input type="checkbox" id="saveId">
+                    <input type="checkbox" name="rememberId" id="saveId">
                     아이디 저장
                 </label>
             </div>

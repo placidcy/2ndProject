@@ -6,14 +6,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.project.exception.MemberNotFoundException;
+import com.project.exception.WrongIdPasswordException;
 
 @Service
 public class UserSO {
 
-	private final UserDao userDao;
 	@Autowired
-	public UserSO(UserDao userDao) {
-		this.userDao = userDao;
+	private UserDao userDao;
+	
+	public UserSO() {
 	}
 
 	
@@ -28,13 +29,27 @@ public class UserSO {
 		userDao.updatePasswordUserInfo(user);
 	}
 
+
 	public String login(String user_id, String password) {
         return userDao.login(user_id, password);
-    }
+  }
 
 	public LoginUserResponse findUser(String user_id) {
 		UserDO user = userDao.selectById(user_id);
 
 		return new LoginUserResponse(user.getUser_id(), user.getNickname());
+  }
+	
+	public boolean checkLogin(String user_id, String password) {
+		boolean result = false;
+		try {
+			userDao.login(user_id, password);	
+			result = true;
+		}catch(WrongIdPasswordException e){
+			e.printStackTrace();
+		}
+		
+        return result;
+
 	}
 }
