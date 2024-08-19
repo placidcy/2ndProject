@@ -11,10 +11,12 @@
 <body>
 <div id="container">
     <div id="logo">직장IN</div>
-    <form action="/loginProcess" method="POST">
+    <form action="loginProcess" method="POST" >
         <div class="input-section">
-            <input type="text" id="userId" placeholder="아이디"/>
-            <input type="password" id="password" placeholder="비밀번호"/>
+            <label for="user_id" hidden="hidden">아이디</label>
+            <input type="text" name="user_id" id="user_id" placeholder="아이디"/>
+            <label for="password" hidden="hidden">비밀번호</label>
+            <input type="password" name="password" id="password" placeholder="비밀번호"/>
             <div class="options">
                 <label>
                     <input type="checkbox" id="saveId">

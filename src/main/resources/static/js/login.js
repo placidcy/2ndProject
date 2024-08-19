@@ -26,7 +26,7 @@ function setCookie(name, value, days) {
 
 
 function loginHandler() {
-    const username = document.getElementById('userId').value;
+    const username = document.getElementById('user_id').value;
     const saveId = document.getElementById('saveId').checked;
     if(saveId) {
         setCookie('saveId', username, 30);
@@ -40,11 +40,11 @@ function loginHandler() {
 function init() {
     const saveId = getCookie('saveId');
     if(saveId) {
-        document.getElementById('userId').value = saveId;
+        document.getElementById('user_id').value = saveId;
         document.getElementById('saveId').checked = true;
     }
 
-    document.getElementById('login').addEventListener('click', loginHandler);
+    document.getElementById('login-button').addEventListener('click', loginHandler);
 }
 
 window.addEventListener('load', init);

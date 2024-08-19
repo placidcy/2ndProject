@@ -7,9 +7,12 @@ import org.springframework.jdbc.core.RowMapper;
 public class UserRowMapper implements RowMapper<UserDO>{
 
 	public UserDO mapRow(ResultSet rs,int rowNum) throws SQLException {
-		UserDO user = new UserDO(rs.getString("user_id"), rs.getString("name"), rs.getString("nickname"), rs.getString("email"),
-				rs.getString("password"), rs.getTimestamp("created_date").toLocalDateTime().toString());
-		
-		return user;
+        return new UserDO(
+				rs.getString("user_id"),
+				rs.getString("name"),
+				rs.getString("nickname"),
+				rs.getString("email"),
+				rs.getString("password"),
+				rs.getTimestamp("created_date").toLocalDateTime().toString());
 	}
 }

@@ -5,6 +5,16 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/resources/css/main.css">
+    <script>
+        console.log("${auth.nickname}");
+        // auth 변수를 sessionStorage에 저장
+        if (sessionStorage.getItem('auth') === null) {
+            sessionStorage.setItem('auth',
+                '{"nickname": "${auth.nickname}" }'
+            );
+        }
+    </script>
+    <script src="/resources/js/mainPg.js"></script>
     <title>Main </title>
 </head>
 <body>
@@ -16,7 +26,7 @@
             <input type="text" placeholder="궁금한 내용을 검색해보세요 !"/>
         </div>
 
-        <button>로그인</button>
+        <button id = loginBtn>로그인</button>
         <button>회원가입</button>
     </header>
 
@@ -24,8 +34,8 @@
         <aside class="sidebar">
             <div class="sidebar-container">
                 <button class="writeBtn">글쓰기</button>
-                <div class="profile">
-                    로그인 후 이용하세요
+                <div class="profile" id="profile">
+
                 </div>
 
                 <div class="best-post">
@@ -36,8 +46,10 @@
 
         <main class="content">
             <div class="tabs">
-                <button class="scrap">스크랩</button>
-                <button class="all">전체</button>
+<%--                <button class="scrap">스크랩</button>--%>
+<%--                <button class="all">전체</button>--%>
+                글 목록
+
             </div>
             <div class="post-container">
                 <div class="post">

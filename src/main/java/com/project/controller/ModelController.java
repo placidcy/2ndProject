@@ -1,7 +1,14 @@
 package com.project.controller;
 
+import com.project.model.PostDO;
+import com.project.model.PostSO;
+import com.project.model.request.LoginRequest;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -22,24 +29,12 @@ public class ModelController {
 	public String postFormProcessHandler() {
 		return "main/main";
 	}
-	
-	@GetMapping("/login")	 
-	public String loginHandler() {
-		return "login/login";
-	}
-	
-	@PostMapping("/loginProcess")	 
-	public String loginProcessHandler() {
-		return "main/main";
-	}
+
 	
 	@GetMapping("/main")	 
-	public String mainHandler() {
+	public String mainHandler(Model model) {
+//		List<PostDO> postList = postService.getAllPost();
 		return "main/main";
 	}
-	
-	
-	
-	
-	
+
 }

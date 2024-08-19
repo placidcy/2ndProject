@@ -1,5 +1,6 @@
 package com.project.model;
 
+import com.project.model.response.LoginUserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,7 +28,13 @@ public class UserSO {
 		userDao.updatePasswordUserInfo(user);
 	}
 
-	public UserDO login(String user_id, String password) {
-        return userDao.selectById(user_id);
+	public String login(String user_id, String password) {
+        return userDao.login(user_id, password);
+    }
+
+	public LoginUserResponse findUser(String user_id) {
+		UserDO user = userDao.selectById(user_id);
+
+		return new LoginUserResponse(user.getUser_id(), user.getNickname());
 	}
 }
