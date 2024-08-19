@@ -1,7 +1,3 @@
-// signup.js
-
-console.log("hello");
-// Toggle password visibility
 document.addEventListener('DOMContentLoaded', function() {
     const passwordFields = document.querySelectorAll('.input-group input[type="password"]');
     console.log(passwordFields);
@@ -53,7 +49,7 @@ document.addEventListener('DOMContentLoaded', function() {
             email.classList.add('invalid')
             return false;
         }
-        if (!validateEmail(email)) {
+        if (!validateEmail(email.value.trim())) {
             alert("유효한 이메일 주소를 입력해주세요.");
             email.classList.add('invalid')
             return false;
@@ -66,13 +62,14 @@ document.addEventListener('DOMContentLoaded', function() {
         const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         return re.test(String(email).toLowerCase());
     }
-
+    let a;
     document.querySelectorAll('.preference-btn').forEach(button => {
         button.addEventListener('click', function () {
             document.querySelectorAll('.preference-btn').forEach(btn => btn.classList.remove('selected'));
             button.classList.toggle('selected');
 
             const buttonValue = button.value;
+            a = buttonValue;
             console.log("Selected value:", buttonValue);
         });
     });
@@ -81,6 +78,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!validateForm()) {
             event.preventDefault();
         } else {
+            console.log("id : "+document.getElementById('userid').value.trim());
+            console.log("pw : "+document.getElementById('password').value.trim());
+            console.log("ckpw : "+document.getElementById('confirm-password').value.trim());
+            console.log("name : "+document.getElementById('name').value.trim());
+            console.log("email : "+document.getElementById('email').value.trim());
+            console.log("Selected value:", a);
             alert("회원가입이 완료되었습니다.");
         }
     });
