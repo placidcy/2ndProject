@@ -26,10 +26,10 @@
                     <dt>닉네임</dt>
                     <dd>
                         <span>글
-                            <b>0</b>
+                            <b>${postCount}</b>
                         </span>
                         <span>답변
-                            <b>0</b>
+                            <b>${replyCount}</b>
                         </span>
                         <span>스크랩한 게시물
                             <b>0</b>

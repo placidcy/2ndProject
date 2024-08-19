@@ -23,7 +23,7 @@
     <div class="container">
         <aside class="sidebar">
             <div class="sidebar-container">
-                <button class="writeBtn">글쓰기</button>
+                 <a href="<c:url value='/postForm' />"><button class="writeBtn">글쓰기</button></a>
                 <div class="profile">
                     로그인 후 이용하세요
                 </div>

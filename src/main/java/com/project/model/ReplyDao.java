@@ -13,10 +13,9 @@ import org.springframework.jdbc.support.KeyHolder;
 
 public class ReplyDao {
 	
-	private JdbcTemplate jdbcTemplate;
+	private final JdbcTemplate jdbcTemplate;
 	private String sql;
 
-	@Autowired
 	public ReplyDao(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
@@ -51,6 +50,15 @@ public class ReplyDao {
 	public void updateLikes(int likes, int reply_id) {
 		this.sql = "update reply set likes = ? where reply_id = ?";
 		this.jdbcTemplate.update(sql, likes, reply_id);
+	}
+	
+	public int countReply(String user_id,Long post_id) {
+		this.sql = "select count(*) from reply where user_id = ? and post_id = ?";
+		return this.jdbcTemplate.queryForObject(sql, Integer.class, user_id, post_id);	
+	}
+	public int countReply(String user_id) {
+		this.sql = "select count(*) from reply where user_id = ?";
+		return this.jdbcTemplate.queryForObject(sql, Integer.class, user_id);	
 	}
 	
 }
