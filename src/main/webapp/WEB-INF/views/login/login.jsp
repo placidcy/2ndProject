@@ -18,7 +18,7 @@
             <input type="password" name="password" id="password" placeholder="비밀번호"/>
             <div class="options">
                 <label>
-                    <input type="checkbox" name="rememberId" id="saveId">
+                    <input type="checkbox" name="rememberId" id="saveId" value="true">
                     아이디 저장
                 </label>
             </div>

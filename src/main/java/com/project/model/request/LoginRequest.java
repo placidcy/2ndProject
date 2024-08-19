@@ -24,6 +24,10 @@ public class LoginRequest {
         this.password = password;
     }
 
+    public void setRememberId(boolean rememberId) {
+        this.rememberId = rememberId;
+    }
+
     public boolean isRememberId() {
         return rememberId;
     }

@@ -20,9 +20,10 @@ function loginHandler() {
 
 
 function init() {
-    const saveId = getCookie('saveId');
-    if(saveId) {
-        document.getElementById('user_id').value = saveId;
+    const userId = getCookie('user_id');
+    console.log(userId);
+    if(userId != null) {
+        document.getElementById('userId').value = userId;
         document.getElementById('saveId').checked = true;
     }
 
