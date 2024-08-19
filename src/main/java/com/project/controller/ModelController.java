@@ -11,12 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.project.model.PostDao;
 import com.project.model.ReplyDao;
-import com.project.model.UserDO;
 import com.project.model.UserSO;
 
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 
@@ -75,19 +72,9 @@ public class ModelController {
 		return "detailPage";
 	}
 
-	@PostMapping("/loginProcess")	 
-	public String loginProcessHandler() {
-		return "main/main";
-	}
-	
-	@GetMapping("/main")	 
-	public String mainHandler() {
-		return "main/main";
-	}
-
 	@GetMapping("/signup")
 	public String signupHandler() {
-		return "signup/signup";
+		return "signup";
 	}
 
 	@GetMapping("/editProfile")

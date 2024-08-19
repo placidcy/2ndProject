@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
-    <script src="resources/js/changePasswd.js"></script>
+    <script src="resources/js/signup.js"></script>
     <link rel="stylesheet" href="resources/css/signup.css" />
 </head>
 <body>
@@ -39,11 +39,11 @@
         <h2 class="section-title">[선택] 선호 직종</h2>
 
         <div class="job-preferences">
-            <button class="preference-btn">웹</button>
-            <button class="preference-btn">서버</button>
-            <button class="preference-btn">게임</button>
-            <button class="preference-btn">데이터</button>
-            <button class="preference-btn">보안</button>
+            <button class="preference-btn" value="secure">보안</button>
+            <button class="preference-btn" value="server">서버</button>
+            <button class="preference-btn" value="game">게임</button>
+            <button class="preference-btn" value="data">데이터</button>
+            <button class="preference-btn" value="web">웹</button>
         </div>
 
         <button class="submit-btn">회원가입</button>
