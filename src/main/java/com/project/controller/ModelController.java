@@ -1,22 +1,17 @@
 package com.project.controller;
 
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.model.PostDao;
 import com.project.model.ReplyDao;
 import com.project.model.UserDO;
 import com.project.model.UserSO;
-import com.project.model.PostDO;
-import com.project.model.PostSO;
 
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
@@ -88,6 +83,7 @@ public class ModelController {
 	public String mainHandler(Model model) {
 //		List<PostDO> postList = postService.getAllPost();
 		return "main/main";
+	}
 	
 	@GetMapping("/detailPage")
 	public String detailPageView() {
