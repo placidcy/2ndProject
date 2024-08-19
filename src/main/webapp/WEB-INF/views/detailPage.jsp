@@ -20,7 +20,8 @@
 
     <container>
         <section class="sideNavWrap">
-             <a href="<c:url value='/postForm' />"><button>글쓰기</button></a>
+			<%--              
+			<a href="<c:url value='/postForm' />"><button>글쓰기</button></a>
             <div class="infoBox">
                 <dl>
                     <dt>닉네임</dt>
@@ -31,12 +32,11 @@
                         <span>답변
                             <b>${replyCount}</b>
                         </span>
-                        <span>스크랩한 게시물
-                            <b>0</b>
-                        </span>
                     </dd>
                 </dl>
             </div>
+            --%>
+            <jsp:include page="sidebar/sidebar.jsp" />
         </section>
         <section class="contentWrap">
             <section class="content">
@@ -54,7 +54,7 @@
                     <p>${postInfo.nickname}</p>
                 </div>
                 <div class="tagBox">
-	                <c:forEach var="post" items="">
+	                <c:forEach var="postInfo" items="${postInfo}">
 	                    <span># ${postInfo.tags}</span>
 	                </c:forEach>
                 </div>
@@ -81,11 +81,11 @@
 
             <section class="commentWrap">
                 <h4 class="total-comment">답변 #{repliesList.size()}</h4>
-                <c:forEach var="reply" items="${repliesList}">
+                <c:forEach var="repliesList" items="${repliesList}">
 	                <div class="comment">
-	                    <p>${reply.nickname} <span>${reply.career}</span></p>
-	                    <p>${reply.content}</p>
-	                    <span>${reply.create_at}</span> 
+	                    <p>${repliesList.nickname} <span>${repliesList.career}</span></p>
+	                    <p>${repliesList.content}</p>
+	                    <span>${repliesList.create_at}</span> 
 	                    <div class="buttons">
 		                    <button>수정</button> <button>삭제</button>
 	                    </div>
