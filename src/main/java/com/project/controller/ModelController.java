@@ -2,6 +2,7 @@ package com.project.controller;
 
 
 
+import com.project.model.PostDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,7 +22,7 @@ import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ModelController {
-
+	
 	@Autowired
 	private UserSO userSO;
 	
@@ -54,8 +55,13 @@ public class ModelController {
 	}
 	
 	@PostMapping("/postFormProcess")
-	public String postFormProcessHandler() {
-		return "main/main";
+	public String postFormProcessHandler(PostDO postDO, HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		if(session != null) {
+			String user_id = (String)session.getAttribute("user_id");
+			postDao.insertPost(postDO, user_id);
+		}
+		return "main";
 	}
 	
 //	@GetMapping("/main")

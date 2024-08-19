@@ -15,12 +15,9 @@ public class PostDao {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
-	public void insertPost(PostDO post) {
-		KeyHolder keyHolder = new GeneratedKeyHolder();
-		this.jdbcTemplate.update(new PostPreparedStatement(post, new String[] {"post_id"}), keyHolder);
-		Number keyValue = keyHolder.getKey();
-		post.setPost_id(keyValue.longValue());
-		//내가 쓴글 기능이 있을 때 필요
+	public void insertPost(PostDO post, String user_id) {
+		this.sql = "insert into post (post_id, title, content, tags, user_id, position) values(seq_post_post_id.nextval, ?, ?, ?, ?, ?)";
+		this.jdbcTemplate.update(sql, post.getTitle(), post.getContent(), post.getTags(), user_id, post.getPosition());
 	}
 
 	public List<PostDO> selectAllPost() {
@@ -33,6 +30,11 @@ public class PostDao {
 	public int countPost(String user_id) {
 		this.sql = "select count(*) from post where user_id = ?";
 		return this.jdbcTemplate.queryForObject(sql, Integer.class, user_id);	
+	}
+	
+	public List<PostDO> searchPost(String searchValue){
+		this.sql = "select * from post where title like '%?%' or content like '%?%'";
+		return this.jdbcTemplate.query(sql, new PostRowMapper(), searchValue, searchValue);
 	}
 	
 }
