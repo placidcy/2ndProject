@@ -21,7 +21,7 @@ public class UserController {
 
     @GetMapping("/login")
     public String loginHandler() {
-        return "/login";
+        return "login";
     }
 
     @PostMapping("/loginProcess")

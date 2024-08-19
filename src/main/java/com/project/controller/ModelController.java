@@ -67,33 +67,22 @@ public class ModelController {
 			LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
 			postDao.insertPost(postDO, user.getUser_id());
 		}
-		return "main";
+		return "redirect:/main";
 	}
 	
-	
-	@GetMapping("/detailPage")
-	public String detailPageView() {
-		return "detailPage";
-	}
-
-	@PostMapping("/loginProcess")	 
-	public String loginProcessHandler() {
-		return "main/main";
-	}
-	
-	@GetMapping("/main")	 
-	public String mainHandler() {
-		return "main/main";
+	@GetMapping("/findID")
+	public String findIDHandler() {
+		return "findID";
 	}
 
 	@GetMapping("/signup")
 	public String signupHandler() {
-		return "signup/signup";
+		return "signup";
 	}
 
 	@GetMapping("/editProfile")
 	public String editProfileHandler() {
-		return "profile/editProfile";
+		return "editProfile";
 	}
 	
 	
