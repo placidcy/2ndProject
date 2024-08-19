@@ -87,3 +87,5 @@ VALUES (seq_post_post_id.NEXTVAL, '서버 로그 분석 방법', '서버 로그�
 
 INSERT INTO post (post_id, title, content, tags, user_id, position)
 VALUES (seq_post_post_id.NEXTVAL, '데이터 거버넌스 전략', '데이터 거버넌스의 개념과 성공적인 전략.', '데이터,거버넌스,전략', 'USER004', '데이터');
+
+commit;

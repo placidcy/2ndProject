@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 
@@ -13,7 +14,7 @@
 <body>
 <div id="container">
 	<header>
-	 <a href="메인페이지">직장IN</a>
+	 <a href="<c:url value='/main' />">직장IN</a>
 	 <form method="POST" action="" id="searchform">
 	 <input type="text" placeholder="제목으로 검색해보세요." id="searchValue" />
 	 <input type="submit" value="검색" />
@@ -26,7 +27,7 @@
     <button id="write">글쓰기</button>
     <div id="profile">
     <img src="resources/images/anonymous.jpg" alt="anonymous" id="profileImg"/>
-	<p class="profileText">${postCount} ${replyCount}</p>
+	<p class="profileText">게시글: ${postCount} &nbsp&nbsp댓글: ${replyCount}</p>
     </div>
     <hr />
     <p>인기 Topic</p>

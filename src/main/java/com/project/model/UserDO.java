@@ -42,6 +42,9 @@ public class UserDO {
 		return password;
 	}
 
+	public void setPassword(String password) {
+		this.password = password;
+	}
 	public void changePassword(String oldPassword, String newPassword) {
 		if(!this.password.equals(oldPassword)) {
 			throw new WrongIdPasswordException();

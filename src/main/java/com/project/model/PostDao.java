@@ -3,7 +3,6 @@ package com.project.model;
 import java.util.List;
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
@@ -12,7 +11,6 @@ public class PostDao {
 	private final JdbcTemplate jdbcTemplate;
 	private String sql;
 	
-	@Autowired
 	public PostDao(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
@@ -33,9 +31,9 @@ public class PostDao {
 						new PostRowMapper());
 	}
 	
-	public int countPost(UserDO userInfo) {
+	public int countPost(String user_id) {
 		this.sql = "select count(*) from post where user_id = ?";
-		return this.jdbcTemplate.queryForObject(sql, Integer.class, userInfo.getUser_id());	
+		return this.jdbcTemplate.queryForObject(sql, Integer.class, user_id);	
 	}
 	
 }

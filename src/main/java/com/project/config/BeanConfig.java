@@ -12,7 +12,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 public class BeanConfig {
 
 	@Bean
-	DataSource dataSource() {
+	public DataSource dataSource() {
 		DataSource ds = new DataSource();
 		ds.setDriverClassName("oracle.jdbc.driver.OracleDriver");
 		ds.setUrl("jdbc:oracle:thin:@localhost:1521:XE");

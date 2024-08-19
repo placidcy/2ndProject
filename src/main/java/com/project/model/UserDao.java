@@ -3,23 +3,21 @@ package com.project.model;
 import com.project.exception.WrongIdPasswordException;
 import javax.sql.*;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 public class UserDao {
-	private final JdbcTemplate jdbcTemplate;
 
+	private final JdbcTemplate jdbcTemplate; 
 	private String sql;
 
-	@Autowired
-	public UserDao(DataSource dataSource) {
-		this.jdbcTemplate = new JdbcTemplate(dataSource);
+	public UserDao(DataSource ds) {
+		this.jdbcTemplate = new JdbcTemplate(ds);
 	}
 	
 	public UserDO selectById(String user_id) {
 		UserDO userDo = null;
-		this.sql = "select user_id, name, nickname, email, password, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') create_date from userinfo where user_id = ?";
+		this.sql = "select user_id, name, nickname, email, password, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date from userinfo where user_id = ?";
 		
 		try {
 			userDo = this.jdbcTemplate.queryForObject(sql, new UserRowMapper(), user_id);
@@ -56,7 +54,7 @@ public class UserDao {
 	public UserDO login(String user_id, String password) {
 		UserDO result;
 		try {
-			result = jdbcTemplate.queryForObject("select * from userinfo where user_id = ? and password = ?",
+			result = jdbcTemplate.queryForObject("select user_id, name, nickname, email, password, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date from userinfo where user_id = ? and password = ?",
 					new UserRowMapper(),
 					user_id, password
 			);

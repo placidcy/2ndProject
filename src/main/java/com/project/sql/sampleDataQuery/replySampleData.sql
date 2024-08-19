@@ -108,3 +108,5 @@ BEGIN
     END LOOP;
 END;
 /
+
+commit;
