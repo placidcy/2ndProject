@@ -1,13 +1,11 @@
 package com.project.controller;
 
-import com.project.model.UserDO;
 import com.project.model.UserSO;
 import com.project.model.request.LoginRequest;
 import com.project.model.response.LoginUserResponse;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,15 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
 
     final UserSO userSO;
-
-    @Autowired
+ 
     public UserController(UserSO userSO) {
         this.userSO = userSO;
     }
 
     @GetMapping("/login")
     public String loginHandler() {
-        return "login";
+        return "/login";
     }
 
     @PostMapping("/loginProcess")
@@ -33,12 +30,15 @@ public class UserController {
             LoginUserResponse auth = userSO.login(request.getUser_id(), request.getPassword());
 
             session.setAttribute("auth", auth);
-
+            Cookie cookie = new Cookie("user_id", request.getUser_id());
             if(request.isRememberId()) {
-                Cookie cookie = new Cookie("user_id", request.getUser_id());
-                response.addCookie(cookie);
+            	cookie.setMaxAge(24*60*60*30);
             }
-
+            else {
+            	cookie.setMaxAge(0);
+            }
+            response.addCookie(cookie);
+            
             return "redirect:/main";
         } catch (Exception e) {
             session.setAttribute("loginFailMsg", "로그인에 실패했습니다. 다시 시도해주세요.");

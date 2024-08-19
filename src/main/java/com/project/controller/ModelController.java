@@ -1,7 +1,5 @@
 package com.project.controller;
 
-
-
 import com.project.model.PostDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,10 +12,9 @@ import com.project.model.PostDao;
 import com.project.model.ReplyDao;
 import com.project.model.UserDO;
 import com.project.model.UserSO;
+import com.project.model.response.LoginUserResponse;
 
-import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 
@@ -39,8 +36,17 @@ public class ModelController {
 	}
 	
 	@PostMapping("/changePasswdProcess")
-	public String changePasswdProcessHandler() {
-		return "main/main";
+	public String changePasswdProcessHandler(UserDO userDO, HttpSession session) {
+		try {
+			LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
+			String user_id = user.getUser_id();
+			userSO.changePassword(user_id, userDO.getOldPasswd(), userDO.getNewPasswd());
+			return "redirect:/main";	
+		}
+		catch(Exception e) {
+			return "redirect:/changePasswd";	
+		}
+		
 	}
 	
 	@GetMapping("/postForm")	 
@@ -48,9 +54,9 @@ public class ModelController {
 		HttpSession session = request.getSession();
 		
 		if(session != null) {
-			String user_id = (String)session.getAttribute("user_id");
-			model.addAttribute("postCount", postDao.countPost(user_id));	
-			model.addAttribute("replyCount", replyDao.countReply(user_id));
+			LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
+			model.addAttribute("postCount", postDao.countPost(user.getUser_id()));	
+			model.addAttribute("replyCount", replyDao.countReply(user.getUser_id()));
 		}
 		return "postForm";
 	}
@@ -59,23 +65,36 @@ public class ModelController {
 	public String postFormProcessHandler(PostDO postDO, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		if(session != null) {
-			String user_id = (String)session.getAttribute("user_id");
-			postDao.insertPost(postDO, user_id);
+			LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
+			postDao.insertPost(postDO, user.getUser_id());
 		}
 		return "main";
 	}
-	
-//	@GetMapping("/main")
-//	public String mainHandler(Model model) {
-////		List<PostDO> postList = postService.getAllPost();
-//		return "main/main";
-//	}
 	
 //	@GetMapping("/detail")
 //	public String detailPageView() {
 //		return "detailPage";
 //	}
+
+	@PostMapping("/loginProcess")	 
+	public String loginProcessHandler() {
+		return "main/main";
+	}
 	
+	@GetMapping("/main")	 
+	public String mainHandler() {
+		return "main/main";
+	}
+
+	@GetMapping("/signup")
+	public String signupHandler() {
+		return "signup/signup";
+	}
+
+	@GetMapping("/editProfile")
+	public String editProfileHandler() {
+		return "profile/editProfile";
+	}
 	
 	
 }
