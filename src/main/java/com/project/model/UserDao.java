@@ -18,7 +18,7 @@ public class UserDao {
 	public UserDO selectById(String user_id) {
 		UserDO userDo = null;
 
-		this.sql = "select user_id, name, nickname, email, password, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') create_date "
+		this.sql = "select user_id, name, nickname, email, password, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date "
 				+ "from userinfo "
 				+ "where user_id = ?";
 		
@@ -58,7 +58,7 @@ public class UserDao {
 	public String login(String user_id, String password) {
 		UserDO user = null;
 		try {
-			result = jdbcTemplate.queryForObject("select user_id, name, nickname, email, password, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date from userinfo where user_id = ? and password = ?",
+			user = jdbcTemplate.queryForObject("select user_id, name, nickname, email, password, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date from userinfo where user_id = ? and password = ?",
 					new UserRowMapper(),
 					user_id, password
 			);
