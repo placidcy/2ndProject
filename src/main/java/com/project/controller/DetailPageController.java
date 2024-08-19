@@ -20,16 +20,16 @@ public class DetailPageController {
 	@Autowired
 	private ReplySO replySo;
 	
-//	@GetMapping("/detailPageProcess")
-//	public String detailPageView(@RequestParam("post_id") long post_id, Model model) {
-//		PostDO postInfo = postSo.getPostById(post_id);
-//		model.addAttribute("postInfo", postInfo);
-//
-//		List<ReplyDO> repliesList = replySo.getRepliesByPostId(post_id);
-//		model.addAttribute("repliesList", repliesList);
-//		
-//		return "detailPage";
-//	}
+	@GetMapping("/detailPageProcess")
+	public String detailPageView(@RequestParam("post_id") long post_id, Model model) {
+		PostDO postInfo = postSo.getPostById(post_id);
+		model.addAttribute("postInfo", postInfo);
+
+		List<ReplyDO> repliesList = replySo.getRepliesByPostId(post_id);
+		model.addAttribute("repliesList", repliesList);
+		
+		return "detailPage";
+	}
 	
 	@GetMapping("/detailPage")
 	public String clickPost2() {
