@@ -14,29 +14,29 @@
     <h2 class="section-title">[필수] 회원 정보 입력</h2>
     <form class="signup-form" method="POST" action="signup">
         <div class="input-group">
-            <input type="text" id="userid" placeholder="아이디">
+            <input type="text" name="userId" id="userid" placeholder="아이디">
         </div>
 
         <div class="input-group">
-            <input type="password" id="password" placeholder="비밀번호">
-            <button class="eye-btn">&#128065;</button>
+            <input type="password" name="password" id="password" placeholder="비밀번호">
+            <button class="eye-btn" type="button">&#128065;</button>
         </div>
 
         <div class="input-group">
             <input type="password" id="confirm-password" placeholder="비밀번호 확인">
-            <button class="eye-btn">&#128065;</button>
+            <button class="eye-btn" type="button">&#128065;</button>
         </div>
 
         <div class="input-group">
-            <input type="text" id="name" placeholder="이름">
+            <input type="text" name="name" id="name" placeholder="이름">
         </div>
 
         <div class="input-group">
-            <input type="text" id="nickname" placeholder="닉네임">
+            <input type="text" name="nickname" id="nickname" placeholder="닉네임">
         </div>
 
         <div class="input-group">
-            <input type="email" id="email" placeholder="이메일">
+            <input type="email" name="email" id="email" placeholder="이메일">
         </div>
 
         <h2 class="section-title">[선택] 선호 직종</h2>

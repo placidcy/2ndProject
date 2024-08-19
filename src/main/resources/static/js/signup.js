@@ -1,10 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-
-    const passwordFields = document.querySelectorAll('.input-group input[type="password"]');
-    let preference;
-
     //password/text 교체
+    const passwordFields = document.querySelectorAll('.input-group input[type="password"]');
     document.querySelectorAll('.eye-btn').forEach((button, index) => {
         button.addEventListener('click', function () {
             const field = passwordFields[index];
@@ -68,33 +65,45 @@ document.addEventListener('DOMContentLoaded', function() {
         return true;
     }
 
+    //이메일 유효성 검사
     function validateEmail(email) {
         const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         return re.test(String(email).toLowerCase());
     }
 
+    //선호 직종 선택
     document.querySelectorAll('.preference-btn').forEach(button => {
         button.addEventListener('click', function () {
-            document.querySelectorAll('.preference-btn').forEach(btn => btn.classList.remove('selected'));
-            button.classList.toggle('selected');
+            document.querySelectorAll('.preference-btn').forEach(btn => {
+                if (!button.name) {
+                    btn.classList.remove('selected');
+                }
+                btn.removeAttribute('name');
+            });
 
-            const buttonValue = button.value;
-            preference = buttonValue;
-            console.log("Selected value:", buttonValue);
+
+            button.classList.toggle('selected');
+            if (button.classList.contains('selected')) {
+                button.setAttribute('name', 'preference');
+            } else {
+                button.removeAttribute('name');
+            }
         });
     });
+
 
     document.querySelector('.submit-btn').addEventListener('click', function (event) {
         if (!validateForm()) {
             event.preventDefault();
         } else {
-            console.log("id : " ,document.getElementById('userid').value.trim());
-            console.log("pw : " ,document.getElementById('password').value.trim());
-            console.log("ckpw : " ,document.getElementById('confirm-password').value.trim());
-            console.log("name : " ,document.getElementById('name').value.trim());
-            console.log("nickname : " ,document.getElementById('nickname').value.trim());
-            console.log("email : " ,document.getElementById('email').value.trim());
-            console.log("Selected value:", preference);
+            console.log("아이디 : ", document.getElementById('userid').value);
+            console.log("비밀번호 : ", document.getElementById('password').value);
+            console.log("비밀번호 확인 : ", document.getElementById('confirm-password').value);
+            console.log("이름 : ", document.getElementById('name').value);
+            console.log("닉네임 : ", document.getElementById('nickname').value);
+            console.log("이메일 : ", document.getElementById('email').value);
+            console.log("선호 직종 : ", document.querySelector('.preference-btn[name="preference"]').value);
+            alert("회원가입이 완료되었습니다.");
         }
     });
 });

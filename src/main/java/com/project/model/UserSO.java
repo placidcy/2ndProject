@@ -21,7 +21,7 @@ public class UserSO {
 	@Transactional
 	public void SignupUser(SignupRequest request) {
 		UserDO user = new UserDO(request.getUser_id(), request.getName(), request.getNickname(), request.getEmail(), request.getPassword(), null);
-		userDao.insertUser(user);  // insertUser 메서드를 UserDao에 추가해야 함
+		userDao.insertUser(user);
 	}
 
 
