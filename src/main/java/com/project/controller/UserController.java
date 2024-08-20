@@ -49,17 +49,34 @@ public class UserController {
 
     @GetMapping("/signup")
     public String signupHandler() {
-        return "/signup";
+        return "signup";
     }
 
     @PostMapping("/signupProgress")
     public String signupProgressHandler(SignupRequest request, HttpSession session) {
         try {
+            System.out.println("Received signup request: " + request);
             userSO.SignupUser(request);
             return "redirect:/main";
         } catch (Exception e) {
             session.setAttribute("signupFailMsg", "회원가입에 실패했습니다. 다시 시도해주세요.");
             return "redirect:/signup";
+        }
+    }
+
+    @GetMapping("/editProfile")
+    public String editProfileHandler() {
+        return "editProfile";
+    }
+
+    @PostMapping("/editProfileProgress")
+    public String editProfileHandler(SignupRequest request, HttpSession session) {
+        try {
+            userSO.SignupUser(request);
+            return "redirect:/main";
+        } catch (Exception e) {
+            session.setAttribute("editProfileFailMsg", "프로필수정에 실패했습니다. 다시 시도해주세요.");
+            return "redirect:/editProfile";
         }
     }
 

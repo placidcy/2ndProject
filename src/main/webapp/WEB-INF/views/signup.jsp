@@ -13,31 +13,28 @@
     <h2 class="section-title">[필수] 회원 정보 입력</h2>
     <form class="signup-form" method="POST" action="signupProgress">
         <div class="input-group">
-            @@ -20,37 +32,40 @@
+            <div class="input-group">
+                <input type="text" name="user_id" id="userid" placeholder="아이디">
+            </div>
             <div class="input-group">
                 <input type="password" name="password" id="password" placeholder="비밀번호">
                 <button class="eye-btn" type="button">&#128065;</button>
             </div>
-
             <div class="input-group">
                 <input type="password" id="confirm-password" placeholder="비밀번호 확인">
                 <button class="eye-btn" type="button">&#128065;</button>
             </div>
-
             <div class="input-group">
                 <input type="text" name="name" id="name" placeholder="이름">
             </div>
-
             <div class="input-group">
                 <input type="text" name="nickname" id="nickname" placeholder="닉네임">
             </div>
-
             <div class="input-group">
                 <input type="email" name="email" id="email" placeholder="이메일">
             </div>
 
             <h2 class="section-title">[선택] 선호 직종</h2>
-
             <input type="hidden" name="preference" id="preference">
             <div class="job-preferences">
                 <button class="preference-btn" value="secure" type="button">보안</button>
@@ -48,6 +45,7 @@
             </div>
 
             <button class="submit-btn" type="submit">회원가입</button>
+        </div>
     </form>
 </div>
 </body>
