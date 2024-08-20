@@ -4,6 +4,7 @@ import com.project.model.request.editProfileRequest;
 import com.project.model.response.LoginUserResponse;
 import com.project.model.request.SignupRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -73,5 +74,20 @@ public class UserSO {
 		}
 
 		return new LoginUserResponse(user.getUser_id(), user.getNickname());
+	}
+	
+	public boolean checkIsUserID(String name, String email) {
+		boolean checkResult = false;
+		
+		try {
+			this.userDao.findID(name, email);
+			checkResult = true;
+		}
+		
+		catch(EmptyResultDataAccessException ex) {
+			ex.getStackTrace();
+		}
+		
+		return checkResult;
 	}
 }

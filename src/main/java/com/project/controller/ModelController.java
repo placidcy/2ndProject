@@ -18,6 +18,7 @@ import com.project.model.ReplyDao;
 import com.project.model.ReplySO;
 import com.project.model.UserSO;
 import com.project.model.UserDO;
+import com.project.model.UserDao;
 import com.project.model.response.LoginUserResponse;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -35,6 +36,9 @@ public class ModelController {
 	
 	@Autowired
 	private ReplyDao replyDao;
+	
+	@Autowired
+	private UserDao userDao;
 	
 	@GetMapping("/changePasswd")	 
 	public String changePasswdHandler() {
@@ -76,6 +80,25 @@ public class ModelController {
 			postDao.insertPost(postDO, user.getUser_id());
 		}
 		return "redirect:/main";
+	}
+	
+	@PostMapping("/getUserID")
+	public String getUserID(@RequestParam(value = "name") String name, @RequestParam(value = "email") String email) {
+		if(this.userSO.checkIsUserID(name, email) == false) {
+			return "redirect:/findID";
+		}
+		
+		return "/main";
+	}
+	
+	@PostMapping("/checkAgreement")
+	public String checkAgreement(@RequestParam(value = "checkBox") boolean isChecked) {
+		if(isChecked == true) {
+			return "redirect:/signup";
+		}
+		
+		return "/agreement";
+		
 	}
 	
 	@GetMapping("/findID")

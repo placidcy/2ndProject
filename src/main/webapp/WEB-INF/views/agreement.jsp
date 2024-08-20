@@ -8,20 +8,21 @@
 	<title>회원 가입</title>
 	
 	<link rel="stylesheet" href="resources/css/agreement.css" />
+	<script src="resources/js/agreement.js"></script>
 </head>
 <body>
 	<div id="container">
 		<header><a href="<c:url value='/main' />">직장IN</a></header>
 		
-		<form method="POST" action="#" id="agreementForm">
+		<form method="POST" action="checkAgreement" id="agreementForm">
 			<div id="selectedAllSection">
-			<input type="checkbox" name="selectedAll" id="selectedAll" class="radio"/>
+			<input type="checkbox" name="allCheckingBox" id="allCheckingBox" />
 			<label for="selectedAll">전체 동의하기</label>
 			
 			<p>실명 인증된 아이디로 가입, 위치기반서비스 이용약관(선택), 이벤트・혜택 정보 수신(선택) 동의를 포함합니다. </p>
 			<br />
 			
-			<input type="checkbox" name="termsOfUse" id="termsOfUse"/>
+			<input type="checkbox" name="checkBox" id="termsOfUse" class="radio" value="true"/>
 			<label for="termsOfUse">이용 약관</label>
 			<br />
 			
@@ -61,7 +62,7 @@
 			<br />
 			
 			<div id="InfoCollectionSection">
-			<input type="checkbox" name="InfoCollection" id="InfoCollection" class="radio"/>
+			<input type="checkbox" name="checkBox" id="InfoCollection" class="radio" value="true"/>
 			<label for="InfoCollection">개인 정보 수집 및 이용</label>
 			<br />
 				
@@ -96,7 +97,7 @@
 			<br />
 			
 			<div id="adReceptionSection">
-			<input type="checkbox" name="adReception" id="adReception" class="radio"/>
+			<input type="checkbox" name="checkBox" id="adReception" class="radio"/>
 			<label for="adReception">[선택] 광고성 정보 수신 동의</label>
 			<br />
 							

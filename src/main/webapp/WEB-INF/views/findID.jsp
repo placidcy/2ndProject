@@ -8,6 +8,7 @@
 	<title>아이디 찾기</title>
 	
 	<link rel="stylesheet" href="resources/css/findID.css" />
+	<script src="resources/js/findID.js"></script>
 </head>
 <body>
 	<div id="container">
@@ -16,10 +17,10 @@
 		<section>
 			<h4>회원 정보에 등록한 이름과 이메일이 같아야 아이디를 찾을 수 있습니다</h4>
 		</sectin>
-		<form method="POST" action="findID" id="findIDForm">
+		<form method="POST" action="getUserID" id="findIDForm">
 			<input type="text" name="name" id="name" placeholder="이름"/>
 			<br />
-			<input type="text" name="email" id="email" placeholder="이메일"/>
+			<input type="email" name="email" id="email" placeholder="이메일"/>
 			<br />
 			
 			<input type="submit" value="아이디 찾기" id="submitBtn"/>
