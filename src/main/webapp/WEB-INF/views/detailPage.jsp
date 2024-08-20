@@ -115,7 +115,6 @@
 					<c:forEach  begin="0" end="${Math.floor(repliesList.size()/10)}" varStatus="status">
 						<a href="/detailPageProcess?post_id=${postInfo.post_id}&commentCount=${status.count-1}"><button>${status.count} </button></a>
 					</c:forEach>
-                    <button>></button> 
                 </div>
             </section>
         </section>
