@@ -19,7 +19,7 @@ public class DetailPageController {
 	private ReplySO replySO;
 	
 	@GetMapping("/detailPageProcess")
-	public String detailPageView(@RequestParam("post_id") long post_id, Model model) {
+	public String detailPageView(@RequestParam(value="post_id") long post_id, Model model) {
 		PostDO postInfo = postSO.getPostById(post_id);
 		model.addAttribute("postInfo", postInfo);
 
@@ -29,6 +29,10 @@ public class DetailPageController {
 		return "detailPage";
 	}
 	
+	@GetMapping("/detailPage")
+	public String detailPageView() {
+		return "detailPage";
+	}
 	
 	
 }

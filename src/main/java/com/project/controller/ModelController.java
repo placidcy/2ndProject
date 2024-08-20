@@ -85,11 +85,7 @@ public class ModelController {
 		}
 		return "main";
 	}
-	
-//	@GetMapping("/detail")
-//	public String detailPageView() {
-//		return "detailPage";
-//	}
+
 
 	@GetMapping("/editProfile")
 	public String editProfileHandler() {

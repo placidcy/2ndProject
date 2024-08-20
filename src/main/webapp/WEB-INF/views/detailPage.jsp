@@ -41,7 +41,7 @@
         <section class="contentWrap">
             <section class="content">
                 <div class="top">
-                    <a href=""><span>${postInfo.positon}</span></a>
+                    <%-- <a href="#"><span>${postInfo.positon}</span></a> --%>
                     <h3>${postInfo.title}</h3>
                 </div>
                 <div class="date">
@@ -51,13 +51,15 @@
                     <p>${postInfo.content}</p>
                 </div>
                 <div  class="author">
-                    <p>${postInfo.nickname}</p>
+                    <p>${postInfo.user_id}</p>
                 </div>
+<%--                 
                 <div class="tagBox">
-	                <c:forEach var="postInfo" items="${postInfo}">
-	                    <span># ${postInfo.tags}</span>
+	                <c:forEach var="post" items="${postInfo}">
+	                    <span># ${post.tags}</span>
 	                </c:forEach>
                 </div>
+                 --%>
             </section>
             
             <form action="#" method="POST">
@@ -80,12 +82,12 @@
             </section>
 
             <section class="commentWrap">
-                <h4 class="total-comment">답변 #{repliesList.size()}</h4>
-                <c:forEach var="repliesList" items="${repliesList}">
+                <h4 class="total-comment">답변 ${repliesList.size()}</h4>
+                <c:forEach var="reply" items="${repliesList}">
 	                <div class="comment">
-	                    <p>${repliesList.nickname} <span>${repliesList.career}</span></p>
-	                    <p>${repliesList.content}</p>
-	                    <span>${repliesList.create_at}</span> 
+	                    <p>${reply.user_id} <%-- <span>${reply.career}</span> --%></p>
+	                    <p>${reply.content}</p>
+	                    <span>${reply.created_at}</span> 
 	                    <div class="buttons">
 		                    <a href="<c:url value='/modify' />"><button>수정</button></a> 
 		                    <a href="<c:url value='/delete' />"><button>삭제</button></a>
