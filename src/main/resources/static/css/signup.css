@@ -5,12 +5,27 @@ body {
     height: 100vh;
 }
 
+.logo {
+    /*display: flex;*/
+    /*justify-content: center;*/
+    margin-top: 50px;
+    margin-bottom: 20px;
+    align-content: center;
+}
+
+.logo a {
+    text-decoration-line: none;
+    color: #204AB6;
+    font-size: 48px;
+    font-weight: bold;
+}
+
 .container {
-    /*width: 400px;*/
-    /*background-color: #fff;*/
-    /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
-    /*padding: 30px;*/
-    /*border-radius: 10px;*/
+    width: 400px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    border-radius: 10px;
     text-align: center;
 }
 
