@@ -53,7 +53,7 @@
             </aside>
 
             <div id="sectionBox">
-                <form method="POST" action="<c:url value='/postFormProcess' />" id="questionForm">
+                <form method="POST" id="questionForm">
                     <label for="position">직무선택</label>
                     <select name="position" id="position">
                         <option value="웹">웹</option>
@@ -64,19 +64,28 @@
                     </select>
 
                     <hr />
-                    <input type="text" name="title" id="title" placeholder="제목" />
+                    <input type="text" name="title" id="title" placeholder="제목" value="${postInfo.title}" />
 
                     <hr />
-                    <textarea name="content" id="content" placeholder="내용을 입력하세요."></textarea>
+                    <textarea name="content" id="content" placeholder="내용을 입력하세요.">${postInfo.content}</textarea>
 
                     <hr />
-                    <input type="text" name="tags" id="tags" placeholder="#태그 입력(#으로 구분해주세요.)"/>
+                    <input type="text" name="tags" id="tags" placeholder="#태그 입력(#으로 구분해주세요.)" value="${postInfo.tags}" />
 
                     <hr />
 					<div id="btnBox">
-                    <input type="submit" value="질문하기" id="submitBtn"/>
-                    <a href="<c:url value='/main' />"><button type="button" class="cancelBtn">취소</button></a>
-                	</div>
+					<c:choose>
+						<c:when test="${postInfo == null}">
+	                    <input type="submit" formaction="<c:url value='/postFormProcess' />" value="질문하기" id="submitBtn"/>
+	                    <a href="<c:url value='/main' />"><button type="button" class="cancelBtn">취소</button></a>
+                		</c:when>
+						<c:otherwise>
+						<input type="submit" formaction="<c:url value='/postUpdate' />" value="수정하기" id="submitBtn"/>
+						<input type="hidden" name="post_id" value="${postInfo.post_id}" />
+						<a href="/detailPageProcess?post_id=${postInfo.post_id}&commentCount=0"><button type="button" class="cancelBtn">취소</button></a>	
+						</c:otherwise>
+					</c:choose>
+					</div>
 				</form>
             </div>
         </div>
