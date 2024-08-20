@@ -85,7 +85,6 @@ public class UserController {
     @GetMapping("/logout")
     public String logoutHandler(HttpSession session) {
         session.invalidate();
-        System.out.println("session = " + session);
         return "redirect:/main";
     }
 

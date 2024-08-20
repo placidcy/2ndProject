@@ -193,7 +193,9 @@ button {
 header button:hover {
     background-color: #1a3e8e;
 }
-
+.hotTopic{
+	margin-top:5px;
+}
 .cancelBtn{
 	padding: 10px 20px;
 	margin-left: 40px;
