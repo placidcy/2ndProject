@@ -2,15 +2,15 @@ package com.project.model;
 
 import com.project.model.response.PostMainResponse;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class PostSO {
-	
-	@Autowired
+
 	private final PostDao postDao;
-	
+	@Autowired
 	public PostSO(PostDao postDao) {
 		this.postDao = postDao;
 	}
@@ -23,6 +23,12 @@ public class PostSO {
 //	public PostDO getPostById(long post_id) {
 //		return postDao.selectPostById(post_id);
 //	}
+
+	public PostMainResponse search(String keyword) {
+
+		List<PostDO> search = postDao.search(keyword);
+		return new PostMainResponse(search);
+	}
 
 	
 	/* 

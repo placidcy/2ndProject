@@ -19,8 +19,6 @@ public class DetailPageController {
 	private PostDao postDao;
 	@Autowired
 	private ReplySO replySO;
-	@Autowired
-	private ReplyDao replyDao;
 	
 	
 	@GetMapping("/detailPageProcess")
@@ -35,20 +33,32 @@ public class DetailPageController {
 	}
 	
 	@PostMapping("/submitReply")
-	public String submitReply(@RequestParam("post_id") long post_id,
-			@RequestParam("user_id") String user_id,
-			@RequestParam("content") String content,
-			Model model) {
+	public String submitReply(@RequestParam("post_id") long post_id, 
+			@RequestParam("user_id") String user_id, 
+			@RequestParam("content") String content, 
+			Model model, HttpSession session) {
 
-		ReplyDO reply = new ReplyDO();
-		reply.setUser_id(user_id);
-		reply.setPost_id(post_id);
-		reply.setContent(content);
-		reply.setLikes(0);
+		if(session != null) {
+			ReplyDO reply = new ReplyDO();
+			reply.setUser_id(user_id);
+			reply.setPost_id(post_id);
+			reply.setContent(content);
+			reply.setLikes(0);
+			
+			replySO.addReply(reply);
+			
+			PostDO postInfo = postDao.getPostById(post_id);
+			model.addAttribute("postInfo", postInfo);
+			
+			List<ReplyDO> repliesList = replySO.getRepliesByPostId(post_id);
+			model.addAttribute("repliesList", repliesList);
+			
+			return "detailPage";
+		}
+		else {
+			return "redirect:/login";
+		}
 		
-		replySO.addReply(reply);
-		
-		return "detailPage";
 	}
 	
 	@GetMapping("/detailTest")
