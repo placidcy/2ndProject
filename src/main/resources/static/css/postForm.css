@@ -29,8 +29,10 @@ a {
 .container {
     background-color: #F7F7F7;
     display: flex;
-    margin-top: 40px;
-    margin-right: 20px;
+    /*margin-top: 40px;*/
+    margin: 40px  auto;
+    gap: 50px;
+    justify-content: center;
 }
 
 /* Main content */
@@ -39,12 +41,11 @@ main {
     background-color: white;
 }
 .content {
-    flex-grow: 1;
-    margin-right: 50px;
+    flex: 1;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
+    max-width: 960px;
 }
 
 /* Form styling */
@@ -88,8 +89,9 @@ header input[type="submit"] {
 	background-color: #1a3e8e;
 }
 #btnBox{
-	margin-left:180px;
 	padding:30px;
+    display: flex;
+    justify-content: center;
 }
 input[type="submit"]:hover {
     background-color: #1a3e8e;

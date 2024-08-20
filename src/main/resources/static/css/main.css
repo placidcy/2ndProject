@@ -20,8 +20,9 @@ body {
 .container {
     background-color: #F7F7F7;
     display: flex;
-    margin-top: 40px;
-    margin-right: 20px;
+    margin: 40px auto;
+    gap: 50px;
+    justify-content: center;
 }
 
 main {
@@ -31,7 +32,7 @@ main {
 .content {
     flex-grow: 1;
     padding: 20px;
-    margin-left: 50px;
+    max-width: 960px;
 }
 
 .list-title {
