@@ -11,7 +11,7 @@ function logoutHandler() {
 }
 
 function mypageHandler() {
-    location.href = '/mypage';
+    location.href = '/editProfile';
 }
 
 function signUpHandler() {
