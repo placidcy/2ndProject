@@ -5,7 +5,7 @@
     <div class="logo">
         직장IN
     </div>
-    <form method="GET" action="search">
+    <form class="search-form" method="GET" action="search">
         <div class="search">
             <input id="search-input" name="keyword" type="text" placeholder="궁금한 내용을 검색해보세요 !"/>
             <button id="searchBtn">검색</button>
