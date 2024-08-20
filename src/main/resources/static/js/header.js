@@ -1,4 +1,6 @@
-
+function logoHandler() {
+    location.href = '/main';
+}
 function loginHandler() {
     location.href = '/login';
 }

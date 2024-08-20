@@ -2,9 +2,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <header class="header-container">
-    <div class="logo">
+    <a href="main" class="logo">
         직장IN
-    </div>
+    </a>
     <form class="search-form" method="GET" action="search">
         <div class="search">
             <input id="search-input" name="keyword" type="text" placeholder="궁금한 내용을 검색해보세요 !"/>
