@@ -34,15 +34,6 @@ public class ModelController {
 	private PostDao postDao;
 	
 	@Autowired
-	private PostSO postSO;
-	
-	@Autowired
-	private ReplySO replySO;	
-	
-	@Autowired
-	private PostSO post;
-	
-	@Autowired
 	private ReplyDao replyDao;
 	
 	@GetMapping("/changePasswd")	 

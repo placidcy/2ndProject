@@ -46,5 +46,12 @@ public class PostDao {
 		this.sql = "select * from post where title like '%?%' or content like '%?%'";
 		return this.jdbcTemplate.query(sql, new PostRowMapper(), searchValue, searchValue);
 	}
-	
+
+	public List<PostDO> search(String keyword) {
+		this.sql = "select post_id, position, title, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date, user_id, content, tags, view_count "
+				+ "from post "
+				+ "where title like '%" + keyword + "%' or content like '%" + keyword + "%'";
+
+		return this.jdbcTemplate.query(sql, new PostRowMapper());
+	}
 }
