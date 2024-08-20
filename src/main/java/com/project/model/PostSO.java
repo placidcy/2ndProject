@@ -20,9 +20,9 @@ public class PostSO {
 
 	}
 	
-	public PostDO getPostById(long post_id) {
-		return postDao.selectPostById(post_id);
-	}
+//	public PostDO getPostById(long post_id) {
+//		return postDao.selectPostById(post_id);
+//	}
 
 	
 	/* 

@@ -12,7 +12,7 @@
     <header>
         <a href="<c:url value='/main' />"><h1 class="logo">직장IN</h1></a>
         <div class="searchBox">
-            <form action="#" method="POST">
+            <form action="<c:url value='/search' />" method="POST">
                 <input type="text" name="searchBar" placeholder="검색어를 입력하세요." />
             </form>
         </div>

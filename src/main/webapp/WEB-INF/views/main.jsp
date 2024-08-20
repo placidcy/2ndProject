@@ -21,9 +21,9 @@
 </head>
 <body>
     <header class="header-container">
-        <div class="logo">
+        <a href="<c:url value='/main' />"><div class="logo">
             직장IN
-        </div>
+        </div></a>
         <div class="search">
             <input type="text" placeholder="궁금한 내용을 검색해보세요 !"/>
         </div>

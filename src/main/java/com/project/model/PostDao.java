@@ -47,4 +47,8 @@ public class PostDao {
 		return this.jdbcTemplate.query(sql, new PostRowMapper(), searchValue, searchValue);
 	}
 	
+	public PostDO getPostById(long post_id) {
+		return this.selectPostById(post_id);
+	}
+	
 }
