@@ -14,7 +14,6 @@ public class PostController {
 
     private final PostSO postSO;
 
-    @Autowired
     public PostController(PostSO postSO) {
         this.postSO = postSO;
     }
