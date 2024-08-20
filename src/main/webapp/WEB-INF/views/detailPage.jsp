@@ -69,9 +69,10 @@
                  --%>
             </section>
  			<div class="commentBox">
-			     <form action="<c:url value='/submitReply' />" method="POST">
+			     <form action="submitReply" method="POST">
 			        <input type="hidden" name="post_id" value="${postInfo.post_id}" />
 			        <input type="hidden" name="user_id" value="${postInfo.user_id}" />
+                     <input type="hidden" name="commentCount" value="${commentCount}" />
 			        <input name="content" id="commentBar" placeholder="답변을 남겨주세요." required />
 			        <button type="submit">등록</button>
 			    </form>
