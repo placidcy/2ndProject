@@ -1,11 +1,11 @@
 function init() {
     const selectedAll = document.getElementById('selectedAll');
-    const checkboxes = document.querySelectorAll('#agreementForm input[type="checkbox"]:not(#selectedAll)');
     const termsOfUse = document.getElementById('termsOfUse');
     const infoCollection = document.getElementById('InfoCollection');
     const submitBtn = document.getElementById('submitBtn');
+    const checkboxes = document.querySelectorAll('#agreementForm input[type="checkbox"]:not(#selectedAll)');
 
-    function updateSubmitButton() {
+    function canClickNext() {
         if (termsOfUse.checked && infoCollection.checked) {
             submitBtn.disabled = false;
         }
@@ -18,7 +18,7 @@ function init() {
         checkboxes.forEach(checkbox => {
             checkbox.checked = selectedAll.checked;
         });
-        updateSubmitButton();
+        canClickNext();
     });
 
     checkboxes.forEach(checkbox => {
@@ -28,14 +28,14 @@ function init() {
             } else {
                 selectedAll.checked = false;
             }
-            updateSubmitButton();
+            canClickNext();
         });
     });
 
-    termsOfUse.addEventListener('change', updateSubmitButton);
-    infoCollection.addEventListener('change', updateSubmitButton);
+    termsOfUse.addEventListener('change', canClickNext);
+    infoCollection.addEventListener('change', canClickNext);
 
-    updateSubmitButton();
+    canClickNext();
 }
 
 window.addEventListener('load', init);
