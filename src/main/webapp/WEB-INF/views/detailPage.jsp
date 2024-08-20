@@ -7,6 +7,16 @@
     <meta charset="UTF-8">
     <title>상세 페이지</title>
     <link rel="stylesheet" href="resources/css/detailPage.css" />
+	<script>
+		
+		function init(){
+			let buttons = document.querySelectorAll("button[data-id]");
+			buttons.forEach()
+		}
+		
+		
+		window.addEventListener('load', init);
+	</script>
 </head>
 <body>
     <header>
@@ -83,7 +93,7 @@
 
             <section class="commentWrap">
                 <h4 class="total-comment">답변 ${repliesList.size()}</h4>
-                <c:forEach var="reply" items="${repliesList}">
+                <c:forEach var="reply" items="${repliesList}" begin="${commentCount*10}" end="${commentCount*10 + 9}">
 	                <div class="comment">
 	                    <p>${reply.user_id} <%-- <span>${reply.career}</span> --%></p>
 	                    <p>${reply.content}</p>
@@ -96,7 +106,10 @@
 	                </div>
                 </c:forEach>
                 <div class="page">
-                    <button>1</button> <button>2</button> <button>3</button> <button>></button> 
+					<c:forEach  begin="0" end="${Math.floor(repliesList.size()/10)}" varStatus="status">
+						<a href="/detailPageProcess?post_id=${postInfo.post_id}&commentCount=${status.count-1}"><button>${status.count} </button></a>
+					</c:forEach>
+                    <button>></button> 
                 </div>
             </section>
         </section>

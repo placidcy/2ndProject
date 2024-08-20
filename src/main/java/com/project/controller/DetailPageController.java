@@ -19,12 +19,16 @@ public class DetailPageController {
 	private ReplySO replySO;
 	
 	@GetMapping("/detailPageProcess")
-	public String detailPageView(@RequestParam(value="post_id") long post_id, Model model) {
+	public String detailPageView(@RequestParam(value="post_id") long post_id, @RequestParam(value="commentCount") long commentCount,Model model) {
 		PostDO postInfo = postSO.getPostById(post_id);
 		model.addAttribute("postInfo", postInfo);
-
+		
 		List<ReplyDO> repliesList = replySO.getRepliesByPostId(post_id);
 		model.addAttribute("repliesList", repliesList);
+		
+		model.addAttribute("commentCount", commentCount);	
+		
+		
 		
 		return "detailPage";
 	}

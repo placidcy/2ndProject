@@ -23,7 +23,6 @@ public class Test {
 //		replyDao.selectRepliesByPost(1);
 		PostDO postDO = new PostDO();
 		PostDao postDao = new PostDao(ds);
-		postDao.selectPostById(1);
 
 		
 		for(PostDO post : postDao.hotPost()) {
