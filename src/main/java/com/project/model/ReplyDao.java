@@ -34,8 +34,7 @@ public class ReplyDao {
 	}
 	
 	public void insertReply(ReplyDO reply) {
-		this.sql = "insert into reply(reply_id, user_id, post_id, content, create_at, likes) "
-				+ "values(seq_reply_reply_id.nextval, ?, ?, ?, sysdate, ?)";
+		this.sql = "insert into reply(reply_id, user_id, post_id, content, created_at, likes) values(seq_reply_reply_id.nextval, ?, ?, ?, sysdate, ?)";
 		
 		KeyHolder keyHorder = new GeneratedKeyHolder();
 		this.jdbcTemplate.update(new PreparedStatementCreator() {
@@ -85,4 +84,5 @@ public class ReplyDao {
 			this.jdbcTemplate.update(sql, replyId);
 		}
 	}
+	
 }

@@ -22,7 +22,7 @@
     <header>
         <a href="<c:url value='/main' />"><h1 class="logo">직장IN</h1></a>
         <div class="searchBox">
-            <form action="#" method="POST">
+            <form action="<c:url value='/search' />" method="POST">
                 <input type="text" name="searchBar" placeholder="검색어를 입력하세요." />
             </form>
         </div>
@@ -71,12 +71,14 @@
                 </div>
                  --%>
             </section>
-            
-            <form action="#" method="POST">
-                <input type="text" name="commentBar" id="commentBar" placeholder="답변을 남겨주세요." />
-                <button>등록</button>
-            </form>
-
+ 			<div class="commentBox">
+			     <form action="<c:url value='/submitReply' />" method="POST">
+			        <input type="hidden" name="post_id" value="${postInfo.post_id}" />
+			        <input type="hidden" name="user_id" value="${postInfo.user_id}" />
+			        <input name="content" id="commentBar" placeholder="답변을 남겨주세요." required />
+			        <button type="submit">등록</button>
+			    </form>
+ 			</div>
             <section class="warning">
                 <ul>
                     <li>
@@ -101,6 +103,7 @@
                         <form action="reply-like" method="POST">
                             <input type="hidden" name="reply_id" value="${reply.reply_id}" />
                             <input type="hidden" name="post_id" value="${postInfo.post_id}" />
+                            <input type="hidden" name="commentCount" value="${commentCount}" />
                             <button type="submit">좋아요</button>
                         </form>
                         <span>${reply.likes}</span>
@@ -115,7 +118,6 @@
 					<c:forEach  begin="0" end="${Math.floor(repliesList.size()/10)}" varStatus="status">
 						<a href="/detailPageProcess?post_id=${postInfo.post_id}&commentCount=${status.count-1}"><button>${status.count} </button></a>
 					</c:forEach>
-                    <button>></button> 
                 </div>
             </section>
         </section>

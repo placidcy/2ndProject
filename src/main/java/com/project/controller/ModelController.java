@@ -31,14 +31,7 @@ public class ModelController {
 	private UserSO userSO;
 	
 	@Autowired
-	private PostDao postDao;
-	
-	@Autowired
-	private PostSO postSO;
-	
-	@Autowired
-	private ReplySO replySO;	
-	
+	private PostDao postDao;	
 	
 	@Autowired
 	private ReplyDao replyDao;

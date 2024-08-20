@@ -18,13 +18,11 @@
         }
     </script>
     <script src="/resources/js/mainPg.js"></script>
-    <title>Main </title>
+    <title>Main</title>
 </head>
 <body>
     <header class="header-container">
-        <div class="logo">
-            직장IN
-        </div>
+
         <form method="GET" action="search">
             <div class="search">
                 <input id="search-input" name="keyword" type="text" placeholder="궁금한 내용을 검색해보세요 !"/>
@@ -68,8 +66,7 @@
                         </div>
                         <div class="info">
                             <span> 조회수 : ${post.view_count}</span>
-                            <span>추천수</span>
-                            <span>댓글수</span>
+                            <span>댓글수 ${repliesList.size()}</span>
                             <span>${post.created_date}</span>
                         </div>
                     </div>
