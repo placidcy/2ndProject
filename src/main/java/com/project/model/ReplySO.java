@@ -20,4 +20,8 @@ public class ReplySO {
 	public int getReplyCount(String userId) {
 		return replyDao.countReply(userId);
 	}
+
+	public void likeReply(int replyId, String userId) {
+		replyDao.likeReply(replyId, userId);
+	}
 }
