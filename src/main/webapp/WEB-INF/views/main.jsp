@@ -35,6 +35,9 @@
         <div class="button-container">
             <a><button id = "loginBtn">로그인</button></a>
             <a><button id = "signUpOrMyPageBtn">회원가입</button></a>
+            <c:if test="${auth.nickname != null}">
+                <a><button id = "changePassWordBtn">비밀번호 변경</button></a>
+            </c:if>
         </div>
 
     </header>
