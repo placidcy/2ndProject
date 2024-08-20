@@ -22,21 +22,23 @@ public class DetailPageController {
 	@Autowired
 	private ReplyDao replyDao;
 
-	
 	@GetMapping("/detailPageProcess")
-	public String detailPageView(@RequestParam(value="post_id") long post_id, @RequestParam(value="commentCount") long commentCount,Model model) {
-		PostDO postInfo = postDao.getPostById(post_id);
+	public String detailPageView(ReplyDO replyDO, @RequestParam(value="commentCount") long commentCount, Model model) {
+		PostDO postInfo = postDao.getPostById(replyDO.getPost_id());
 		model.addAttribute("postInfo", postInfo);
 		
-		List<ReplyDO> repliesList = replySO.getRepliesByPostId(post_id);
+		List<ReplyDO> repliesList = replySO.getRepliesByPostId(replyDO.getPost_id());
 		model.addAttribute("repliesList", repliesList);
 		
-		model.addAttribute("commentCount", commentCount);	
-		
+		model.addAttribute("commentCount", commentCount);
+		if(replyDO.getReply_id() != 0) {
+			model.addAttribute("modifyReply", replyDao.getReplyById(replyDO.getReply_id()).getContent());	
+		}
 		
 		
 		return "detailPage";
 	}
+	
 	
 	@PostMapping("/submitReply")
 	public String submitReply(ReplyDO reply, HttpSession session, Model model) {
@@ -55,15 +57,10 @@ public class DetailPageController {
 			List<ReplyDO> repliesList = replySO.getRepliesByPostId(reply.getPost_id());
 			model.addAttribute("repliesList", repliesList);
 			
-			return "detailPage";
+			return "redirect:/detailPageProcess?post_id=" + postInfo.getPost_id() + "&commentCount=0";
 		}
 		
 	}
-	
-	@GetMapping("/detailTest")
-	public String detailPageView() {
-		return "detailPage";
-	}
-	
+
 	
 }

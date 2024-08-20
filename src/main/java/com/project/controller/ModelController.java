@@ -3,7 +3,6 @@ package com.project.controller;
 import com.project.exception.UnExpectedAccessException;
 import com.project.model.PostDO;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +20,6 @@ import com.project.model.UserSO;
 import com.project.model.UserDO;
 import com.project.model.response.LoginUserResponse;
 
-import jakarta.servlet.UnavailableException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -40,6 +38,9 @@ public class ModelController {
 	
 	@Autowired
 	private ReplyDao replyDao;
+	
+	@Autowired
+	private ReplySO replySO;
 	
 	@GetMapping("/changePasswd")	 
 	public String changePasswdHandler() {
@@ -124,7 +125,37 @@ public class ModelController {
 			return "redirect:/main";
 		}
 		catch(UnExpectedAccessException e) {
-			return "redirect:/detailPageProcess?post_id=" + post_id + "&commentCount=0";
+			return "detailPageProcess?post_id=" + post_id + "&commentCount=0";
 		}
+	}
+	
+	@GetMapping("/replyModify")
+	public String replyModifyHandler(ReplyDO reply, HttpSession session) {
+		LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
+		String user_id = user.getUser_id();
+		ReplyDO replyDO = replyDao.getReplyById(reply.getReply_id());
+		if(user_id != null && user_id.equals(replyDO.getUser_id())) {
+			System.out.print(replyDO.getContent());
+			return "redirect:/detailPageProcess?post_id=" + reply.getPost_id() + "&commentCount=0&reply_id=" + replyDO.getReply_id();	
+		}
+		return "redirect:/detailPageProcess?post_id=" + reply.getPost_id() + "&commentCount=0";
+	}
+	/*
+	@PostMapping("/replyUpdate")
+	public String replyUpdateHandler(ReplyDO reply, HttpSession session, Model model) {
+		
+	}
+	*/
+	@GetMapping("/replyDelete")
+	public String replyDeleteHandler(ReplyDO reply, HttpSession session) {
+		LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
+		String user_id = user.getUser_id();
+		try {
+			replySO.deleteReplyService(reply.getReply_id(), user_id);	
+		}
+		catch(UnExpectedAccessException e) {
+			e.printStackTrace();
+		}
+		return "redirect:/detailPageProcess?post_id=" + reply.getPost_id() + "&commentCount=0";
 	}
 }
