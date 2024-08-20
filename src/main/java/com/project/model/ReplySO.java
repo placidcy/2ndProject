@@ -16,5 +16,8 @@ public class ReplySO {
 	public void likeReply(int replyId, String userId) {
 		replyDao.likeReply(replyId, userId);
 	}
-	
+
+	public int getReplyCount(long postId) {
+		return replyDao.selectReplyCount(postId);
+	}
 }
