@@ -17,7 +17,8 @@ public class Test {
 		ds.setTimeBetweenEvictionRunsMillis(1000 * 10);
 		UserDao userDao = new UserDao(ds);
 		UserDO userInfo = userDao.selectById("USER005");
-		System.out.print(userInfo.getName());
+		PostDao postDao = new PostDao(ds);
+		System.out.print(postDao.selectPostById(1));
 		
 	}
 
