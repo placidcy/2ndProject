@@ -7,16 +7,6 @@
     <meta charset="UTF-8">
     <title>상세 페이지</title>
     <link rel="stylesheet" href="resources/css/detailPage.css" />
-	<script>
-		
-		function init(){
-			let buttons = document.querySelectorAll("button[data-id]");
-			buttons.forEach()
-		}
-		
-		
-		window.addEventListener('load', init);
-	</script>
 </head>
 <body>
     <header>

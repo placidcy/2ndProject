@@ -82,6 +82,11 @@ public class ModelController {
 	public String findIDHandler() {
 		return "findID";
 	}
+	
+	@GetMapping("/agreement")
+	public String agreementHandler() {
+		return "agreement";
+	}
 
 	
 }

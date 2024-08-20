@@ -22,7 +22,7 @@ create sequence seq_post_post_id
 create sequence seq_reply_reply_id
     start with 1
     increment by 1
-    maxvalue 999
+    maxvalue 999999
     nocycle;
 
 
@@ -60,7 +60,7 @@ create table post (
 );
 
 create table reply (
- reply_id number(3) constraint reply_reply_id_pk primary key
+ reply_id number(6) constraint reply_reply_id_pk primary key
 , user_id varchar2(100) constraint reply_user_id_fk references userinfo(user_id)
 , post_id number constraint reply_post_id_fk references post(post_id)
 , content varchar2(500) constraint reply_content_nn not null
