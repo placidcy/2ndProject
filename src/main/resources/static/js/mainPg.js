@@ -5,7 +5,7 @@ function loginHandler() {
 
 function logoutHandler() {
     sessionStorage.removeItem('auth');
-    init();
+    location.href = '/logout';
 }
 
 function mypageHandler() {
