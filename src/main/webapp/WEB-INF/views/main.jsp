@@ -24,40 +24,34 @@
         <div class="logo">
             직장IN
         </div>
-        <div class="search">
-            <input type="text" placeholder="궁금한 내용을 검색해보세요 !"/>
+        <form method="POST" action="search">
+            <div class="search">
+                <input id="search-input" name="keyword" type="text" placeholder="궁금한 내용을 검색해보세요 !"/>
+                <button id="searchBtn">검색</button>
+            </div>
+        </form>
+
+        <div class="button-container">
+            <a><button id = "loginBtn">로그인</button></a>
+            <a><button id = "signUpOrMyPageBtn">회원가입</button></a>
         </div>
-
-
-        <a><button id = "loginBtn">로그인</button></a>
-        <a><button id = "signUpOrMyPageBtn">회원가입</button></a>
 
     </header>
 
     <div class="container">
         <jsp:include page="sidebar/sidebar.jsp" />
-<%--        <aside class="sidebar">--%>
-<%--            <div class="sidebar-container">--%>
-
-<%--                 <a href="<c:url value='/postForm' />"><button class="writeBtn">글쓰기</button></a>--%>
-<%--                <div id="profile" class="profile">--%>
-<%--                    로그인 후 이용하세요--%>
-
-<%--                </div>--%>
-
-<%--                <div class="best-post">--%>
-<%--                    인기 토픽--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </aside>--%>
-
         <main class="content">
-<%--            <div class="tabs">--%>
-<%--                <button class="scrap">스크랩</button>--%>
-<%--                <button class="all">전체</button>--%>
-<%--            </div>--%>
             <div class="post-container">
-                글 목록
+                <div class="list-title">
+                    <c:choose>
+                        <c:when test="${keyword != null}">
+                            <span>${keyword} 검색결과</span>
+                        </c:when>
+                        <c:otherwise>
+                            <span>글 목록</span>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
                 <c:forEach items="${postList}" var="post">
                     <div class="post">
                         <div class="tags">

@@ -2,10 +2,12 @@ package com.project.controller;
 
 import com.project.model.PostSO;
 import com.project.model.response.PostMainResponse;
+import java.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class PostController {
@@ -24,5 +26,11 @@ public class PostController {
         return "/main";
     }
 
-
+    @PostMapping("/search")
+    public String searchHandler(String keyword, Model model) {
+        PostMainResponse postList = postSO.search(keyword);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("postList", postList.getPostList());
+        return "/main";
+    }
 }
