@@ -1,14 +1,13 @@
 package com.project.model.request;
 
-public class SignupRequest {
+public class editProfileRequest {
     String user_id;
     String password;
     String name;
     String nickname;
     String email;
-    String preference;
 
-    public SignupRequest() {
+    public editProfileRequest() {
     }
 
     public String getUser_id() {
@@ -38,10 +37,4 @@ public class SignupRequest {
     public String getEmail() { return email; }
 
     public void setEmail(String email) { this.email = email; }
-
-    public String getPreference() { return preference; }
-
-    public void setPreference(String preference) { this.preference = preference; }
 }
-
-

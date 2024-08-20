@@ -90,10 +90,5 @@ public class ModelController {
 		return "findID";
 	}
 
-
-	@GetMapping("/editProfile")
-	public String editProfileHandler() {
-		return "editProfile";
-	}
 	
 }
