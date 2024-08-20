@@ -1,6 +1,8 @@
 package com.project.controller;
 
 import com.project.model.ReplySO;
+import com.project.model.response.LoginUserResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.websocket.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,12 +19,12 @@ public class ReplyController {
     }
 
     @PostMapping("/reply-like")
-    public String likeReply(int reply_id, Session session, int post_id) {
+    public String likeReply(int reply_id, HttpSession session, int post_id) {
 
-        String user_id = (String) session.getUserProperties().get("user_id");
+        LoginUserResponse auth = (LoginUserResponse) session.getAttribute("auth");
+        String user_id = auth.getUser_id();
         replySO.likeReply(reply_id, user_id);
-
-        return "redirect:/post/" + post_id;
+        return "redirect:/detailPageProcess?post_id=" + post_id;
     }
 
 }
