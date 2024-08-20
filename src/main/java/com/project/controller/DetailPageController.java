@@ -38,6 +38,7 @@ public class DetailPageController {
     
 		if(replyDO.getReply_id() != 0) {
 			model.addAttribute("modifyReply", replyDao.getReplyById(replyDO.getReply_id()).getContent());	
+			model.addAttribute("modifyReply_id", replyDO.getReply_id());
 		}
 		
 		model.addAttribute("commentCount", commentCount);
