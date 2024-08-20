@@ -175,6 +175,11 @@ main {
     font-size: 15px;
 }
 
+.tags a {
+    text-decoration: none;
+    color: black;
+}
+
 .title {
     margin-bottom: 20px;
 }

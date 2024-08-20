@@ -30,6 +30,11 @@ public class PostSO {
 		return new PostMainResponse(search);
 	}
 
+	public PostMainResponse searchPosition(String position) {
+		List<PostDO> search = postDao.searchPosition(position);
+		return new PostMainResponse(search);
+	}
+
 	
 	/* 
 	검사할게 있다면 넣고 아니면 그냥 PostDao 사용

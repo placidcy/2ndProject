@@ -26,11 +26,21 @@ public class PostController {
         return "/main";
     }
 
-    @PostMapping("/search")
+    @GetMapping("/search")
     public String searchHandler(String keyword, Model model) {
         PostMainResponse postList = postSO.search(keyword);
         model.addAttribute("keyword", keyword);
         model.addAttribute("postList", postList.getPostList());
         return "/main";
     }
+
+    @GetMapping("/search-position")
+    public String searchPositionHandler(String position, Model model) {
+        PostMainResponse postList = postSO.searchPosition(position);
+        model.addAttribute("keyword", position);
+        model.addAttribute("postList", postList.getPostList());
+        return "/main";
+    }
+
+
 }
