@@ -42,7 +42,16 @@
         <jsp:include page="sidebar/sidebar.jsp" />
         <main class="content">
             <div class="post-container">
-                글 목록
+                <div class="list-title">
+                    <c:choose>
+                        <c:when test="${keyword != null}">
+                            <span>${keyword} 검색결과</span>
+                        </c:when>
+                        <c:otherwise>
+                            <span>글 목록</span>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
                 <c:forEach items="${postList}" var="post">
                     <div class="post">
                         <div class="tags">

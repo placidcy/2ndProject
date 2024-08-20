@@ -140,22 +140,6 @@ header button {
     border-top: 1px solid #ddd;
 }
 
-.container {
-    background-color: #F7F7F7;
-    display: flex;
-    margin-top: 40px;
-    margin-right: 20px;
-}
-
-.tabs {
-    display: flex;
-    margin-bottom: 20px;
-}
-
-.tabs button{
-    padding: 10px 20px
-}
-
 main {
     background-color: white;
 
@@ -164,6 +148,19 @@ main {
 .content {
     flex-grow: 1;
     padding: 20px;
+}
+
+.container {
+    background-color: #F7F7F7;
+    display: flex;
+    margin-top: 40px;
+    margin-right: 20px;
+}
+
+.list-title {
+    font-size: 20px;
+    margin-left: 20px;
+    /*color: #888;*/
 }
 
 .post {
