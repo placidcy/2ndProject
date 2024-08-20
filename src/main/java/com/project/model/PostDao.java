@@ -17,6 +17,11 @@ public class PostDao {
 		this.sql = "insert into post (post_id, title, content, tags, user_id, position) values(seq_post_post_id.nextval, ?, ?, ?, ?, ?)";
 		this.jdbcTemplate.update(sql, post.getTitle(), post.getContent(), post.getTags(), user_id, post.getPosition());
 	}
+	
+	public void updatePost(PostDO post) {
+		this.sql = "update post set title = ?, content = ?, tags = ?, position = ? where post_id = ?";
+		this.jdbcTemplate.update(sql, post.getTitle(), post.getContent(), post.getTags(), post.getPosition(), post.getPost_id());
+	}
 
 	public List<PostDO> selectAllPost() {
 		//-- 메인페이지 게시글 조회

@@ -68,6 +68,22 @@ public class ModelController {
 		return "postForm";
 	}
 	
+	@GetMapping("/postModify")
+	public String postModifyHandler(@RequestParam(value="post_id") long post_id, HttpSession session, Model model) {
+		LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
+		String user_id = user.getUser_id();
+		PostDO post = postDao.getPostById(post_id);
+		if(user_id != null && user_id.equals(post.getUser_id())) {
+			model.addAttribute("postInfo", post);
+			model.addAttribute("postCount", postDao.countPost(user.getUser_id()));	
+			model.addAttribute("replyCount", replyDao.countReply(user.getUser_id()));
+			model.addAttribute("hotPostList", postDao.hotPost());
+			return "postForm";	
+		}
+		return "redirect:/detailPageProcess?post_id=" + post_id + "&commentCount=0";
+		
+	}
+	
 	@PostMapping("/postFormProcess")
 	public String postFormProcessHandler(PostDO postDO, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -76,6 +92,12 @@ public class ModelController {
 			postDao.insertPost(postDO, user.getUser_id());
 		}
 		return "redirect:/main";
+	}
+	
+	@PostMapping("/postUpdate")
+	public String postUpdateHandler(PostDO postDO) {
+		postDao.updatePost(postDO);
+		return "redirect:/detailPageProcess?post_id=" + postDO.getPost_id() + "&commentCount=0";
 	}
 	
 	@GetMapping("/findID")
@@ -87,6 +109,12 @@ public class ModelController {
 	public String agreementHandler() {
 		return "agreement";
 	}
-
+	
+	@GetMapping("/postDelete")
+	public String postDeleteHandler(PostDO postInfo, @RequestParam(value="user_id") String user_id, Model model) {
+		
+		return "redirect:/main";
+	}
+	
 	
 }
