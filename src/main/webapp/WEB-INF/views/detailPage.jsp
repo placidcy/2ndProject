@@ -62,10 +62,18 @@
                  --%>
             </section>
             
-            <form action="#" method="POST">
-                <input type="text" name="commentBar" id="commentBar" placeholder="답변을 남겨주세요." />
-                <button>등록</button>
-            </form>
+            <c:choose>
+	            <c:when test="#">
+		            <form action="<c:url value='/submitReply' />" method="POST">
+		                <input type="text" name="commentBar" id="commentBar" placeholder="답변을 남겨주세요." />
+		                <input type="hidden" name="" value="" />
+		                <button type="submit">등록</button>
+		            </form>
+	            </c:when>
+	            <c:otherwise>
+	            	<p>답변을 남기려면 <a href="<c:url value='/login' />">로그인</a> 해주세요.</p>
+	            </c:otherwise>
+            </c:choose>
 
             <section class="warning">
                 <ul>

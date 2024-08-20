@@ -12,7 +12,7 @@ public class ReplyRowMapper implements RowMapper<ReplyDO> {
 		reply.setReply_id(rs.getInt("reply_id"));
 		reply.setUser_id(rs.getString("user_id"));
 		reply.setContent(rs.getString("content"));
-		reply.setCreated_at(rs.getTimestamp("created_at").toLocalDateTime().toString());
+		reply.setCreated_at(rs.getString("created_at"));
 		reply.setLikes(rs.getInt("likes"));
 		
 		return reply;

@@ -68,4 +68,16 @@ public class ReplyDao {
 		return this.jdbcTemplate.queryForObject(sql, Integer.class, user_id);	
 	}
 	
+	public List<ReplyDO> getRepliesByPostId(long postId) {
+		return this.selectRepliesByPost(postId);
+	}
+	
+	public void addReply(ReplyDO reply) {
+		this.insertReply(reply);
+	}
+	
+	public int getReplyCount(String userId) {
+		return this.countReply(userId);
+	}
+	
 }
