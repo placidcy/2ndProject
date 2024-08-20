@@ -1,16 +1,23 @@
 package com.project.controller;
 
 import com.project.model.PostDO;
+
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.model.PostDao;
+import com.project.model.PostSO;
+import com.project.model.ReplyDO;
 import com.project.model.ReplyDao;
-import com.project.model.UserDO;
+import com.project.model.ReplySO;
 import com.project.model.UserSO;
+import com.project.model.UserDO;
 import com.project.model.response.LoginUserResponse;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -27,6 +34,15 @@ public class ModelController {
 	private PostDao postDao;
 	
 	@Autowired
+	private PostSO postSO;
+	
+	@Autowired
+	private ReplySO replySO;	
+	
+	@Autowired
+	private PostSO post;
+	
+	@Autowired
 	private ReplyDao replyDao;
 	
 	@GetMapping("/changePasswd")	 
@@ -40,12 +56,12 @@ public class ModelController {
 			LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
 			String user_id = user.getUser_id();
 			userSO.changePassword(user_id, userDO.getOldPasswd(), userDO.getNewPasswd());
-			return "redirect:/main";	
+			return "redirect:/main";
 		}
 		catch(Exception e) {
-			return "redirect:/changePasswd";	
+			return "redirect:/changePasswd";
 		}
-		
+
 	}
 	
 	@GetMapping("/postForm")	 
@@ -69,6 +85,7 @@ public class ModelController {
 		}
 		return "redirect:/main";
 	}
+<<<<<<< HEAD
 	
 	@GetMapping("/findID")
 	public String findIDHandler() {
@@ -79,6 +96,9 @@ public class ModelController {
 	public String signupHandler() {
 		return "signup";
 	}
+=======
+
+>>>>>>> 0c598b6745270dbdf073c5234e0997ab749ad6ec
 
 	@GetMapping("/editProfile")
 	public String editProfileHandler() {
