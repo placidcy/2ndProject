@@ -39,8 +39,6 @@ public class ModelController {
 	@Autowired
 	private ReplySO replySO;	
 	
-	@Autowired
-	private PostSO post;
 	
 	@Autowired
 	private ReplyDao replyDao;
@@ -83,14 +81,18 @@ public class ModelController {
 			LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
 			postDao.insertPost(postDO, user.getUser_id());
 		}
-		return "main";
+		return "redirect:/main";
+	}
+	
+	@GetMapping("/findID")
+	public String findIDHandler() {
+		return "findID";
 	}
 
 
 	@GetMapping("/editProfile")
 	public String editProfileHandler() {
-		return "profile/editProfile";
+		return "editProfile";
 	}
-	
 	
 }

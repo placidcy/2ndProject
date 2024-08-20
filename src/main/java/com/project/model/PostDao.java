@@ -4,8 +4,6 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 
 public class PostDao {
 	private final JdbcTemplate jdbcTemplate;
@@ -26,11 +24,6 @@ public class PostDao {
 				.query("SELECT post_id, position, title, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date, user_id, content, tags, view_count FROM post",
 						new PostRowMapper());
 	}
-	
-//	public PostDO selectPostById(long post_id) {
-//		this.sql = "select position, title, view_count, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date, user_id, content, tags from post where post_id = ?";
-//		return this.jdbcTemplate.queryForObject(sql, new PostRowMapper(), post_id);
-//	}
 	
 	public PostDO selectPostById(long post_id) {
 		this.sql = "select post_id, position, title, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date, user_id, content, tags, view_count from post where post_id = ?";
