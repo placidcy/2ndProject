@@ -61,7 +61,7 @@
                 </div>
                  --%>
             </section>
-            
+<%--             
             <c:choose>
 	            <c:when test="#">
 		            <form action="<c:url value='/submitReply' />" method="POST">
@@ -74,7 +74,15 @@
 	            	<p>답변을 남기려면 <a href="<c:url value='/login' />">로그인</a> 해주세요.</p>
 	            </c:otherwise>
             </c:choose>
-
+ --%>
+ 			<div class="commentBox">
+			     <form action="<c:url value='/submitReply' />" method="POST">
+			        <input type="hidden" name="post_id" value="${postInfo.post_id}" />
+			        <input type="hidden" name="user_id" value="${postInfo.user_id}" />
+			        <input name="content" id="commentBar" placeholder="답변을 남겨주세요." required />
+			        <button type="submit">등록</button>
+			    </form>
+ 			</div>
             <section class="warning">
                 <ul>
                     <li>

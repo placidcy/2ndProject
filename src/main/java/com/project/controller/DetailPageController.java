@@ -2,13 +2,13 @@ package com.project.controller;
 
 import java.util.List;
 
-import org.apache.catalina.filters.AddDefaultCharsetFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import com.project.model.*;
+import com.project.model.response.LoginUserResponse;
 
 import jakarta.servlet.http.*;
 
@@ -19,7 +19,9 @@ public class DetailPageController {
 	private PostDao postDao;
 	@Autowired
 	private ReplySO replySO;
-	
+	@Autowired
+	private ReplyDao replyDao;
+
 	
 	@GetMapping("/detailPageProcess")
 	public String detailPageView(@RequestParam(value="post_id") long post_id, Model model) {
@@ -33,30 +35,23 @@ public class DetailPageController {
 	}
 	
 	@PostMapping("/submitReply")
-	public String submitReply(@RequestParam("post_id") long post_id, 
-			@RequestParam("user_id") String user_id, 
-			@RequestParam("content") String content, 
-			Model model, HttpSession session) {
+	public String submitReply(ReplyDO reply, HttpSession session, Model model) {
 
-		if(session != null) {
-			ReplyDO reply = new ReplyDO();
-			reply.setUser_id(user_id);
-			reply.setPost_id(post_id);
-			reply.setContent(content);
-			reply.setLikes(0);
+		LoginUserResponse auth = (LoginUserResponse) session.getAttribute("auth");
+		String user_id = auth.getUser_id();
+		if(user_id == null) {
+			return "redirect:/login";
+		}
+		else {
+			replyDao.insertReply(reply);
 			
-			replySO.addReply(reply);
-			
-			PostDO postInfo = postDao.getPostById(post_id);
+			PostDO postInfo = postDao.getPostById(reply.getPost_id());
 			model.addAttribute("postInfo", postInfo);
-			
-			List<ReplyDO> repliesList = replySO.getRepliesByPostId(post_id);
+
+			List<ReplyDO> repliesList = replySO.getRepliesByPostId(reply.getPost_id());
 			model.addAttribute("repliesList", repliesList);
 			
 			return "detailPage";
-		}
-		else {
-			return "redirect:/login";
 		}
 		
 	}

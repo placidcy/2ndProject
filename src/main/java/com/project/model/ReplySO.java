@@ -12,12 +12,4 @@ public class ReplySO {
 	public List<ReplyDO> getRepliesByPostId(long postId) {
 		return replyDao.selectRepliesByPost(postId);
 	}
-	
-	public void addReply(ReplyDO reply) {
-		replyDao.insertReply(reply);
-	}
-	
-	public int getReplyCount(String userId) {
-		return replyDao.countReply(userId);
-	}
 }
