@@ -70,9 +70,9 @@
                             ${post.content}
                         </div>
                         <div class="info">
-                            <span> 조회수 : ${post.view_count} </span>
-                            <span>댓글수 ${repliesList.size()} </span>
-                            <span>${post.created_date} </span>
+                            <span> 조회수 ${post.view_count} </span>
+                            <span>댓글수 ${post.reply_count} </span>
+                            <span>  ${post.created_date} </span>
                         </div>
                     </div>
                 </c:forEach>
@@ -81,7 +81,7 @@
             <!-- 페이지 번호 네비게이션 -->
             <div class="pagination">
                 <c:if test="${postCount > 1}">
-                    <a href="?postCount=${postCount - 1}"> < ;</a>
+                    <a href="?postCount=${postCount - 1}"> < </a>
                 </c:if>
 
                 <c:forEach begin="1" end="${totalPages}" var="i">

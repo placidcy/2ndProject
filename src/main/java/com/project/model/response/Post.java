@@ -41,7 +41,15 @@ public class Post {
         return view_count;
     }
 
+    public int getReply_count() {
+        return reply_count;
+    }
+
     public String getCreated_date() {
         return created_date;
+    }
+
+    public void setReply_count(int reply_count) {
+        this.reply_count = reply_count;
     }
 }
