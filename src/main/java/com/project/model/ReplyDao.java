@@ -52,6 +52,7 @@ public class ReplyDao {
 		}, keyHorder);
 	}
 	
+
 	public ReplyDO getReplyById(int reply_id) {
 		this.sql = "select reply_id, user_id, content, to_char(created_at,'YYYY-MM-DD HH24:MI:SS') created_at, likes, post_id from reply where reply_id=?";
 		return this.jdbcTemplate.queryForObject(sql,new ReplyRowMapper(), reply_id);
@@ -99,5 +100,13 @@ public class ReplyDao {
 			this.jdbcTemplate.update(sql, replyId);
 		}
 	}
-	
+
+	public int selectReplyCount(long postId) {
+		this.sql = "select count(*) from reply where post_id = ?";
+		try {
+			return this.jdbcTemplate.queryForObject(sql, Integer.class, postId);
+		} catch (Exception e) {
+			return 0;
+		}
+	}
 }

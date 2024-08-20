@@ -28,5 +28,9 @@ public class ReplySO {
 			throw new UnExpectedAccessException();
 		}
 	}
-	
+
+	public int getReplyCount(long postId) {
+		return replyDao.selectReplyCount(postId);
+	}
+
 }

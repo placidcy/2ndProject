@@ -1,5 +1,7 @@
 package com.project.model;
 
+import com.project.model.response.Post;
+
 public class PostDO {
 
 	private long post_id;
@@ -62,5 +64,5 @@ public class PostDO {
 	public void setPosition(String position) {
 		this.position = position;
 	}
-	
+
 }

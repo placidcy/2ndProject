@@ -69,7 +69,7 @@
                  --%>
             </section>
  			<div class="commentBox">
-			     <form action="<c:url value='/submitReply' />" method="POST">
+			     <form action="submitReply" method="POST">
 			        <input type="hidden" name="post_id" value="${postInfo.post_id}" />
 			        <input type="hidden" name="user_id" value="${auth.user_id}" />
 			        <input name="content" id="commentBar" placeholder="답변을 남겨주세요." value="${modifyReply}" required />
@@ -82,6 +82,7 @@
 					<button type="submit" formaction="<c:url value='/replyUpdate' />">수정</button>
 					</c:otherwise>
 					</c:choose>
+
 			    </form>
  			</div>
             <section class="warning">
@@ -106,8 +107,8 @@
 	                    <p>${reply.content}</p>
 	                    <span>${reply.created_at}</span>
                         <form action="reply-like" method="POST">
-                            <input type="hidden" name="reply_id" value="${reply.reply_id}" />
                             <input type="hidden" name="post_id" value="${postInfo.post_id}" />
+                            <input type="hidden" name="reply_id" value="${postInfo.reply_id}" />
                             <input type="hidden" name="commentCount" value="${commentCount}" />
                             <button type="submit">좋아요</button>
                         </form>

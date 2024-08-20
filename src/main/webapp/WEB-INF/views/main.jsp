@@ -22,7 +22,9 @@
 </head>
 <body>
     <header class="header-container">
-
+        <div class="logo">
+            직장IN
+        </div>
         <form method="GET" action="search">
             <div class="search">
                 <input id="search-input" name="keyword" type="text" placeholder="궁금한 내용을 검색해보세요 !"/>
@@ -33,6 +35,9 @@
         <div class="button-container">
             <a><button id = "loginBtn">로그인</button></a>
             <a><button id = "signUpOrMyPageBtn">회원가입</button></a>
+            <c:if test="${auth.nickname != null}">
+                <a><button id = "changePassWordBtn">비밀번호 변경</button></a>
+            </c:if>
         </div>
 
     </header>
@@ -65,12 +70,34 @@
                             ${post.content}
                         </div>
                         <div class="info">
-                            <span> 조회수 : ${post.view_count}</span>
-                            <span>댓글수 ${repliesList.size()}</span>
-                            <span>${post.created_date}</span>
+                            <span> 조회수 ${post.view_count} </span>
+                            <span>댓글수 ${post.reply_count} </span>
+                            <span>  ${post.created_date} </span>
                         </div>
                     </div>
                 </c:forEach>
+            </div>
+
+            <!-- 페이지 번호 네비게이션 -->
+            <div class="pagination">
+                <c:if test="${postCount > 1}">
+                    <a href="?postCount=${postCount - 1}"> < </a>
+                </c:if>
+
+                <c:forEach begin="1" end="${totalPages}" var="i">
+                    <c:choose>
+                        <c:when test="${i == postCount}">
+                            <span class="current">${i}</span>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="?postCount=${i}">${i}</a>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+
+                <c:if test="${postCount < totalPages}">
+                    <a href="?postCount=${postCount + 1}"> > </a>
+                </c:if>
             </div>
         </main>
     </div>

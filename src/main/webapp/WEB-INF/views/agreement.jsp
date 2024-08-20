@@ -8,24 +8,27 @@
 	<title>회원 가입</title>
 	
 	<link rel="stylesheet" href="resources/css/agreement.css" />
+	<script src="resources/js/agree.js"></script>
 </head>
 <body>
 	<div id="container">
-		<header><a href="<c:url value='/main' />">직장IN</a></header>
+		<header>
+			<a href="<c:url value='/main' />">직장IN</a>
+		</header>
 		
-		<form method="POST" action="#" id="agreementForm">
+		<form action="/signup" method="GET" id="agreementForm">
 			<div id="selectedAllSection">
-			<input type="checkbox" name="selectedAll" id="selectedAll" class="radio"/>
-			<label for="selectedAll">전체 동의하기</label>
-			
-			<p>실명 인증된 아이디로 가입, 위치기반서비스 이용약관(선택), 이벤트・혜택 정보 수신(선택) 동의를 포함합니다. </p>
-			<br />
-			
-			<input type="checkbox" name="termsOfUse" id="termsOfUse"/>
-			<label for="termsOfUse">이용 약관</label>
-			<br />
-			
-			<pre>
+				<input type="checkbox" name="selectedAll" id="selectedAll" class="radio"/>
+				<label for="selectedAll">전체 동의하기</label>
+				
+				<p>실명 인증된 아이디로 가입, 위치기반서비스 이용약관(선택), 이벤트・혜택 정보 수신(선택) 동의를 포함합니다. </p>
+				<br />
+				
+				<input type="checkbox" name="termsOfUse" id="termsOfUse" />
+				<label for="termsOfUse"><span class="Required">[필수] </span>이용 약관</label>
+				<br />
+				
+				<pre>
 				
 제 1 장 총칙
 
@@ -56,13 +59,13 @@
 본 약관 및 차후 회사사정에 따라 변경된 약관은 이용자에게 공시함으로써 효력을 발생한다.
 제 4 조 (약관 외 준칙)
 본 약관에 명시되지 않은 사항이 전기통신기본법, 전기통신사업법, 정보통신촉진법, ‘전자상거래등에서의 소비자 보호에 관한 법률’, ‘약관의 규제에관한법률’, ‘전자거래기본법’, ‘전자서명법’, ‘정보통신망 이용촉진등에 관한 법률’, ‘소비자보호법’ 등 기타 관계 법령에 규정되어 있을 경우에는 그 규정을 따르도록 한다.
-			</pre>
+				</pre>
 			</div>
 			<br />
 			
 			<div id="InfoCollectionSection">
-			<input type="checkbox" name="InfoCollection" id="InfoCollection" class="radio"/>
-			<label for="InfoCollection">개인 정보 수집 및 이용</label>
+			<input type="checkbox" name="InfoCollection" id="InfoCollection" class="radio" />
+			<label for="InfoCollection"><span class="Required">[필수] </span>개인 정보 수집 및 이용</label>
 			<br />
 				
 			<pre>
@@ -97,7 +100,7 @@
 			
 			<div id="adReceptionSection">
 			<input type="checkbox" name="adReception" id="adReception" class="radio"/>
-			<label for="adReception">[선택] 광고성 정보 수신 동의</label>
+			<label for="adReception"><span class="selection">[선택] </span>광고성 정보 수신 동의</label>
 			<br />
 							
 			<pre>
@@ -127,7 +130,7 @@
 			<br />
 
 			
-			<input type="submit" value="다음" id="submitBtn"/>
+			<input type="submit" value="다음" id="submitBtn" disabled />
 		</form>
 	</div>
 </body>

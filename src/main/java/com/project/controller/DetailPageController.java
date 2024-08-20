@@ -18,30 +18,39 @@ public class DetailPageController {
 	@Autowired
 	private PostDao postDao;
 	@Autowired
+	private PostSO postSO;
+	@Autowired
 	private ReplySO replySO;
 	@Autowired
 	private ReplyDao replyDao;
 
+
 	@GetMapping("/detailPageProcess")
 	public String detailPageView(ReplyDO replyDO, @RequestParam(value="commentCount") long commentCount, Model model) {
 		PostDO postInfo = postDao.getPostById(replyDO.getPost_id());
+
 		model.addAttribute("postInfo", postInfo);
 		
 		List<ReplyDO> repliesList = replySO.getRepliesByPostId(replyDO.getPost_id());
 		model.addAttribute("repliesList", repliesList);
+
 		
 		model.addAttribute("commentCount", commentCount);
+    
 		if(replyDO.getReply_id() != 0) {
 			model.addAttribute("modifyReply", replyDao.getReplyById(replyDO.getReply_id()).getContent());	
 		}
 		
-		
+		model.addAttribute("commentCount", commentCount);
+
+		model.addAttribute("postList", postSO.updateViewCount(post_id).getPostList());
+
 		return "detailPage";
 	}
 	
 	
 	@PostMapping("/submitReply")
-	public String submitReply(ReplyDO reply, HttpSession session, Model model) {
+	public String submitReply(ReplyDO reply, @RequestParam long commentCount, HttpSession session, Model model) {
 
 		LoginUserResponse auth = (LoginUserResponse) session.getAttribute("auth");
 		String user_id = auth.getUser_id();
@@ -50,9 +59,6 @@ public class DetailPageController {
 		}
 		else {
 			replyDao.insertReply(reply);
-			
-			PostDO postInfo = postDao.getPostById(reply.getPost_id());
-			model.addAttribute("postInfo", postInfo);
 
 			List<ReplyDO> repliesList = replySO.getRepliesByPostId(reply.getPost_id());
 			model.addAttribute("repliesList", repliesList);
@@ -62,5 +68,10 @@ public class DetailPageController {
 		
 	}
 
+			return "redirect:/detailPageProcess?post_id=" + reply.getPost_id() + "&commentCount=" + commentCount;
+		}
+		
+	}
+	
 	
 }

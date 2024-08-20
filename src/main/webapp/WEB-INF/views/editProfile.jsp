@@ -22,19 +22,19 @@
             <div class="details-section">
                 <div class="input-group">
                     <label for="nickname">닉네임</label>
-                    <input type="text" name="nickname" id="nickname" value="" >
+                    <input type="text" name="nickname" id="nickname" value="${nickname}" >
                 </div>
                 <div class="input-group">
                     <label for="userId">아이디</label>
-                    <input type="text" name="user_id" id="userId" value="hwnsgur" readonly>
+                    <input type="text" name="user_id" id="userId" value="${user_id}" readonly>
                 </div>
                 <div class="input-group">
                     <label for="name">이름</label>
-                    <input type="text" name="name" id="name" value="" >
+                    <input type="text" name="name" id="name" value="${name}" >
                 </div>
                 <div class="input-group">
                     <label for="email">이메일</label>
-                    <input type="email" name="email" id="email" value="" >
+                    <input type="email" name="email" id="email" value="${email}" >
                 </div>
             </div>
         </div>
