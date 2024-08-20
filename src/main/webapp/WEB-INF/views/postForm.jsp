@@ -37,7 +37,7 @@
                     <div class="best-post">
                      <p>인기 Topic</p>		
 					 <c:forEach var="hotPost" items="${hotPostList}" varStatus="status">
-					 <a href="/detailPageProcess?post_id=${hotPost.post_id}"><p>${status.count}. 
+					 <a href="/detailPageProcess?post_id=${hotPost.post_id}"><p class="hotTopic">${status.count}. 
 					 <c:choose> 
 						<c:when test="${hotPost.title.length() > 9}">
 						${hotPost.title.substring(0,9)}...
