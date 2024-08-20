@@ -12,7 +12,7 @@
         if (auth) {
             // auth 객체가 존재할 경우 sessionStorage에 저장
             sessionStorage.setItem('auth', JSON.stringify({
-                nickname: "${auth != null ? auth.nickname : ''}"
+                nickname: "${auth != null ? auth.nickname : ''}",
             }));
         }
     </script>
@@ -24,7 +24,7 @@
         <div class="logo">
             직장IN
         </div>
-        <form method="POST" action="search">
+        <form method="GET" action="search">
             <div class="search">
                 <input id="search-input" name="keyword" type="text" placeholder="궁금한 내용을 검색해보세요 !"/>
                 <button id="searchBtn">검색</button>
