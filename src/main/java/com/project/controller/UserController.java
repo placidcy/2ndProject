@@ -51,10 +51,10 @@ public class UserController {
             return "redirect:/login";
         }
     }
-
+    
     @GetMapping("/signup")
     public String signupHandler() {
-        return "signup";
+    	return "signup";
     }
 
     @PostMapping("/signupProgress")
