@@ -32,7 +32,7 @@ public class PostController {
         postList.getContent().forEach(post -> {
             post.setReply_count(replySO.getReplyCount(post.getPost_id()));
         });
-
+        model.addAttribute("hotPostList", postSO.getHotPost());
         model.addAttribute("postList", postList.getContent());
         model.addAttribute("postCount", postCount);
         model.addAttribute("totalPages", postList.getTotalPages());

@@ -7,38 +7,15 @@
     <meta charset="UTF-8">
     <title>상세 페이지</title>
     <link rel="stylesheet" href="resources/css/detailPage.css" />
+    <link rel="stylesheet" href="/resources/css/header.css">
 	
 </head>
 <body>
     <header>
-        <a href="<c:url value='/main' />"><h1 class="logo">직장IN</h1></a>
-        <div class="searchBox">
-            <form action="<c:url value='/search' />" method="POST">
-                <input type="text" name="searchBar" placeholder="검색어를 입력하세요." />
-            </form>
-        </div>
-    </header>
+        <jsp:include page="header/header.jsp" />
 
     <container>
-        <section class="sideNavWrap">
-			<%--              
-			<a href="<c:url value='/postForm' />"><button>글쓰기</button></a>
-            <div class="infoBox">
-                <dl>
-                    <dt>닉네임</dt>
-                    <dd>
-                        <span>글
-                            <b>${postCount}</b>
-                        </span>
-                        <span>답변
-                            <b>${replyCount}</b>
-                        </span>
-                    </dd>
-                </dl>
-            </div>
-            --%>
-            <jsp:include page="sidebar/sidebar.jsp" />
-        </section>
+        <jsp:include page="sidebar/sidebar.jsp" />
         <section class="contentWrap">
             <section class="content">
                 <div class="top">
