@@ -70,6 +70,7 @@ public class ModelController {
 			LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
 			model.addAttribute("postCount", postDao.countPost(user.getUser_id()));	
 			model.addAttribute("replyCount", replyDao.countReply(user.getUser_id()));
+			model.addAttribute("hotPostList", postDao.hotPost());
 		}
 		return "postForm";
 	}
