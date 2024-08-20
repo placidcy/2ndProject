@@ -12,7 +12,7 @@
         if (auth) {
             // auth 객체가 존재할 경우 sessionStorage에 저장
             sessionStorage.setItem('auth', JSON.stringify({
-                nickname: "${auth != null ? auth.nickname : ''}"
+                nickname: "${auth != null ? auth.nickname : ''}",
             }));
         }
     </script>
@@ -21,8 +21,8 @@
 </head>
 <body>
     <header class="header-container">
-        <a href="<c:url value='/main' />"><div class="logo">직장IN</div></a>
-        <form method="POST" action="search">
+
+        <form method="GET" action="search">
             <div class="search">
                 <input id="search-input" name="keyword" type="text" placeholder="궁금한 내용을 검색해보세요 !"/>
                 <button id="searchBtn">검색</button>
@@ -53,7 +53,9 @@
                 <c:forEach items="${postList}" var="post">
                     <div class="post">
                         <div class="tags">
-                            <span> # ${post.position}</span>
+                             <a href="<c:url value="/search-position?position=${post.position}"/>">
+                                 # ${post.position}
+                             </a>
                         </div>
                         <div class="title">
                             <a href="/detailPageProcess?post_id=${post.post_id}">${post.title}</a>

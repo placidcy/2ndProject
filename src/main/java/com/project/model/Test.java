@@ -25,7 +25,10 @@ public class Test {
 		PostDao postDao = new PostDao(ds);
 		postDao.selectPostById(1);
 
-		System.out.print(postDao.selectPostById(1));
+		
+		for(PostDO post : postDao.hotPost()) {
+			System.out.print(post.getTitle());
+		}
 		
 	}
 
