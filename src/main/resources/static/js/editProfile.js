@@ -56,9 +56,8 @@ document.addEventListener('DOMContentLoaded', () => {
         careerInputs.appendChild(newCareerSection);
     });
 
-    // 폼 제출
-    const submitBtn = document.querySelector('.submit-btn');
-    submitBtn.addEventListener('click', (event) => {
-        event.preventDefault();
+    document.querySelector('.submit-btn').addEventListener('click', function (event) {
+
+            alert("수정이 완료되었습니다.");
     });
 });
