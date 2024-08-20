@@ -18,13 +18,22 @@ public class ReplyController {
         this.replySO = replySO;
     }
 
+//    @PostMapping("/reply-like")
+//    public String likeReply(int reply_id, HttpSession session, int post_id) {
+//
+//        LoginUserResponse auth = (LoginUserResponse) session.getAttribute("auth");
+//        String user_id = auth.getUser_id();
+//        replySO.likeReply(reply_id, user_id);
+//        return "redirect:/detailPageProcess?post_id=" + post_id;
+//    }
+    
     @PostMapping("/reply-like")
-    public String likeReply(int reply_id, HttpSession session, int post_id) {
+    public String likeReply(int reply_id, HttpSession session, long post_id, long commentCount) {
 
         LoginUserResponse auth = (LoginUserResponse) session.getAttribute("auth");
         String user_id = auth.getUser_id();
         replySO.likeReply(reply_id, user_id);
-        return "redirect:/detailPageProcess?post_id=" + post_id;
+        return "redirect:/detailPageProcess?post_id=" + post_id + "&commentCount=" + commentCount;
     }
 
 }

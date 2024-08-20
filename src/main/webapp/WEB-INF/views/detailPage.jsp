@@ -71,20 +71,6 @@
                 </div>
                  --%>
             </section>
-<%--             
-            <c:choose>
-	            <c:when test="#">
-		            <form action="<c:url value='/submitReply' />" method="POST">
-		                <input type="text" name="commentBar" id="commentBar" placeholder="답변을 남겨주세요." />
-		                <input type="hidden" name="" value="" />
-		                <button type="submit">등록</button>
-		            </form>
-	            </c:when>
-	            <c:otherwise>
-	            	<p>답변을 남기려면 <a href="<c:url value='/login' />">로그인</a> 해주세요.</p>
-	            </c:otherwise>
-            </c:choose>
- --%>
  			<div class="commentBox">
 			     <form action="<c:url value='/submitReply' />" method="POST">
 			        <input type="hidden" name="post_id" value="${postInfo.post_id}" />
@@ -117,6 +103,7 @@
                         <form action="reply-like" method="POST">
                             <input type="hidden" name="reply_id" value="${reply.reply_id}" />
                             <input type="hidden" name="post_id" value="${postInfo.post_id}" />
+                            <input type="hidden" name="commentCount" value="${commentCount}" />
                             <button type="submit">좋아요</button>
                         </form>
                         <span>${reply.likes}</span>
@@ -131,7 +118,6 @@
 					<c:forEach  begin="0" end="${Math.floor(repliesList.size()/10)}" varStatus="status">
 						<a href="/detailPageProcess?post_id=${postInfo.post_id}&commentCount=${status.count-1}"><button>${status.count} </button></a>
 					</c:forEach>
-                    <button>></button> 
                 </div>
             </section>
         </section>
