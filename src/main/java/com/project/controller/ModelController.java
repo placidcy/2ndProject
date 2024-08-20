@@ -39,8 +39,6 @@ public class ModelController {
 	@Autowired
 	private ReplySO replySO;	
 	
-	@Autowired
-	private PostSO post;
 	
 	@Autowired
 	private ReplyDao replyDao;
@@ -85,20 +83,12 @@ public class ModelController {
 		}
 		return "redirect:/main";
 	}
-<<<<<<< HEAD
 	
 	@GetMapping("/findID")
 	public String findIDHandler() {
 		return "findID";
 	}
 
-	@GetMapping("/signup")
-	public String signupHandler() {
-		return "signup";
-	}
-=======
-
->>>>>>> 0c598b6745270dbdf073c5234e0997ab749ad6ec
 
 	@GetMapping("/editProfile")
 	public String editProfileHandler() {
