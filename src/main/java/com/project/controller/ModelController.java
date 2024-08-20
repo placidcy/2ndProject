@@ -1,5 +1,6 @@
 package com.project.controller;
 
+import com.project.exception.UnExpectedAccessException;
 import com.project.model.PostDO;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import com.project.model.UserSO;
 import com.project.model.UserDO;
 import com.project.model.response.LoginUserResponse;
 
+import jakarta.servlet.UnavailableException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -31,7 +33,10 @@ public class ModelController {
 	private UserSO userSO;
 	
 	@Autowired
-	private PostDao postDao;	
+	private PostDao postDao;
+	
+	@Autowired
+	private PostSO postSO;	
 	
 	@Autowired
 	private ReplyDao replyDao;
@@ -68,6 +73,22 @@ public class ModelController {
 		return "postForm";
 	}
 	
+	@GetMapping("/postModify")
+	public String postModifyHandler(@RequestParam(value="post_id") long post_id, HttpSession session, Model model) {
+		LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
+		String user_id = user.getUser_id();
+		PostDO post = postDao.getPostById(post_id);
+		if(user_id != null && user_id.equals(post.getUser_id())) {
+			model.addAttribute("postInfo", post);
+			model.addAttribute("postCount", postDao.countPost(user.getUser_id()));	
+			model.addAttribute("replyCount", replyDao.countReply(user.getUser_id()));
+			model.addAttribute("hotPostList", postDao.hotPost());
+			return "postForm";	
+		}
+		return "redirect:/detailPageProcess?post_id=" + post_id + "&commentCount=0";
+		
+	}
+	
 	@PostMapping("/postFormProcess")
 	public String postFormProcessHandler(PostDO postDO, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -78,6 +99,12 @@ public class ModelController {
 		return "redirect:/main";
 	}
 	
+	@PostMapping("/postUpdate")
+	public String postUpdateHandler(PostDO postDO) {
+		postDao.updatePost(postDO);
+		return "redirect:/detailPageProcess?post_id=" + postDO.getPost_id() + "&commentCount=0";
+	}
+	
 	@GetMapping("/findID")
 	public String findIDHandler() {
 		return "findID";
@@ -86,5 +113,18 @@ public class ModelController {
 	@GetMapping("/agreement")
 	public String agreementHandler() {
 		return "agreement";
+	}
+  
+	@GetMapping("/postDelete")
+	public String postDeleteHandler(@RequestParam(value="post_id") long post_id, HttpSession session) {
+		LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
+		String user_id = user.getUser_id();
+		try {
+			postSO.deletePostService(post_id, user_id);	
+			return "redirect:/main";
+		}
+		catch(UnExpectedAccessException e) {
+			return "redirect:/detailPageProcess?post_id=" + post_id + "&commentCount=0";
+		}
 	}
 }
