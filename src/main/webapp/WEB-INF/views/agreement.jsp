@@ -8,12 +8,13 @@
 	<title>회원 가입</title>
 	
 	<link rel="stylesheet" href="resources/css/agreement.css" />
+	<script type="agree.js"></script>
 </head>
 <body>
 	<div id="container">
 		<header><a href="<c:url value='/main' />">직장IN</a></header>
 		
-		<form method="POST" action="#" id="agreementForm">
+		<form method="POST" action="/agree" id="agreementForm">
 			<div id="selectedAllSection">
 			<input type="checkbox" name="selectedAll" id="selectedAll" class="radio"/>
 			<label for="selectedAll">전체 동의하기</label>
