@@ -55,7 +55,6 @@ public class UserController {
     @PostMapping("/signupProgress")
     public String signupProgressHandler(SignupRequest request, HttpSession session) {
         try {
-            System.out.println("Received signup request: " + request);
             userSO.SignupUser(request);
             return "redirect:/main";
         } catch (Exception e) {
