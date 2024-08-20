@@ -1,10 +1,11 @@
 drop sequence seq_career_career_id;
 drop sequence seq_post_post_id;
 drop sequence seq_reply_reply_id;
-drop table userinfo;
+drop table userinfo cascade constraints;
 drop table career;
-drop table post;
-drop table reply;
+drop table post cascade constraints;
+drop table reply cascade constraints;
+drop table reply_liked cascade constraints;
 
 create sequence seq_career_career_id
     start with 1
@@ -66,3 +67,11 @@ create table reply (
 , created_at date default sysdate
 , likes number default 0
 );
+
+create table reply_liked (
+    reply_id number constraint reply_liked_reply_id_fk references reply (reply_id),
+    user_id  varchar2(100) constraint reply_liked_user_id_fk references userinfo (user_id),
+    constraint reply_liked_pk primary key (reply_id, user_id)
+);
+
+commit;

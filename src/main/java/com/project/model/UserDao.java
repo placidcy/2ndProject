@@ -34,8 +34,8 @@ public class UserDao {
 	}
 
 	public int insertUser(UserDO user) {
-		this.sql = "INSERT INTO userinfo (user_id, name, nickname, email, password) VALUES (?, ?, ?, ?, ?)";
-		return this.jdbcTemplate.update(sql, user.getUser_id(), user.getName(), user.getNickname(), user.getEmail(), user.getPassword());
+		this.sql = "INSERT INTO userinfo (user_id, name, nickname, email, password, created_date) VALUES (?, ?, ?, ?, ?, TO_CHAR(?, 'YYYY-MM-DD HH24:MI:SS'))";
+		return this.jdbcTemplate.update(sql, user.getUser_id(), user.getName(), user.getNickname(), user.getEmail(), user.getPassword(), user.getCreated_date());
 	}
 
 

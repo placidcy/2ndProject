@@ -12,7 +12,8 @@
         if (auth) {
             // auth 객체가 존재할 경우 sessionStorage에 저장
             sessionStorage.setItem('auth', JSON.stringify({
-                nickname: "${auth != null ? auth.nickname : ''}",
+                user_id: "${auth != null ? auth.user_id : ''}",
+                nickname: "${auth != null ? auth.nickname : ''}"
             }));
         }
     </script>
@@ -58,7 +59,7 @@
                              </a>
                         </div>
                         <div class="title">
-                            <a href="/detailPageProcess?post_id=${post.post_id}">${post.title}</a>
+                            <a href="/detailPageProcess?post_id=${post.post_id}&commentCount=0">${post.title}</a>
                         </div>
                         <div class="post-content">
                             ${post.content}

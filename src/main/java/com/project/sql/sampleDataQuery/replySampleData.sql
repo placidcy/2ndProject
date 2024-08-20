@@ -110,3 +110,5 @@ END;
 /
 
 commit;
+
+Select * from reply;

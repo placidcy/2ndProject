@@ -10,7 +10,6 @@ body {
 }
 
 .container {
-    width: 600px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 30px;
@@ -125,7 +124,7 @@ body {
 }
 
 .career-inputs .input-group input[type="text"] {
-    width: 100%;
+    width: 100px;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -141,7 +140,16 @@ body {
 }
 
 .checkbox-group input {
-    margin-right: 5px;
+    width: 30%;
+}
+
+.input-group.checkbox-group {
+    display: flex;
+    align-items: center;
+}
+
+.input-group.checkbox-group label {
+    margin-left: 5px;
 }
 
 .add-btn {

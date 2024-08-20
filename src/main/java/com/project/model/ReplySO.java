@@ -12,4 +12,9 @@ public class ReplySO {
 	public List<ReplyDO> getRepliesByPostId(long postId) {
 		return replyDao.selectRepliesByPost(postId);
 	}
+
+	public void likeReply(int replyId, String userId) {
+		replyDao.likeReply(replyId, userId);
+	}
+	
 }

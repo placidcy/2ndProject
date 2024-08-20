@@ -30,14 +30,14 @@
                 <div class="sidebar-container">
                     <a href="<c:url value='/postForm' />"><button class="writeBtn">글쓰기</button></a>
                     <div class="profile">
-                        <img src="<c:url value='/resources/images/anonymous.jpg' />" alt="anonymous" id="profileImg"/>
+                        <a href="<c:url value='/editProfile' />"><img src="<c:url value='/resources/images/anonymous.jpg' />" alt="anonymous" id="profileImg"/></a>
                         <p class="profileText">${auth.nickname}</p>
                         <p class="profileText">게시글: ${postCount} 댓글: ${replyCount}</p>
                     </div>
                     <div class="best-post">
                      <p>인기 Topic</p>		
 					 <c:forEach var="hotPost" items="${hotPostList}" varStatus="status">
-					 <a href="/detailPageProcess?post_id=${hotPost.post_id}"><p id="hotTitle${status.count}">${status.count}. 
+					 <a href="/detailPageProcess?post_id=${hotPost.post_id}"><p>${status.count}. 
 					 <c:choose> 
 						<c:when test="${hotPost.title.length() > 9}">
 						${hotPost.title.substring(0,9)}...
