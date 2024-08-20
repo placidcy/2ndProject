@@ -87,6 +87,4 @@ public class ModelController {
 	public String agreementHandler() {
 		return "agreement";
 	}
-
-	
 }

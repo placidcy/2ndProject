@@ -60,4 +60,10 @@ public class PostDao {
 
 		return this.jdbcTemplate.query(sql, new PostRowMapper(), position);
 	}
+
+	public List<PostDO> updateViewCount(long postId) {
+		this.sql = "update post set view_count = view_count + 1 where post_id = ?";
+		this.jdbcTemplate.update(sql, postId);
+		return this.selectAllPost();
+	}
 }

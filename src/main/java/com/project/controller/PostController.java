@@ -2,8 +2,6 @@ package com.project.controller;
 
 import com.project.model.PostSO;
 import com.project.model.response.PostMainResponse;
-import java.util.Arrays;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +24,7 @@ public class PostController {
     }
 
     @GetMapping("/search")
-    public String searchHandler(String keyword, Model model) {
+    public String searchPost(String keyword, Model model) {
         PostMainResponse postList = postSO.search(keyword);
         model.addAttribute("keyword", keyword);
         model.addAttribute("postList", postList.getPostList());
@@ -34,12 +32,11 @@ public class PostController {
     }
 
     @GetMapping("/search-position")
-    public String searchPositionHandler(String position, Model model) {
+    public String searchPosition(String position, Model model) {
         PostMainResponse postList = postSO.searchPosition(position);
         model.addAttribute("keyword", position);
         model.addAttribute("postList", postList.getPostList());
         return "/main";
     }
-
 
 }

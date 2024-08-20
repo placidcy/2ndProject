@@ -35,6 +35,11 @@ public class PostSO {
 		return new PostMainResponse(search);
 	}
 
+	public PostMainResponse updateViewCount(long postId) {
+		List<PostDO> postList = postDao.updateViewCount(postId);
+
+		return new PostMainResponse(postList);
+	}
 	
 	/* 
 	검사할게 있다면 넣고 아니면 그냥 PostDao 사용
