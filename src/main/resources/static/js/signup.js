@@ -1,5 +1,9 @@
+function mainHandler() {
+    location.href = '/main';
+}
 document.addEventListener('DOMContentLoaded', function() {
-
+    const logo = document.querySelector('.title');
+    logo.addEventListener('click', mainHandler);
     //password/text 교체
     const passwordFields = document.querySelectorAll('.input-group input[type="password"]');
     document.querySelectorAll('.eye-btn').forEach((button, index) => {
@@ -74,7 +78,10 @@ document.addEventListener('DOMContentLoaded', function() {
     //선호 직종 선택
     document.querySelectorAll('.preference-btn').forEach(button => {
         button.addEventListener('click', function () {
-            document.querySelectorAll('.preference-btn').forEach(btn => btn.classList.remove('selected'));
+            document.querySelectorAll('.preference-btn').forEach(btn => {
+                if(!btn.classList.contains('selected'))
+                btn.classList.remove('selected')
+            });
 
             button.classList.toggle('selected');
             document.getElementById('preference').value = document.querySelector('.preference-btn.selected').value;
