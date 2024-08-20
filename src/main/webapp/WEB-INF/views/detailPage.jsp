@@ -73,6 +73,7 @@
 			        <input type="hidden" name="post_id" value="${postInfo.post_id}" />
 			        <input type="hidden" name="user_id" value="${auth.user_id}" />
 					<input type="hidden" name="commentCount" value="${commentCount}" />
+					
 			        <input name="content" id="commentBar" placeholder="답변을 남겨주세요." value="${modifyReply}" required />
 			    
 					<c:choose>
@@ -80,6 +81,7 @@
 					<button type="submit" formaction="<c:url value='/submitReply' />">등록</button>
 					</c:when>
 					<c:otherwise>
+					<input type="hidden" name="reply_id" value="${modifyReply_id}" />
 					<button type="submit" formaction="<c:url value='/replyUpdate' />">수정</button>
 					</c:otherwise>
 					</c:choose>
@@ -108,9 +110,7 @@
 	                    <p>${reply.content}</p>
 	                    <span>${reply.created_at}</span>
                         <form action="reply-like" method="POST">
-                            <input type="hidden" name="post_id" value="${postInfo.post_id}" />
-                            <input type="hidden" name="reply_id" value="${reply.reply_id}" />
-                            <input type="hidden" name="commentCount" value="${commentCount}" />
+                       		<input type="hidden" name="commentCount" value="${commentCount}" />
                             <button type="submit">좋아요</button>
                         </form>
                         <span>${reply.likes}</span>

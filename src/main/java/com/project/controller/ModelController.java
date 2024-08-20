@@ -135,16 +135,22 @@ public class ModelController {
 		String user_id = user.getUser_id();
 		ReplyDO replyDO = replyDao.getReplyById(reply.getReply_id());
 		if(user_id != null && user_id.equals(replyDO.getUser_id())) {
-			System.out.print(replyDO.getContent());
 			return "redirect:/detailPageProcess?post_id=" + reply.getPost_id() + "&commentCount=0&reply_id=" + replyDO.getReply_id();	
 		}
 		return "redirect:/detailPageProcess?post_id=" + reply.getPost_id() + "&commentCount=0";
 	}
 	
 	@PostMapping("/replyUpdate")
-	public String replyUpdateHandler(ReplyDO reply, HttpSession session, Model model) {
+	public String replyUpdateHandler(ReplyDO reply, HttpSession session, @RequestParam(value="commentCount") long commentCount) {
+		LoginUserResponse auth = (LoginUserResponse) session.getAttribute("auth");
 		
-	}
+		if(auth.getUser_id() != null && auth.getUser_id().equals(reply.getUser_id())) {
+			replyDao.updateReply(reply);	
+			return "redirect:/detailPageProcess?post_id=" + reply.getPost_id() + "&commentCount=" + commentCount;
+		}
+		return "redirect:/detailPageProcess?post_id=" + reply.getPost_id() + "&commentCount=" + commentCount;
+	}		
+	
 	
 	@GetMapping("/replyDelete")
 	public String replyDeleteHandler(ReplyDO reply, HttpSession session) {
