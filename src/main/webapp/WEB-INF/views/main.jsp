@@ -55,7 +55,9 @@
                 <c:forEach items="${postList}" var="post">
                     <div class="post">
                         <div class="tags">
-                            <span> # ${post.position}</span>
+                             <a href="<c:url value="/search-position?position=${post.position}"/>">
+                                 # ${post.position}
+                             </a>
                         </div>
                         <div class="title">
                             <a href="/detailPageProcess?post_id=${post.post_id}">${post.title}</a>
