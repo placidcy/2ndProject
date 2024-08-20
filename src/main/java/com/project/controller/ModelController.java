@@ -114,7 +114,7 @@ public class ModelController {
 	public String agreementHandler() {
 		return "agreement";
 	}
-	
+  
 	@GetMapping("/postDelete")
 	public String postDeleteHandler(@RequestParam(value="post_id") long post_id, HttpSession session) {
 		LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");

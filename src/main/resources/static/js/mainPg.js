@@ -13,7 +13,7 @@ function mypageHandler() {
 }
 
 function signUpHandler() {
-    location.href = '/signup';
+    location.href = '/agreement';
 }
 
 function init() {

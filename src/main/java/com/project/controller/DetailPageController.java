@@ -18,6 +18,8 @@ public class DetailPageController {
 	@Autowired
 	private PostDao postDao;
 	@Autowired
+	private PostSO postSO;
+	@Autowired
 	private ReplySO replySO;
 	@Autowired
 	private ReplyDao replyDao;
@@ -30,11 +32,10 @@ public class DetailPageController {
 		
 		List<ReplyDO> repliesList = replySO.getRepliesByPostId(post_id);
 		model.addAttribute("repliesList", repliesList);
-		
-		model.addAttribute("commentCount", commentCount);	
-		
-		
-		
+
+		model.addAttribute("commentCount", commentCount);
+
+		model.addAttribute("postList", postSO.updateViewCount(post_id).getPostList());
 		return "detailPage";
 	}
 	

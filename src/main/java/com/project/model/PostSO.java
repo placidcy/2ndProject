@@ -1,5 +1,7 @@
 package com.project.model;
 
+import com.project.model.response.PageResponse;
+import com.project.model.response.Post;
 import com.project.exception.*;
 import com.project.model.response.PostMainResponse;
 
@@ -11,6 +13,7 @@ public class PostSO {
 
 	private final PostDao postDao;
 
+  @Autowired
 	public PostSO(PostDao postDao) {
 		this.postDao = postDao;
 	}
@@ -18,6 +21,19 @@ public class PostSO {
 	public PostMainResponse getAllPost() {
 		return new PostMainResponse(postDao.selectAllPost());
 
+	}
+
+	public PageResponse<Post> getPaginatedPost(int page) {
+		PageResponse<PostDO> postPage = postDao.selectPaginatedPost(page);
+
+		List<Post> postList = postPage.getContent().stream().map(Post::new).toList();
+
+		return new PageResponse<>(
+				postList,
+				postPage.getCurrentPage(),
+				postPage.getSize(),
+				postPage.getTotalElements()
+		);
 	}
 	
 //	public PostDO getPostById(long post_id) {
@@ -35,6 +51,14 @@ public class PostSO {
 		return new PostMainResponse(search);
 	}
 
+
+	public PostMainResponse updateViewCount(long postId) {
+		List<PostDO> postList = postDao.updateViewCount(postId);
+
+		return new PostMainResponse(postList);
+	}
+	
+  
 	public void deletePostService(long post_id, String user_id) {
 		PostDO post = postDao.getPostById(post_id);
 		if(user_id != null && user_id.equals(post.getUser_id())) {
@@ -44,6 +68,7 @@ public class PostSO {
 			throw new UnExpectedAccessException();
 		}
 	}
+
 	/* 
 	검사할게 있다면 넣고 아니면 그냥 PostDao 사용
 	public int getPostCount(UserDO userInfo) {
