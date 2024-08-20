@@ -48,6 +48,7 @@
                 <div class="date">
                     <span>${postInfo.created_date}</span>
                 </div>
+                <hr />
                 <div class="post">
                     <p>${postInfo.content}</p>
                 </div>
