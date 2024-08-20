@@ -55,10 +55,10 @@ public class DetailPageController {
 		
 	}
 	
-	@GetMapping("/detailTest")
-	public String detailPageView() {
-		return "detailPage";
-	}
+//	@GetMapping("/detailTest")
+//	public String detailPageView() {
+//		return "detailPage";
+//	}
 	
 	
 }

@@ -12,7 +12,11 @@ function mypageHandler() {
     location.href = '/mypage';
 }
 
+<<<<<<< HEAD
+function agreementHandler() {
+=======
 function signUpHandler() {
+>>>>>>> main
     location.href = '/agreement';
 }
 
@@ -45,7 +49,7 @@ function init() {
         loginBtn.addEventListener('click', loginHandler);
 
         signUpOrMyPageBtn.innerHTML = '회원가입';
-        signUpOrMyPageBtn.addEventListener('click', signUpHandler);
+        signUpOrMyPageBtn.addEventListener('click', agreementHandler);
     }
 }
 

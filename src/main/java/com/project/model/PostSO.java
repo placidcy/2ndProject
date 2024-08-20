@@ -6,6 +6,8 @@ import com.project.exception.*;
 import com.project.model.response.PostMainResponse;
 
 import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,7 +15,7 @@ public class PostSO {
 
 	private final PostDao postDao;
 
-  @Autowired
+	@Autowired
 	public PostSO(PostDao postDao) {
 		this.postDao = postDao;
 	}
