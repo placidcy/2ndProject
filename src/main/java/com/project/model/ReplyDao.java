@@ -22,7 +22,9 @@ public class ReplyDao {
 	}
 	
 	public List<ReplyDO> selectRepliesByPost(long postId) {
-		this.sql = "select reply_id, user_id, content, to_char(created_at, 'YYYY-MM-DD HH24:MI:SS') created_at, likes from reply where post_id = ? order by reply_id";
+		this.sql = "select reply_id, user_id, content, to_char(created_at, 'YYYY-MM-DD HH24:MI:SS') created_at, likes from reply "
+				+ "where post_id = ? "
+				+ "order by reply_id";
 		
 		return this.jdbcTemplate.query(sql, new PreparedStatementSetter() { 
 			@Override
@@ -33,7 +35,8 @@ public class ReplyDao {
 	}
 	
 	public void insertReply(ReplyDO reply) {
-		this.sql = "insert into reply(reply_id, user_id, post_id, content, create_at, likes) values(seq_reply_reply_id.nextval, ?, ?, ?, sysdate, ?)";
+		this.sql = "insert into reply(reply_id, user_id, post_id, content, create_at, likes) "
+				+ "values(seq_reply_reply_id.nextval, ?, ?, ?, sysdate, ?)";
 		
 		KeyHolder keyHorder = new GeneratedKeyHolder();
 		this.jdbcTemplate.update(new PreparedStatementCreator() {

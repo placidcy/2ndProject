@@ -45,4 +45,11 @@ public class BeanConfig {
 	public ReplyDao replyDao(DataSource dataSource){
 		return new ReplyDao(dataSource);
 	}
+	
+	@Bean
+	public ReplySO replySO() {
+		ReplySO replySO = new ReplySO();
+		
+		return replySO;
+	}
 }

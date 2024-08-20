@@ -4,8 +4,6 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 
 public class PostDao {
 	private final JdbcTemplate jdbcTemplate;
@@ -23,8 +21,13 @@ public class PostDao {
 	public List<PostDO> selectAllPost() {
 		//-- 메인페이지 게시글 조회
 		return this.jdbcTemplate
-				.query("SELECT post_id, title, content, position, view_count, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') create_date FROM post",
+				.query("SELECT post_id, position, title, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date, user_id, content, tags, view_count FROM post",
 						new PostRowMapper());
+	}
+	
+	public PostDO selectPostById(long post_id) {
+		this.sql = "select post_id, position, title, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date, user_id, content, tags, view_count from post where post_id = ?";
+		return this.jdbcTemplate.queryForObject(sql, new PostRowMapper(), post_id);
 	}
 	
 	public int countPost(String user_id) {
