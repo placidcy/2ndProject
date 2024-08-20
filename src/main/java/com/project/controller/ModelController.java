@@ -140,12 +140,12 @@ public class ModelController {
 		}
 		return "redirect:/detailPageProcess?post_id=" + reply.getPost_id() + "&commentCount=0";
 	}
-	/*
+	
 	@PostMapping("/replyUpdate")
 	public String replyUpdateHandler(ReplyDO reply, HttpSession session, Model model) {
 		
 	}
-	*/
+	
 	@GetMapping("/replyDelete")
 	public String replyDeleteHandler(ReplyDO reply, HttpSession session) {
 		LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
