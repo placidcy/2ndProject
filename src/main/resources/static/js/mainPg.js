@@ -12,11 +12,7 @@ function mypageHandler() {
     location.href = '/mypage';
 }
 
-<<<<<<< HEAD
 function agreementHandler() {
-=======
-function signUpHandler() {
->>>>>>> main
     location.href = '/agreement';
 }
 
