@@ -72,10 +72,18 @@
  			<div class="commentBox">
 			     <form action="submitReply" method="POST">
 			        <input type="hidden" name="post_id" value="${postInfo.post_id}" />
-			        <input type="hidden" name="user_id" value="${postInfo.user_id}" />
-                     <input type="hidden" name="commentCount" value="${commentCount}" />
-			        <input name="content" id="commentBar" placeholder="답변을 남겨주세요." required />
-			        <button type="submit">등록</button>
+			        <input type="hidden" name="user_id" value="${auth.user_id}" />
+			        <input name="content" id="commentBar" placeholder="답변을 남겨주세요." value="${modifyReply}" required />
+			    
+					<c:choose>
+					<c:when test="${modifyReply == null}">
+					<button type="submit" formaction="<c:url value='/submitReply' />">등록</button>
+					</c:when>
+					<c:otherwise>
+					<button type="submit" formaction="<c:url value='/replyUpdate' />">수정</button>
+					</c:otherwise>
+					</c:choose>
+
 			    </form>
  			</div>
             <section class="warning">
@@ -106,10 +114,12 @@
                             <button type="submit">좋아요</button>
                         </form>
                         <span>${reply.likes}</span>
+						<c:if test="${reply.user_id == auth.user_id}">
                         <div class="buttons">
-		                    <a href="<c:url value='/modify' />"><button>수정</button></a> 
-		                    <a href="<c:url value='/delete' />"><button>삭제</button></a>
+		                    <a href="<c:url value='/replyModify?post_id=${postInfo.post_id}&reply_id=${reply.reply_id}' />"><button>수정</button></a> 
+		                    <a href="<c:url value='/replyDelete?post_id=${postInfo.post_id}&reply_id=${reply.reply_id}' />"><button>삭제</button></a>
 	                    </div>
+						</c:if>
 	                    <hr />
 	                </div>
                 </c:forEach>

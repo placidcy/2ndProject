@@ -52,6 +52,27 @@ public class ReplyDao {
 		}, keyHorder);
 	}
 	
+
+	public ReplyDO getReplyById(int reply_id) {
+		this.sql = "select reply_id, user_id, content, to_char(created_at,'YYYY-MM-DD HH24:MI:SS') created_at, likes, post_id from reply where reply_id=?";
+		return this.jdbcTemplate.queryForObject(sql,new ReplyRowMapper(), reply_id);
+	}
+	
+	public void updateReply(ReplyDO reply) {
+		this.sql = "update reply set content = ?, created_at=sysdate where reply_id = ?";
+		this.jdbcTemplate.update(sql, reply.getContent(), reply.getReply_id());
+	}
+	
+	public void deleteReply(int reply_id) {
+		this.sql = "delete from reply where reply_id = ?";
+		this.jdbcTemplate.update(sql, reply_id);
+	}
+	
+	public void updateLikes(int likes, int reply_id) {
+		this.sql = "update reply set likes = ? where reply_id = ?";
+		this.jdbcTemplate.update(sql, likes, reply_id);
+	}
+	
 	public int countReply(String user_id,Long post_id) {
 		this.sql = "select count(*) from reply where user_id = ? and post_id = ?";
 		return this.jdbcTemplate.queryForObject(sql, Integer.class, user_id, post_id);	
