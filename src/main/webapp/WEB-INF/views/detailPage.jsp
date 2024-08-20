@@ -10,6 +10,7 @@
 	
 </head>
 <body>
+<%-- 
     <header>
         <a href="<c:url value='/main' />"><h1 class="logo">직장IN</h1></a>
         <div class="searchBox">
@@ -18,7 +19,27 @@
             </form>
         </div>
     </header>
+ --%>
+     <header class="header-container">
+        <div class="logo">
+            직장IN
+        </div>
+        <form method="GET" action="search">
+            <div class="search">
+                <input id="search-input" name="keyword" type="text" placeholder="궁금한 내용을 검색해보세요 !"/>
+                <button id="searchBtn">검색</button>
+            </div>
+        </form>
 
+        <div class="button-container">
+            <a href="#"><button id = "loginBtn">로그인</button></a>
+            <a href="#"><button id = "signUpOrMyPageBtn">회원가입</button></a>
+            <c:if test="${auth.nickname != null}">
+                <a href="#"><button id = "changePassWordBtn">비밀번호 변경</button></a>
+            </c:if>
+        </div>
+
+    </header>
     <container>
         <section class="sideNavWrap">
 			<%--              
