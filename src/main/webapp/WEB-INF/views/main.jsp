@@ -60,7 +60,7 @@
                              </a>
                         </div>
                         <div class="title">
-                            <a href="/detailPageProcess?post_id=${post.post_id}">${post.title}</a>
+                            <a href="/detailPageProcess?post_id=${post.post_id}&commentCount=0">${post.title}</a>
                         </div>
                         <div class="post-content">
                             ${post.content}
