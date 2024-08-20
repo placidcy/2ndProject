@@ -55,15 +55,15 @@ public class DetailPageController {
 			List<ReplyDO> repliesList = replySO.getRepliesByPostId(reply.getPost_id());
 			model.addAttribute("repliesList", repliesList);
 			
-			return "detailPage";
+			return "redirect:/detailPageProcess?post_id=" + reply.getPost_id();
 		}
 		
 	}
 	
-	@GetMapping("/detailTest")
-	public String detailPageView() {
-		return "detailPage";
-	}
+//	@GetMapping("/detailTest")
+//	public String detailPageView() {
+//		return "detailPage";
+//	}
 	
 	
 }
