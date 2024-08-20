@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <title>상세 페이지</title>
     <link rel="stylesheet" href="resources/css/detailPage.css" />
+	
 </head>
 <body>
     <header>
@@ -53,7 +54,13 @@
                 <div  class="author">
                     <p>${postInfo.user_id}</p>
                 </div>
-<%--                 
+				<c:if test="${postInfo.user_id == auth.user_id}">
+				<div  class="postUD">
+				    <a href="/postModify?post_id=${postInfo.post_id}"><button id="modifyBtn">수정</button></a>
+					<a href="/postDelete?post_id=${postInfo.post_id}"><button id="deleteBtn">삭제</button></a>
+				</div>
+				</c:if> 
+<%--                
                 <div class="tagBox">
 	                <c:forEach var="post" items="${postInfo}">
 	                    <span># ${post.tags}</span>
