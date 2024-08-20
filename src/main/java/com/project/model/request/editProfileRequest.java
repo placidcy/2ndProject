@@ -2,7 +2,6 @@ package com.project.model.request;
 
 public class editProfileRequest {
     String user_id;
-    String password;
     String name;
     String nickname;
     String email;
@@ -14,17 +13,7 @@ public class editProfileRequest {
         return user_id;
     }
 
-    public void setUser_id(String userId) {
-        this.user_id = userId;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    public void setUser_id(String userId) { this.user_id = userId;}
 
     public String getName() { return name; }
 

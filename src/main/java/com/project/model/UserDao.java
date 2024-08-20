@@ -38,6 +38,21 @@ public class UserDao {
 		return this.jdbcTemplate.update(sql, user.getUser_id(), user.getName(), user.getNickname(), user.getEmail(), user.getPassword(), user.getCreated_date());
 	}
 
+	public  int updateUser(UserDO user) {
+		this.sql = "UPDATE users SET "
+				+ "nickname = ?, "
+				+ "name = ?, "
+				+ "email = ? "
+				+ "WHERE user_id = ?";
+		try {
+			return this.jdbcTemplate.update(sql, new UserRowMapper());
+		}
+		catch(EmptyResultDataAccessException e) {
+			System.out.println("user_id = " );
+			throw new WrongIdPasswordException();
+		}
+	}
+
 
 	public int updateNicknameUserInfo(UserDO user) {
 		this.sql = "update userinfo set nickname = ? where user_id = ? ";
