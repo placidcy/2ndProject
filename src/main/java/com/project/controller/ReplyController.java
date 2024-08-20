@@ -3,8 +3,6 @@ package com.project.controller;
 import com.project.model.ReplySO;
 import com.project.model.response.LoginUserResponse;
 import jakarta.servlet.http.HttpSession;
-import jakarta.websocket.Session;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -13,7 +11,7 @@ public class ReplyController {
 
     private final ReplySO replySO;
 
-    @Autowired
+
     public ReplyController(ReplySO replySO) {
         this.replySO = replySO;
     }

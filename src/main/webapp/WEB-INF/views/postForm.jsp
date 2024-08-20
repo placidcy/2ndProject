@@ -16,9 +16,9 @@
         <header>
             <a href="<c:url value='/main' />"><h1 class="logo">직장IN</h1></a>
             <div class="searchBox">
-                <form method="POST" action="<c:url value='/search' />" id="searchform">
+                <form method="Get" action="<c:url value='/search?keyword=' />" id="searchform">
                     <div id="searchDisplay">
-                        <input type="text" name="searchBar" placeholder="제목으로 검색해보세요." id="searchValue" />
+                        <input type="text" name="keyword" placeholder="제목으로 검색해보세요." id="searchValue" />
                         <button type="submit">검색</button>
                     </div>
                 </form>
@@ -37,7 +37,7 @@
                     <div class="best-post">
                      <p>인기 Topic</p>		
 					 <c:forEach var="hotPost" items="${hotPostList}" varStatus="status">
-					 <a href="/detailPageProcess?post_id=${hotPost.post_id}"><p class="hotTopic">${status.count}. 
+					 <a href="/detailPageProcess?post_id=${hotPost.post_id}&commentCount=0"><p class="hotTopic">${status.count}. 
 					 <c:choose> 
 						<c:when test="${hotPost.title.length() > 9}">
 						${hotPost.title.substring(0,9)}...
