@@ -16,6 +16,10 @@ function signUpHandler() {
     location.href = '/agreement';
 }
 
+function changePassWordHandler() {
+    location.href = '/changePasswd';
+}
+
 function init() {
     let profile = document.querySelector('#profile');
     let loginBtn = document.querySelector('#loginBtn');
@@ -23,6 +27,8 @@ function init() {
 
     let user = JSON.parse(sessionStorage.getItem('auth'));
     if (user != null) {
+        let changePassWordBtn = document.querySelector('#changePassWordBtn');
+
         profile.innerHTML = "<div class='profile-image'>\n" +
             "    <img src='resources/images/anonymous.jpg' alt='profile'>\n" +
             "</div>\n" +
@@ -37,6 +43,8 @@ function init() {
 
         signUpOrMyPageBtn.innerHTML = '마이페이지';
         signUpOrMyPageBtn.addEventListener('click', mypageHandler);
+
+        changePassWordBtn.addEventListener('click', changePassWordHandler);
 
     } else {
         profile.innerHTML = '로그인 후 이용하세요.';
