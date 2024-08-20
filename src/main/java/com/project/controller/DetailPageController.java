@@ -62,11 +62,6 @@ public class DetailPageController {
 
 			List<ReplyDO> repliesList = replySO.getRepliesByPostId(reply.getPost_id());
 			model.addAttribute("repliesList", repliesList);
-			
-			return "redirect:/detailPageProcess?post_id=" + postInfo.getPost_id() + "&commentCount=0";
-		}
-		
-	}
 
 			return "redirect:/detailPageProcess?post_id=" + reply.getPost_id() + "&commentCount=" + commentCount;
 		}
