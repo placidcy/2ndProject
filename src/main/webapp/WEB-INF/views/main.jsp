@@ -74,6 +74,28 @@
                     </div>
                 </c:forEach>
             </div>
+
+            <!-- 페이지 번호 네비게이션 -->
+            <div class="pagination">
+                <c:if test="${postCount > 1}">
+                    <a href="?postCount=${postCount - 1}"> < ;</a>
+                </c:if>
+
+                <c:forEach begin="1" end="${totalPages}" var="i">
+                    <c:choose>
+                        <c:when test="${i == postCount}">
+                            <span class="current">${i}</span>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="?postCount=${i}">${i}</a>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+
+                <c:if test="${postCount < totalPages}">
+                    <a href="?postCount=${postCount + 1}"> > </a>
+                </c:if>
+            </div>
         </main>
     </div>
 </body>

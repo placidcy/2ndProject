@@ -1,5 +1,7 @@
 package com.project.model;
 
+import com.project.model.response.PageResponse;
+import com.project.model.response.Post;
 import com.project.model.response.PostMainResponse;
 
 import java.util.List;
@@ -18,6 +20,19 @@ public class PostSO {
 	public PostMainResponse getAllPost() {
 		return new PostMainResponse(postDao.selectAllPost());
 
+	}
+
+	public PageResponse<Post> getPaginatedPost(int page) {
+		PageResponse<PostDO> postPage = postDao.selectPaginatedPost(page);
+
+		List<Post> postList = postPage.getContent().stream().map(Post::new).toList();
+
+		return new PageResponse<>(
+				postList,
+				postPage.getCurrentPage(),
+				postPage.getSize(),
+				postPage.getTotalElements()
+		);
 	}
 	
 //	public PostDO getPostById(long post_id) {

@@ -1,25 +1,34 @@
 package com.project.controller;
 
+import com.project.model.PostDao;
 import com.project.model.PostSO;
+import com.project.model.response.PageResponse;
+import com.project.model.response.Post;
 import com.project.model.response.PostMainResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PostController {
 
     private final PostSO postSO;
+    @Autowired
 
     public PostController(PostSO postSO) {
         this.postSO = postSO;
     }
 
     @GetMapping("/main")
-    public String mainHandler(Model model) {
-		PostMainResponse postList = postSO.getAllPost();
-        model.addAttribute("postList", postList.getPostList());
+    public String mainPagingHandler(@RequestParam(value = "postCount", defaultValue = "1") int postCount,
+                                    Model model) {
+        PageResponse<Post> postList = postSO.getPaginatedPost(postCount);
+        model.addAttribute("postList", postList.getContent());
+        model.addAttribute("postCount", postCount);
+        model.addAttribute("totalPages", postList.getTotalPages());
         return "/main";
     }
 
