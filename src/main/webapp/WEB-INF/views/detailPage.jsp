@@ -32,8 +32,8 @@
         </form>
 
         <div class="button-container">
-            <a href="#"><button id = "loginBtn">로그인</button></a>
-            <a href="#"><button id = "signUpOrMyPageBtn">회원가입</button></a>
+            <a href="/login"><button id = "loginBtn">로그인</button></a>
+            <a href="/agreement"><button id = "signUpOrMyPageBtn">회원가입</button></a>
             <c:if test="${auth.nickname != null}">
                 <a href="#"><button id = "changePassWordBtn">비밀번호 변경</button></a>
             </c:if>
@@ -67,14 +67,14 @@
                     <h3>${postInfo.title}</h3>
                 </div>
                 <div class="date">
-                    <span>${postInfo.created_date}</span>
+                    <span>작성일: ${postInfo.created_date}</span>
                 </div>
                 <hr />
                 <div class="post">
                     <p>${postInfo.content}</p>
                 </div>
                 <div  class="author">
-                    <p>${postInfo.user_id}</p>
+                    <p>작성자: ${postInfo.user_id}</p>
                 </div>
 				<c:if test="${postInfo.user_id == auth.user_id}">
 				<div  class="postUD">
@@ -125,7 +125,7 @@
             </section>
 
             <section class="commentWrap">
-                <h4 class="total-comment">답변 ${repliesList.size()}</h4>
+                <h4 class="total-comment">답변 <span>${repliesList.size()}</span></h4>
                 <c:forEach var="reply" items="${repliesList}" begin="${commentCount*10}" end="${commentCount*10 + 9}">
 	                <div class="comment">
 	                    <p>${reply.user_id} <%-- <span>${reply.career}</span> --%></p>
