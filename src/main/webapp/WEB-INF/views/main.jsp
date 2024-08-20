@@ -6,6 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/resources/css/main.css">
+    <link rel="stylesheet" href="/resources/css/sidebar.css">
+    <link rel="stylesheet" href="/resources/css/header.css">
     <script>
         let auth = ${auth.nickname != null ? 'true' : null};
 
@@ -17,31 +19,15 @@
             }));
         }
     </script>
-    <script src="/resources/js/mainPg.js"></script>
+    <script src="/resources/js/header.js"></script>
+    <script src="/resources/js/sidebar.js"></script>
     <title>Main</title>
 </head>
 <body>
-    <header class="header-container">
-        <div class="logo">
-            직장IN
-        </div>
-        <form method="GET" action="search">
-            <div class="search">
-                <input id="search-input" name="keyword" type="text" placeholder="궁금한 내용을 검색해보세요 !"/>
-                <button id="searchBtn">검색</button>
-            </div>
-        </form>
-
-        <div class="button-container">
-            <a><button id = "loginBtn">로그인</button></a>
-            <a><button id = "signUpOrMyPageBtn">회원가입</button></a>
-            <c:if test="${auth.nickname != null}">
-                <a><button id = "changePassWordBtn">비밀번호 변경</button></a>
-            </c:if>
-        </div>
-
-    </header>
-
+    <jsp:include page="header/header.jsp">
+        <jsp:param name="nickname" value="${auth.nickname}"/>
+        <jsp:param name="hotPostList" value="${hotPostList}"/>
+    </jsp:include>
     <div class="container">
         <jsp:include page="sidebar/sidebar.jsp" />
         <main class="content">

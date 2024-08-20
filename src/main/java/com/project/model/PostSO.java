@@ -71,6 +71,10 @@ public class PostSO {
 		}
 	}
 
+	public List<PostDO> getHotPost() {
+		return postDao.hotPost();
+	}
+
 	/* 
 	검사할게 있다면 넣고 아니면 그냥 PostDao 사용
 	public int getPostCount(UserDO userInfo) {
