@@ -9,10 +9,23 @@
 	margin: 0 auto;
 }
 
+
+
+body {
+	display: flex;
+	align-items: center;
+	height: 100vh;
+	margin: 0;
+}
+
+#container {
+	text-align: left;
+}
+
 .logo {
 	display: flex;
 	justify-content: center;
-	/*margin-top: 50px;*/
+	margin-top: 50px;
 	margin-bottom: 20px;
 	align-content: center;
 }
@@ -22,21 +35,22 @@ a{
 	color: #204AB6;
 	font-size: 48px;
 	font-weight: bold;
-	margin: 50px;
 }
 
-header{
-	text-align: center;
-	padding: 50px
+#agreementForm {
+	width: 460px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-start;
 }
 
-#container{
-	width:500px;
-	margin:0 auto;
+#selectedAllSection > p {
+	margin-left: 20px;
 }
 
 p {
-	margin: 10px 0;
+	margin: 10px 10px;
 }
 
 input[type="checkbox"] {
