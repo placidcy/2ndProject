@@ -17,12 +17,14 @@ public class Test {
 		ds.setTimeBetweenEvictionRunsMillis(1000 * 10);
 		UserDao userDao = new UserDao(ds);
 		UserDO userInfo = userDao.selectById("USER005");
+
 //		ReplyDO replyDO = new ReplyDO();
 //		ReplyDao replyDao = new ReplyDao(ds);
 //		replyDao.selectRepliesByPost(1);
 		PostDO postDO = new PostDO();
 		PostDao postDao = new PostDao(ds);
 		postDao.selectPostById(1);
+
 		System.out.print(postDao.selectPostById(1));
 		
 	}

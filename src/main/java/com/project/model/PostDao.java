@@ -4,8 +4,6 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 
 public class PostDao {
 	private final JdbcTemplate jdbcTemplate;
@@ -27,11 +25,6 @@ public class PostDao {
 						new PostRowMapper());
 	}
 	
-//	public PostDO selectPostById(long post_id) {
-//		this.sql = "select position, title, view_count, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date, user_id, content, tags from post where post_id = ?";
-//		return this.jdbcTemplate.queryForObject(sql, new PostRowMapper(), post_id);
-//	}
-	
 	public PostDO selectPostById(long post_id) {
 		this.sql = "select post_id, position, title, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date, user_id, content, tags, view_count from post where post_id = ?";
 		return this.jdbcTemplate.queryForObject(sql, new PostRowMapper(), post_id);
@@ -52,6 +45,11 @@ public class PostDao {
 				+ "from post "
 				+ "where title like '%" + keyword + "%' or content like '%" + keyword + "%'";
 
+		return this.jdbcTemplate.query(sql, new PostRowMapper());
+	}
+	
+	public List<PostDO> hotPost(){
+		this.sql = "select post_id, position, title, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date, user_id, content, tags, view_count from (select post_id, position, title, created_date, user_id, content, tags, view_count, row_number() over (order by view_count) as row_num from post) where rowNum < 4";
 		return this.jdbcTemplate.query(sql, new PostRowMapper());
 	}
 }
