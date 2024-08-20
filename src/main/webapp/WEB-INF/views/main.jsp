@@ -26,6 +26,7 @@
 <body>
     <jsp:include page="header/header.jsp">
         <jsp:param name="nickname" value="${auth.nickname}"/>
+        <jsp:param name="hotPostList" value="${hotPostList}"/>
     </jsp:include>
     <div class="container">
         <jsp:include page="sidebar/sidebar.jsp" />

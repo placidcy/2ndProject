@@ -35,19 +35,21 @@
                         <p class="profileText">게시글: ${postCount} 댓글: ${replyCount}</p>
                     </div>
                     <div class="best-post">
-                     <p>인기 Topic</p>		
-					 <c:forEach var="hotPost" items="${hotPostList}" varStatus="status">
-					 <a href="/detailPageProcess?post_id=${hotPost.post_id}&commentCount=0"><p class="hotTopic">${status.count}. 
-					 <c:choose> 
-						<c:when test="${hotPost.title.length() > 9}">
-						${hotPost.title.substring(0,9)}...
-						</c:when>
-						<c:otherwise>
-						${hotPost.title}
-						</c:otherwise>
-					 </c:choose>
-					 </p></a>
-				   	   </c:forEach>
+                        <p>인기 Topic</p>
+                            <c:forEach var="hotPost" items="${hotPostList}" varStatus="status">
+                                <a href="/detailPageProcess?post_id=${hotPost.post_id}&commentCount=0">
+                                    <p class="hotTopic">${status.count}.
+                                        <c:choose>
+                                            <c:when test="${hotPost.title.length() > 9}">
+                                                ${hotPost.title.substring(0,9)}...
+                                            </c:when>
+                                            <c:otherwise>
+                                                ${hotPost.title}
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </p>
+                                </a>
+                            </c:forEach>
 					</div>
                 </div>
             </aside>
@@ -82,7 +84,7 @@
 						<c:otherwise>
 						<input type="submit" formaction="<c:url value='/postUpdate' />" value="수정하기" id="submitBtn"/>
 						<input type="hidden" name="post_id" value="${postInfo.post_id}" />
-						<a href="/detailPageProcess?post_id=${postInfo.post_id}&commentCount=0"><button type="button" class="cancelBtn">취소</button></a>	
+						<a href="/detailPageProcess?post_id=${postInfo.post_id}&commentCount=0"><button type="button" class="cancelBtn">취소</button></a>
 						</c:otherwise>
 					</c:choose>
 					</div>
