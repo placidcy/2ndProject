@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="title">직장IN</h1>
+    <div id="logo">직장IN</div>
     <h2 class="section-title">[필수] 회원 정보 입력</h2>
     <form class="signup-form" method="POST" action="signupProgress">
         <div class="input-group">

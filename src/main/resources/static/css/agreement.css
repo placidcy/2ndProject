@@ -9,11 +9,19 @@
 	margin: 0 auto;
 }
 
+.logo {
+	display: flex;
+	justify-content: center;
+	/*margin-top: 50px;*/
+	margin-bottom: 20px;
+	align-content: center;
+}
+
 a{
 	text-decoration-line: none;
 	color: #204AB6;
-	font-size: 40px;
-	font-weight: 600;
+	font-size: 48px;
+	font-weight: bold;
 	margin: 50px;
 }
 
