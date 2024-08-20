@@ -2,6 +2,7 @@ package com.project.controller;
 
 import com.project.model.UserDO;
 import com.project.model.UserSO;
+import org.springframework.ui.Model;
 import com.project.model.request.LoginRequest;
 import com.project.model.request.SignupRequest;
 import com.project.model.request.editProfileRequest;
@@ -60,26 +61,46 @@ public class UserController {
     @PostMapping("/signupProgress")
     public String signupProgressHandler(SignupRequest request, HttpSession session) {
         try {
+
             userSO.SignupUser(request);
+
             return "redirect:/main";
         } catch (Exception e) {
             session.setAttribute("signupFailMsg", "회원가입에 실패했습니다. 다시 시도해주세요.");
+
             return "redirect:/signup";
         }
     }
 
     @GetMapping("/editProfile")
-    public String editProfileHandler() {
+    public String editProfileHandler(HttpSession session, Model model) {
+        LoginUserResponse user = (LoginUserResponse) session.getAttribute("auth");
+
+        model.addAttribute("nickname", user.getNickname());
+        model.addAttribute("user_id", user.getUser_id());
+        model.addAttribute("email", user.getEmail());
+        model.addAttribute("name", user.getName());
+
         return "editProfile";
     }
 
     @PostMapping("/editProfileProgress")
-    public String editProfileHandler(UserDO userDO, editProfileRequest request, HttpSession session) {
+    public String editProfileHandler(editProfileRequest request, HttpSession session) {
         try {
-            LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
-            String user_id = user.getUser_id();
-            userSO.editProfile(user_id, request);
-            return "redirect:/editProfile";
+            userSO.editProfile(request);
+
+            LoginUserResponse auth = (LoginUserResponse) session.getAttribute("auth");
+
+            UserDO updatedUser = userSO.getUserById(auth.getUser_id()); // `user_id`를 통해 업데이트된 사용자 정보 조회
+            LoginUserResponse updatedAuth = new LoginUserResponse(
+                    updatedUser.getUser_id(),
+                    updatedUser.getNickname(),
+                    updatedUser.getName(),
+                    updatedUser.getEmail()
+            );
+
+            session.setAttribute("auth", updatedAuth);
+            return "redirect:/main";
         }
         catch(Exception e) {
             session.setAttribute("editProfileFailMsg", "프로필 수정에 실패했습니다. 다시 시도해주세요.");

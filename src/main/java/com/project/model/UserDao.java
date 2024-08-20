@@ -39,18 +39,12 @@ public class UserDao {
 	}
 
 	public  int updateUser(UserDO user) {
-		this.sql = "UPDATE users SET "
+		this.sql = "UPDATE userinfo SET "
 				+ "nickname = ?, "
 				+ "name = ?, "
 				+ "email = ? "
 				+ "WHERE user_id = ?";
-		try {
-			return this.jdbcTemplate.update(sql, new UserRowMapper());
-		}
-		catch(EmptyResultDataAccessException e) {
-			System.out.println("user_id = " );
-			throw new WrongIdPasswordException();
-		}
+		return this.jdbcTemplate.update(sql, user.getNickname(), user.getName(), user.getEmail(), user.getUser_id());
 	}
 
 
