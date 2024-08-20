@@ -22,6 +22,11 @@ public class PostDao {
 		this.sql = "update post set title = ?, content = ?, tags = ?, position = ? where post_id = ?";
 		this.jdbcTemplate.update(sql, post.getTitle(), post.getContent(), post.getTags(), post.getPosition(), post.getPost_id());
 	}
+	
+	public void deletePost(long post_id) {
+		this.sql = "delete from post where post_id = ?";
+		this.jdbcTemplate.update(sql, post_id);
+	}
 
 	public List<PostDO> selectAllPost() {
 		//-- 메인페이지 게시글 조회

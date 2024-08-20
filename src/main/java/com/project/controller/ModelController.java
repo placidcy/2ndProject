@@ -1,5 +1,6 @@
 package com.project.controller;
 
+import com.project.exception.UnExpectedAccessException;
 import com.project.model.PostDO;
 
 import java.util.List;
@@ -20,6 +21,7 @@ import com.project.model.UserSO;
 import com.project.model.UserDO;
 import com.project.model.response.LoginUserResponse;
 
+import jakarta.servlet.UnavailableException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -31,7 +33,10 @@ public class ModelController {
 	private UserSO userSO;
 	
 	@Autowired
-	private PostDao postDao;	
+	private PostDao postDao;
+	
+	@Autowired
+	private PostSO postSO;	
 	
 	@Autowired
 	private ReplyDao replyDao;
@@ -111,10 +116,15 @@ public class ModelController {
 	}
 	
 	@GetMapping("/postDelete")
-	public String postDeleteHandler(PostDO postInfo, @RequestParam(value="user_id") String user_id, Model model) {
-		
-		return "redirect:/main";
+	public String postDeleteHandler(@RequestParam(value="post_id") long post_id, HttpSession session) {
+		LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
+		String user_id = user.getUser_id();
+		try {
+			postSO.deletePostService(post_id, user_id);	
+			return "redirect:/main";
+		}
+		catch(UnExpectedAccessException e) {
+			return "redirect:/detailPageProcess?post_id=" + post_id + "&commentCount=0";
+		}
 	}
-	
-	
 }
