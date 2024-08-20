@@ -19,7 +19,8 @@
             }));
         }
     </script>
-    <script src="/resources/js/mainPg.js"></script>
+    <script src="/resources/js/header.js"></script>
+    <script src="/resources/js/sidebar.js"></script>
     <title>Main</title>
 </head>
 <body>
