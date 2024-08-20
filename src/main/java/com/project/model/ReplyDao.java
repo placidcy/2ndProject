@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.PreparedStatementSetter;
@@ -67,5 +66,23 @@ public class ReplyDao {
 		this.sql = "select count(*) from reply where user_id = ?";
 		return this.jdbcTemplate.queryForObject(sql, Integer.class, user_id);	
 	}
-	
+
+	public void likeReply(int replyId, String userId) {
+		this.sql = "select count(*) from reply_liked where reply_id = ? and user_id = ?";
+		int count = this.jdbcTemplate.queryForObject(sql, Integer.class, replyId, userId);
+
+		if(count > 0) { //unlike
+			this.sql = "delete from reply_liked where reply_id = ? and user_id = ?";
+			this.jdbcTemplate.update(sql, replyId, userId);
+
+			this.sql = "update reply set likes = likes - 1 where reply_id = ?";
+			this.jdbcTemplate.update(sql, replyId);
+		} else {
+			this.sql = "insert into reply_liked(reply_id, user_id) values(?, ?)";
+			this.jdbcTemplate.update(sql, replyId, userId);
+
+			this.sql = "update reply set likes = likes + 1 where reply_id = ?";
+			this.jdbcTemplate.update(sql, replyId);
+		}
+	}
 }

@@ -97,8 +97,14 @@
 	                <div class="comment">
 	                    <p>${reply.user_id} <%-- <span>${reply.career}</span> --%></p>
 	                    <p>${reply.content}</p>
-	                    <span>${reply.created_at}</span> 
-	                    <div class="buttons">
+	                    <span>${reply.created_at}</span>
+                        <form action="reply-like" method="POST">
+                            <input type="hidden" name="reply_id" value="${reply.reply_id}" />
+                            <input type="hidden" name="post_id" value="${postInfo.post_id}" />
+                            <button type="submit">좋아요</button>
+                        </form>
+                        <span>${reply.likes}</span>
+                        <div class="buttons">
 		                    <a href="<c:url value='/modify' />"><button>수정</button></a> 
 		                    <a href="<c:url value='/delete' />"><button>삭제</button></a>
 	                    </div>

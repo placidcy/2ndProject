@@ -1,6 +1,8 @@
 package com.project.model.response;
 
-public class LoginUserResponse {
+import java.io.Serializable;
+
+public class LoginUserResponse implements Serializable {
     private String user_id;
     private String nickname;
 

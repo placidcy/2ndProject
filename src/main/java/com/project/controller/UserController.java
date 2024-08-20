@@ -31,6 +31,9 @@ public class UserController {
             LoginUserResponse auth = userSO.login(request.getUser_id(), request.getPassword());
 
             session.setAttribute("auth", auth);
+
+            LoginUserResponse print = (LoginUserResponse) session.getAttribute("auth");
+            System.out.println("session = " + print.getUser_id());
             Cookie cookie = new Cookie("user_id", request.getUser_id());
             if(request.isRememberId()) {
             	cookie.setMaxAge(24*60*60*30);
