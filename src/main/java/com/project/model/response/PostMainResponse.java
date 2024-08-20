@@ -1,11 +1,10 @@
 package com.project.model.response;
 
 import com.project.model.PostDO;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class PostMainResponse {
-    List<Post> postList;
+    private List<Post> postList;
 
     public PostMainResponse(List<PostDO> postList) {
         this.postList = new ArrayList<>();

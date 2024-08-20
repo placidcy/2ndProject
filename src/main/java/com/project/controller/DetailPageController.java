@@ -1,6 +1,6 @@
 package com.project.controller;
 
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,7 +28,6 @@ public class DetailPageController {
 	@GetMapping("/detailPageProcess")
 	public String detailPageView(ReplyDO replyDO, @RequestParam(value="commentCount") long commentCount, Model model) {
 		PostDO postInfo = postDao.getPostById(replyDO.getPost_id());
-
 		model.addAttribute("postInfo", postInfo);
 		
 		List<ReplyDO> repliesList = replySO.getRepliesByPostId(replyDO.getPost_id());
@@ -39,11 +38,12 @@ public class DetailPageController {
     
 		if(replyDO.getReply_id() != 0) {
 			model.addAttribute("modifyReply", replyDao.getReplyById(replyDO.getReply_id()).getContent());	
+			model.addAttribute("modifyReply_id", replyDO.getReply_id());
 		}
 		
 		model.addAttribute("commentCount", commentCount);
 
-		model.addAttribute("postList", postSO.updateViewCount(post_id).getPostList());
+		//model.addAttribute("postList", postSO.updateViewCount(replyDO.getPost_id()).getPostList());
 
 		return "detailPage";
 	}
@@ -53,20 +53,21 @@ public class DetailPageController {
 	public String submitReply(ReplyDO reply, @RequestParam long commentCount, HttpSession session, Model model) {
 
 		LoginUserResponse auth = (LoginUserResponse) session.getAttribute("auth");
-		String user_id = auth.getUser_id();
-		if(user_id == null) {
+		if(auth == null) {
 			return "redirect:/login";
 		}
 		else {
-			replyDao.insertReply(reply);
+//			replyDao.insertReply(reply);
+//
+//			List<ReplyDO> repliesList = replySO.getRepliesByPostId(reply.getPost_id());
+//			model.addAttribute("repliesList", repliesList);
 
-			List<ReplyDO> repliesList = replySO.getRepliesByPostId(reply.getPost_id());
-			model.addAttribute("repliesList", repliesList);
-
+			replyDao.insertReply(reply);	
+			
 			return "redirect:/detailPageProcess?post_id=" + reply.getPost_id() + "&commentCount=" + commentCount;
 		}
-		
-	}
-	
-	
+	}		
 }
+	
+	
+
