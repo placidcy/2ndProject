@@ -1,8 +1,10 @@
 package com.project.controller;
 
+import com.project.model.UserDO;
 import com.project.model.UserSO;
 import com.project.model.request.LoginRequest;
 import com.project.model.request.SignupRequest;
+import com.project.model.request.editProfileRequest;
 import com.project.model.response.LoginUserResponse;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
@@ -72,12 +74,15 @@ public class UserController {
     }
 
     @PostMapping("/editProfileProgress")
-    public String editProfileHandler(SignupRequest request, HttpSession session) {
+    public String editProfileHandler(UserDO userDO, editProfileRequest request, HttpSession session) {
         try {
-            userSO.SignupUser(request);
-            return "redirect:/main";
-        } catch (Exception e) {
-            session.setAttribute("editProfileFailMsg", "프로필수정에 실패했습니다. 다시 시도해주세요.");
+            LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
+            String user_id = user.getUser_id();
+            userSO.editProfile(user_id, request);
+            return "redirect:/editProfile";
+        }
+        catch(Exception e) {
+            session.setAttribute("editProfileFailMsg", "프로필 수정에 실패했습니다. 다시 시도해주세요.");
             return "redirect:/editProfile";
         }
     }

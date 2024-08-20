@@ -1,5 +1,6 @@
 package com.project.model;
 
+import com.project.model.request.editProfileRequest;
 import com.project.model.response.LoginUserResponse;
 import com.project.model.request.SignupRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,12 @@ public class UserSO {
 	public void SignupUser(SignupRequest request) {
 		UserDO user = new UserDO(request.getUser_id(), request.getName(), request.getNickname(), request.getEmail(), request.getPassword(), null);
 		userDao.insertUser(user);
+	}
+
+	@Transactional
+	public void editProfile(String userId, editProfileRequest request) {
+		UserDO user = new UserDO(userId, request.getName(), request.getNickname(), request.getEmail());
+		userDao.updateUser(user);
 	}
 
 

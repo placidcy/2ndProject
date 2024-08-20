@@ -26,7 +26,14 @@ public class UserDO {
 		this.password = password;
 		this.created_date = created_date;
 	}
-	
+
+	public UserDO(String userId, String name, String nickname, String email) {
+		this.user_id = userId;
+		this.name = name;
+		this.nickname = nickname;
+		this.email = email;
+	}
+
 	public String getUser_id() {
 		return user_id;
 	}

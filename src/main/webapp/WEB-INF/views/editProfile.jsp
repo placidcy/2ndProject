@@ -25,8 +25,8 @@
                     <input type="text" name="nickname" id="nickname" value="" >
                 </div>
                 <div class="input-group">
-                    <label for="userid">아이디</label>
-                    <input type="text" name="user_id" id="userid" value="" >
+                    <label for="userId">아이디</label>
+                    <input type="text" name="user_id" id="userId" value="hwnsgur" readonly>
                 </div>
                 <div class="input-group">
                     <label for="name">이름</label>
