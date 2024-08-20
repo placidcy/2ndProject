@@ -40,4 +40,8 @@ public class PostDao {
 		return this.jdbcTemplate.query(sql, new PostRowMapper(), searchValue, searchValue);
 	}
 	
+	public List<PostDO> hotPost(){
+		this.sql = "select post_id, position, title, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date, user_id, content, tags, view_count from (select post_id, position, title, created_date, user_id, content, tags, view_count, row_number() over (order by view_count) as row_num from post) where rowNum < 4";
+		return this.jdbcTemplate.query(sql, new PostRowMapper());
+	}
 }
