@@ -103,7 +103,7 @@ public class UserController {
             List<Career> careers = request.getCareers();
 
             userSO.editProfile(request);
-            userSO.getCareer(careers, request);
+            //userSO.getCareer(careers, request);
 
             LoginUserResponse auth = (LoginUserResponse) session.getAttribute("auth");
 
@@ -119,7 +119,6 @@ public class UserController {
             return "redirect:/main";
         }
         catch(Exception e) {
-            System.out.println(e);
             session.setAttribute("editProfileFailMsg", "프로필 수정에 실패했습니다. 다시 시도해주세요.");
             return "redirect:/editProfile";
         }

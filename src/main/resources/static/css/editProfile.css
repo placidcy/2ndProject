@@ -141,6 +141,19 @@ body {
     text-align: center;
 }
 
+.career-inputs .input-group select {
+    width: 100%; /* 전체 칼럼의 너비를 차지 */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    color: #333;
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: center;
+}
+
 .checkbox-group {
     display: flex;
     align-items: center;
