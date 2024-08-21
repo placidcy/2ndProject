@@ -37,10 +37,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <input type="text" name="careers[${careerIndex}].jobTitle" placeholder="담당직무">
         </div>
         <div class="input-group">
-            <input type="text" name="careers[${careerIndex}].startDate" placeholder="입사년월">
+            <input type="date" name="careers[${careerIndex}].startDate" placeholder="입사년월">
         </div>
         <div class="input-group">
-            <input type="text" name="careers[${careerIndex}].endDate" placeholder="퇴사년월">
+            <input type="date" name="careers[${careerIndex}].endDate" placeholder="퇴사년월">
         </div>
         <div class="input-group checkbox-group">
             <input type="checkbox" class="current-checkbox" name="careers[${careerIndex}].isEmployed">
