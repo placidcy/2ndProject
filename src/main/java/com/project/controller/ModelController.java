@@ -66,6 +66,9 @@ public class ModelController {
 		
 		if(session != null) {
 			LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
+			int postCount = postSO.countPostCountByUserId(user.getUser_id()); 
+	        session.setAttribute("postCount", postCount);
+	         
 			model.addAttribute("hotPostList", postDao.hotPost());
 		}
 		return "postForm";
@@ -77,9 +80,9 @@ public class ModelController {
 		String user_id = user.getUser_id();
 		PostDO post = postDao.getPostById(post_id);
 		if(user_id != null && user_id.equals(post.getUser_id())) {
+			int postCount = postSO.countPostCountByUserId(user.getUser_id()); 
+	        session.setAttribute("postCount", postCount);
 			model.addAttribute("postInfo", post);
-			model.addAttribute("postCount", postDao.countPostByUserId(user.getUser_id()));
-			model.addAttribute("replyCount", replyDao.countReplyByUserId(user.getUser_id()));
 			model.addAttribute("hotPostList", postDao.hotPost());
 			return "postForm";	
 		}
@@ -125,4 +128,8 @@ public class ModelController {
 			return "redirect:/detailPageProcess?post_id=" + post_id + "&commentCount=0";
 		}
 	}
+	/*
+	int replyCount = replySO.countReplyCountByUserId(auth.getUser_id());
+	session.setAttribute("replyCount", replyCount);
+	*/
 }

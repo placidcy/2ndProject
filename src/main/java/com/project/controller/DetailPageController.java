@@ -57,6 +57,8 @@ public class DetailPageController {
 			return "redirect:/login";
 		}
 		else {
+			int replyCount = replySO.countReplyCountByUserId(auth.getUser_id());
+			session.setAttribute("replyCount", replyCount);
 			replyDao.insertReply(reply);	
 			return "redirect:/detailPageProcess?post_id=" + reply.getPost_id() + "&commentCount=" + commentCount;
 		}
