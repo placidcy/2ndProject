@@ -65,7 +65,9 @@
     background-color: white;
     color: #888888;
 }
-
+.header-button:hover{
+	background-color: #1a3e8e;
+}
 .logo {
     font-size: 25px;
     font-weight: bold;

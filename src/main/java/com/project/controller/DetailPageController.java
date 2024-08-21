@@ -43,7 +43,7 @@ public class DetailPageController {
 		
 		model.addAttribute("commentCount", commentCount);
 
-		//model.addAttribute("postList", postSO.updateViewCount(replyDO.getPost_id()).getPostList());
+		model.addAttribute("postList", postSO.updateViewCount(replyDO.getPost_id()).getPostList());
 
 		return "detailPage";
 	}
