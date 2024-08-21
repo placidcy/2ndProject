@@ -14,7 +14,6 @@
 header, container {
     width: 1200px;
 }
-
 header {
     margin: 50px 0;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -50,11 +49,22 @@ a {
  */
  
 container {
+    background-color: #F7F7F7;
+    display: flex;
+    margin: 40px auto;
+    gap: 50px;
+    justify-content: center;
+}
+
+
+/* 
+container {
     width: 1200px;
     margin: 0;
     background-color: white;
 }
-
+ */
+/* 
 .sideNavWrap {
     float: left;
     width: 300px;
@@ -81,16 +91,16 @@ container {
 .sideNavWrap button:hover {
     background-color: #092d86;
 }
+ */
 
 .contentWrap {
-    float: right;
+	background-color: white;
     width: 850px;
     padding: 20px;
-    box-shadow: 0 2px 3px 0 gray;
     display: grid;
 	grid-template-rows: auto;
 }
-
+ */
 .top {
 	font-size: 20px;
 	font-weight: bold;

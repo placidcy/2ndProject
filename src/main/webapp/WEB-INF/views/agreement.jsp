@@ -12,9 +12,9 @@
 </head>
 <body>
 	<div id="container">
-		<header>
+		<div class="logo">
 			<a href="<c:url value='/main' />">직장IN</a>
-		</header>
+		</div>
 		
 		<form action="/signup" method="GET" id="agreementForm">
 			<div id="selectedAllSection">
@@ -23,7 +23,8 @@
 				
 				<p>실명 인증된 아이디로 가입, 위치기반서비스 이용약관(선택), 이벤트・혜택 정보 수신(선택) 동의를 포함합니다. </p>
 				<br />
-				
+			</div>
+			<div id="InfoCollectionSection">
 				<input type="checkbox" name="termsOfUse" id="termsOfUse" />
 				<label for="termsOfUse"><span class="Required">[필수] </span>이용 약관</label>
 				<br />
@@ -60,10 +61,8 @@
 제 4 조 (약관 외 준칙)
 본 약관에 명시되지 않은 사항이 전기통신기본법, 전기통신사업법, 정보통신촉진법, ‘전자상거래등에서의 소비자 보호에 관한 법률’, ‘약관의 규제에관한법률’, ‘전자거래기본법’, ‘전자서명법’, ‘정보통신망 이용촉진등에 관한 법률’, ‘소비자보호법’ 등 기타 관계 법령에 규정되어 있을 경우에는 그 규정을 따르도록 한다.
 				</pre>
-			</div>
 			<br />
 			
-			<div id="InfoCollectionSection">
 			<input type="checkbox" name="InfoCollection" id="InfoCollection" class="radio" />
 			<label for="InfoCollection"><span class="Required">[필수] </span>개인 정보 수집 및 이용</label>
 			<br />
@@ -98,7 +97,7 @@
 			</div>
 			<br />
 			
-			<div id="adReceptionSection">
+		<div id="adReceptionSection">
 			<input type="checkbox" name="adReception" id="adReception" class="radio"/>
 			<label for="adReception"><span class="selection">[선택] </span>광고성 정보 수신 동의</label>
 			<br />
@@ -126,7 +125,7 @@
 고객이 본 수신 동의를 철회하고자 할 경우 앱내 알림 설정 또는 고객센터를 통하여 수신 동의 철회를 요청할 수 있습니다. 
 또한 향후 마케팅정보 수신에 새롭게 동의하고자 할 경우 앱내 알림 설정에서 동의하실 수 있습니다.
 			</pre>
-			</div>
+		</div>
 			<br />
 
 			

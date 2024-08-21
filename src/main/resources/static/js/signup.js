@@ -2,7 +2,7 @@ function mainHandler() {
     location.href = '/main';
 }
 document.addEventListener('DOMContentLoaded', function() {
-    const logo = document.querySelector('.title');
+    const logo = document.querySelector('#logo');
     logo.addEventListener('click', mainHandler);
     //password/text 교체
     const passwordFields = document.querySelectorAll('.input-group input[type="password"]');

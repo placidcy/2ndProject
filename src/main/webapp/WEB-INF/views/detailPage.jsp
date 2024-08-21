@@ -7,7 +7,10 @@
     <meta charset="UTF-8">
     <title>상세 페이지</title>
     <link rel="stylesheet" href="resources/css/detailPage.css" />
+    <link rel="stylesheet" href="/resources/css/sidebar.css">
     <link rel="stylesheet" href="/resources/css/header.css">
+    <script src="/resources/js/header.js"></script>
+    <script src="/resources/js/sidebar.js"></script>
 	
 </head>
 <body>
