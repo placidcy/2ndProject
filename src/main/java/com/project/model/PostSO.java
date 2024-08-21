@@ -9,13 +9,17 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PostSO {
 
-	private final PostDao postDao;
-
 	@Autowired
+	private PostDao postDao;
+	
+	@Autowired
+	private ReplyDao replyDao;
+	
 	public PostSO(PostDao postDao) {
 		this.postDao = postDao;
 	}
@@ -60,10 +64,11 @@ public class PostSO {
 		return new PostMainResponse(postList);
 	}
 	
-  
+    @Transactional
 	public void deletePostService(long post_id, String user_id) {
 		PostDO post = postDao.getPostById(post_id);
 		if(user_id != null && user_id.equals(post.getUser_id())) {
+			replyDao.deleteReplyByPostId(post_id);
 			postDao.deletePost(post_id);
 		}
 		else {
