@@ -100,8 +100,8 @@
 	                    <span class="replyRegister">${reply.created_at}</span>
 						<c:if test="${reply.user_id == auth.user_id}">
 	                        <div class="buttons">
-			                    <a href="<c:url value='/replyModify?post_id=${postInfo.post_id}&reply_id=${reply.reply_id}' />"><button>수정</button></a> 
-			                    <a href="<c:url value='/replyDelete?post_id=${postInfo.post_id}&reply_id=${reply.reply_id}' />"><button>삭제</button></a>
+			                    <a href="<c:url value='/replyDelete?post_id=${postInfo.post_id}&reply_id=${reply.reply_id}' />"><span>삭제</span></a>
+			                    <a href="<c:url value='/replyModify?post_id=${postInfo.post_id}&reply_id=${reply.reply_id}' />"><span>수정</span></a> 
 		                    </div>
 						</c:if>
 						<div class="reply-like">
@@ -110,6 +110,7 @@
 	                            <button type="submit">좋아요 <span>${reply.likes}</span></button>
 	                        </form>
 						</div>
+						<hr />
 	                </div>
                 </c:forEach>
                 <div class="page">

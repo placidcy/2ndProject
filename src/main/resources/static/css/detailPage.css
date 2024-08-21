@@ -220,21 +220,33 @@ hr {
 }
 .comment P:nth-child(2) {
 	float: clear;
+	float: left;
+	width: 100%;
 	margin-bottom: 10px;
 }
 .replyRegister {
-	width: 50%;
-	float: left;
+	width: 100%;
 	color: gray;
 	margin-bottom: 10px;
 }
 
-.reply-like {
-	float: left;
+.buttons a {
+	text-decoration: none;
+	float: right;
+	font-size: 16px;
+	margin: 10px;
+
+    background-color: white;
+    color: gray;
+}
+.buttons a:hover {
+	text-decoration-line: underline;
 }
 
-.buttons button {
-	float: right;
+.reply-like button {
+	float: clear;
+	display: block;
+	margin-top: 10px;
 	margin-right: 10px;
 	padding: 5px 10px;
 
@@ -244,8 +256,13 @@ hr {
     background-color: white;
     color: #888888;
 }
+.reply-like button:hover {
+    background-color: #CDDEFF;
+    color: white;
+}
 
 .page {
+	float: clear;
     text-align: center;
 	display: flex;
     justify-content: center;
