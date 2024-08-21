@@ -125,8 +125,44 @@ public class ModelController {
 			return "redirect:/main";
 		}
 		catch(UnExpectedAccessException e) {
-			return "redirect:/detailPageProcess?post_id=" + post_id + "&commentCount=0";
+			return "detailPageProcess?post_id=" + post_id + "&commentCount=0";
 		}
+	}
+	
+	@GetMapping("/replyModify")
+	public String replyModifyHandler(ReplyDO reply, HttpSession session) {
+		LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
+		String user_id = user.getUser_id();
+		ReplyDO replyDO = replyDao.getReplyById(reply.getReply_id());
+		if(user_id != null && user_id.equals(replyDO.getUser_id())) {
+			return "redirect:/detailPageProcess?post_id=" + reply.getPost_id() + "&commentCount=0&reply_id=" + replyDO.getReply_id();	
+		}
+		return "redirect:/detailPageProcess?post_id=" + reply.getPost_id() + "&commentCount=0";
+	}
+	
+	@PostMapping("/replyUpdate")
+	public String replyUpdateHandler(ReplyDO reply, HttpSession session, @RequestParam(value="commentCount") long commentCount) {
+		LoginUserResponse auth = (LoginUserResponse) session.getAttribute("auth");
+		
+		if(auth.getUser_id() != null && auth.getUser_id().equals(reply.getUser_id())) {
+			replyDao.updateReply(reply);	
+			return "redirect:/detailPageProcess?post_id=" + reply.getPost_id() + "&commentCount=" + commentCount;
+		}
+		return "redirect:/detailPageProcess?post_id=" + reply.getPost_id() + "&commentCount=" + commentCount;
+	}		
+	
+	
+	@GetMapping("/replyDelete")
+	public String replyDeleteHandler(ReplyDO reply, HttpSession session) {
+		LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
+		String user_id = user.getUser_id();
+		try {
+			replySO.deleteReplyService(reply.getReply_id(), user_id);	
+		}
+		catch(UnExpectedAccessException e) {
+			e.printStackTrace();
+		}
+		return "redirect:/detailPageProcess?post_id=" + reply.getPost_id() + "&commentCount=0";
 	}
 	/*
 	int replyCount = replySO.countReplyCountByUserId(auth.getUser_id());
