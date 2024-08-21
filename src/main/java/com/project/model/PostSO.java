@@ -46,12 +46,6 @@ public class PostSO {
 //		return postDao.selectPostById(post_id);
 //	}
 
-	public PostMainResponse search(String keyword) {
-
-		List<PostDO> search = postDao.search(keyword);
-		return new PostMainResponse(search);
-	}
-
 	public PostMainResponse searchPosition(String position) {
 		List<PostDO> search = postDao.searchPosition(position);
 		return new PostMainResponse(search);
@@ -82,5 +76,31 @@ public class PostSO {
 
 	public int countPostCountByUserId(String user_id) {
 		return postDao.countPostByUserId(user_id);
+	}
+
+	public PageResponse<Post> searchPaginatedPost(String keyword, int page) {
+		PageResponse<PostDO> postPage = postDao.searchPaginatedPost(keyword, page);
+
+		List<Post> postList = postPage.getContent().stream().map(Post::new).toList();
+
+		return new PageResponse<>(
+				postList,
+				postPage.getCurrentPage(),
+				postPage.getSize(),
+				postPage.getTotalElements()
+		);
+	}
+
+	public PageResponse<Post> searchPositionPaginatedPost(String position, int page) {
+		PageResponse<PostDO> postPage = postDao.searchPositionPaginatedPost(position, page);
+
+		List<Post> postList = postPage.getContent().stream().map(Post::new).toList();
+
+		return new PageResponse<>(
+				postList,
+				postPage.getCurrentPage(),
+				postPage.getSize(),
+				postPage.getTotalElements()
+		);
 	}
 }
