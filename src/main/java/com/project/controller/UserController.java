@@ -92,6 +92,8 @@ public class UserController {
         session.invalidate();
         return "redirect:/main";
     }
+    
+    
 
 //    @PostMapping("/loginProcess")
 //    public String loginProcessHandler(UserDO userInfo, HttpSession session, HttpServletResponse response) {

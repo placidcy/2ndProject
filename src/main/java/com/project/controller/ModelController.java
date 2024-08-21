@@ -88,18 +88,31 @@ public class ModelController {
 			return "redirect:/findID";
 		}
 		
-		return "/main";
+		return "/findID";
 	}
 	
 	@PostMapping("/checkAgreement")
 	public String checkAgreement(@RequestParam(value = "checkBox") boolean isChecked) {
 		if(isChecked == true) {
-			return "redirect:/signup";
+			return "/signup";
 		}
 		
 		return "/agreement";
-		
 	}
+	
+	@PostMapping("/findUserID")
+	public String findUserID(String name, String email, Model model) {
+		String id = this.userDao.findID(name, email);
+		
+		if(id == null || id.equals("")) {
+			return "/findID";
+		}
+			
+		model.addAttribute("user_id", id);
+		
+		return "/findID";
+	}
+	
 	
 	@GetMapping("/findID")
 	public String findIDHandler() {
