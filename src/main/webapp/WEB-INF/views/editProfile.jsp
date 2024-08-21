@@ -40,26 +40,8 @@
         </div>
         <div class="career-section">
             <h3>경력</h3>
-            <div class="career-inputs">
-                <div class="input-group">
-                    <input type="text" name="companyName" placeholder="회사명">
-                </div>
-                <div class="input-group">
-                    <input type="text" name="jobTitle" placeholder="담당직무">
-                </div>
-                <div class="input-group">
-                    <input type="text" name="startDate" placeholder="입사년월">
-                </div>
-                <div class="input-group">
-                    <input type="text" name="endDate" placeholder="퇴사년월">
-                </div>
-                <div class="input-group checkbox-group">
-                    <input type="checkbox" id="current" name="isEmployed">
-                    <label for="current">재직</label>
-                </div>
-            </div>
-            <button class="add-btn" type="button">+ 추가</button>
         </div>
+        <button class="add-btn" type="button">+ 추가</button>
         <button class="submit-btn" type="submit">적용</button>
     </form>
 </div>

@@ -103,7 +103,7 @@ public class UserController {
 
             LoginUserResponse auth = (LoginUserResponse) session.getAttribute("auth");
 
-            UserDO updatedUser = userSO.getUserById(auth.getUser_id()); // `user_id`를 통해 업데이트된 사용자 정보 조회
+            UserDO updatedUser = userSO.getUserById(auth.getUser_id());
             LoginUserResponse updatedAuth = new LoginUserResponse(
                     updatedUser.getUser_id(),
                     updatedUser.getNickname(),
