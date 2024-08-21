@@ -45,8 +45,8 @@
                 </div>
 				<c:if test="${postInfo.user_id == auth.user_id}">
 				<div  class="postUD">
-				    <a href="/postModify?post_id=${postInfo.post_id}"><button id="modifyBtn">수정</button></a>
-					<a href="/postDelete?post_id=${postInfo.post_id}"><button id="deleteBtn">삭제</button></a>
+				    <a href="/postModify?post_id=${postInfo.post_id}"><button id="modifyBtn">글 수정</button></a>
+					<a href="/postDelete?post_id=${postInfo.post_id}"><button id="deleteBtn">글 삭제</button></a>
 				</div>
 				</c:if> 
 <%--                
@@ -97,24 +97,24 @@
 	                <div class="comment">
 	                    <p>${reply.user_id} <%-- <span>${reply.career}</span> --%></p>
 	                    <p>${reply.content}</p>
-	                    <span>${reply.created_at}</span>
-                        <form action="reply-like" method="POST">
-                       		<input type="hidden" name="commentCount" value="${commentCount}" />
-                            <button type="submit">좋아요</button>
-                        </form>
-                        <span>${reply.likes}</span>
+	                    <span class="replyRegister">${reply.created_at}</span>
 						<c:if test="${reply.user_id == auth.user_id}">
-                        <div class="buttons">
-		                    <a href="<c:url value='/replyModify?post_id=${postInfo.post_id}&reply_id=${reply.reply_id}' />"><button>수정</button></a> 
-		                    <a href="<c:url value='/replyDelete?post_id=${postInfo.post_id}&reply_id=${reply.reply_id}' />"><button>삭제</button></a>
-	                    </div>
+	                        <div class="buttons">
+			                    <a href="<c:url value='/replyModify?post_id=${postInfo.post_id}&reply_id=${reply.reply_id}' />"><button>수정</button></a> 
+			                    <a href="<c:url value='/replyDelete?post_id=${postInfo.post_id}&reply_id=${reply.reply_id}' />"><button>삭제</button></a>
+		                    </div>
 						</c:if>
-	                    <hr />
+						<div class="reply-like">
+	                        <form action="reply-like" method="POST">
+	                       		<input type="hidden" name="commentCount" value="${commentCount}" />
+	                            <button type="submit">좋아요 <span>${reply.likes}</span></button>
+	                        </form>
+						</div>
 	                </div>
                 </c:forEach>
                 <div class="page">
 					<c:forEach  begin="0" end="${Math.floor(repliesList.size()/10)}" varStatus="status">
-						<a href="/detailPageProcess?post_id=${postInfo.post_id}&commentCount=${status.count-1}"><button>${status.count} </button></a>
+						<a href="/detailPageProcess?post_id=${postInfo.post_id}&commentCount=${status.count-1}">${status.count}</a>
 					</c:forEach>
                 </div>
             </section>
