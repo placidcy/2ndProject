@@ -2,47 +2,39 @@ let allBoxes;
 let checkingAllBoxes;
 let adReception;
 let submitBtn;
+let infoBox;
+let termsBox;
 
 function checkAllChecked() {
-	let checkResult = false;
 	let uncheckedBoxesCount = 0;
 
-	for (let checkBox of allBoxes) {
-		if (checkBox !== checkingAllBoxes && checkBox !== adReception && checkBox.checked === false) {
-			uncheckedBoxesCount++;
-		}
+	if (infoBox.checked === false) {
+		uncheckedBoxesCount++;
+	} else if (termsBox.checked === false) {
+		uncheckedBoxesCount++;
 	}
 
 	if (uncheckedBoxesCount > 0) {
-		alert("필수로 체크할 내용을 확인하세요");
-		checkResult = false;
+		submitBtn.disabled = true;
+	} else {
+		submitBtn.disabled = false;
 	}
-
-	else {
-		checkResult = true;
-	}
-
-	return checkResult;
 }
 
 function allCheckBoxes() {
 	checkingAllBoxes.addEventListener("click", () => {
-		for (let checkBox of allBoxes) {
-			if (checkingAllBoxes.checked === true) {
-				checkBox.checked = true;
-			}
-
-			else {
+		if(checkingAllBoxes.checked === false) {
+			for (let checkBox of allBoxes) {
 				checkBox.checked = false;
 			}
-		}
-	});
-}
-
-function clickSubmitBtn() {
-	submitBtn.addEventListener("click", (event) => {
-		if (checkAllChecked() === false) {
-			event.preventDefault();
+			submitBtn.disabled = true;
+		} else {
+			for (let checkBox of allBoxes) {
+				if (checkingAllBoxes.checked === true) {
+					checkBox.checked = true;
+				}
+			}
+			submitBtn.disabled = false;
 		}
 	});
 }
@@ -51,11 +43,16 @@ function clickSubmitBtn() {
 function init() {
 	checkingAllBoxes = document.querySelector("#allCheckingBox");
 	allBoxes = document.querySelectorAll(".radio");
-	adReception = document.querySelector("#adReception");
 	submitBtn = document.querySelector("#submitBtn");
 
+	infoBox = document.querySelector("#InfoCollection");
+	termsBox = document.querySelector("#termsOfUse");
+	adReception = document.querySelector("#adReception");
+
+
 	allCheckBoxes();
-	clickSubmitBtn();
+	infoBox.addEventListener("click", checkAllChecked);
+	termsBox.addEventListener("click", checkAllChecked);
 }
 
 window.addEventListener("load", init);
