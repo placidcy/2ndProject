@@ -67,6 +67,7 @@
 }
 .header-button:hover{
 	background-color: #1a3e8e;
+	color: white;
 }
 .logo {
     font-size: 25px;
