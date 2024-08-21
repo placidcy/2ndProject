@@ -15,11 +15,16 @@
 .writeBtn {
     padding: 10px;
     width: 100%;
-    border-radius: 12px;
+    border-radius: 5px;
     background-color: #204AB6;
+    border: 0;
+    box-shadow: 0 2px 3px 0 gray;
 
     color: white;
     font-size: 20px;
+}
+.writeBtn:hover {
+	background-color: #092d86;
 }
 .profile {
     padding: 30px 20px;

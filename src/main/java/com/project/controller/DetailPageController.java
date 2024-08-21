@@ -27,6 +27,8 @@ public class DetailPageController {
 
 	@GetMapping("/detailPageProcess")
 	public String detailPageView(ReplyDO replyDO, @RequestParam(value="commentCount") long commentCount, Model model) {
+		model.addAttribute("hotPostList", postDao.hotPost());
+
 		PostDO postInfo = postDao.getPostById(replyDO.getPost_id());
 		model.addAttribute("postInfo", postInfo);
 		
@@ -57,6 +59,11 @@ public class DetailPageController {
 			return "redirect:/login";
 		}
 		else {
+//			replyDao.insertReply(reply);
+//
+//			List<ReplyDO> repliesList = replySO.getRepliesByPostId(reply.getPost_id());
+//			model.addAttribute("repliesList", repliesList);
+
 			replyDao.insertReply(reply);	
 			int replyCount = replySO.countReplyCountByUserId(auth.getUser_id());
 			session.setAttribute("replyCount", replyCount);
