@@ -31,7 +31,7 @@ body {
 
 .title {
     text-align: center;
-    color: #1a73e8;
+    color: #204AB6;
     font-size: 24px;
     margin-bottom: 30px;
     cursor: pointer;
@@ -115,17 +115,17 @@ body {
     display: block;
     width: 100%;
     padding: 12px;
-    background-color: #1a73e8;
+    background-color: #204AB6;
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     margin-top: 20px;
     font-size: 16px;
+    box-shadow: 0 2px 3px 0 gray;
 }
-
 .submit-btn:hover {
-    background-color: #155db2;
+    background-color: #092d86;
 }
 
 .invalid {

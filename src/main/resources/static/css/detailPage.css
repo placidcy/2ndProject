@@ -175,8 +175,12 @@ hr {
 .commentBox button {
 	width: 100px;
 	height: 52px;
-	background-color: #092d86;
+	border: 0;
+	background-color: #204AB6;
 	color: white;
+}
+.commentBox button:hover {
+	background-color: #092d86;
 }
 
 .warning {

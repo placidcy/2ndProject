@@ -13,7 +13,7 @@
     <div class="logo">
         <a href="<c:url value='/main' />">직장IN</a>
     </div>
-    <h2 class="section-title">[필수] 회원 정보 입력</h2>
+    <h2 class="section-title"><span>[필수] </span>회원 정보 입력</h2>
     <form class="signup-form" method="POST" action="signupProgress">
         <div class="input-group">
             <div class="input-group">
