@@ -36,9 +36,6 @@ body {
 	font-weight: bold;
 }
 
-.section-title span {
-	color: #204AB6;
-}
 
 .container {
     width: 500px;
@@ -55,17 +52,24 @@ body {
 
 .signup-form {
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .section-title {
-    font-size: 16px;
-    color: #333;
+    font-size: 20px;
+    font-weight: bold;
     margin-bottom: 20px;
+}
+
+.section-title span {
+	color: #204AB6;
+	font-size: 20px;
+	font-weight: bold;
 }
 
 .input-group {
     position: relative;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .input-group input {
@@ -133,12 +137,15 @@ body {
     height: 50px;
     
     border: none;
+    margin-top: 50px;
     margin-bottom: 20px;
     border-radius: 5px;
     cursor: pointer;
     
     background-color: #204AB6;
     color: white;
+    font-size: 18px;
+    font-weight: bold;
     box-shadow: 0 2px 3px 0 gray;
 }
 .submit-btn:hover {

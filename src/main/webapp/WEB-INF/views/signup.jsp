@@ -48,7 +48,7 @@
             </div>
  -->
         </div>
-        <button class="submit-btn" type="submit">회원가입</button>
     </form>
+    <button class="submit-btn" type="submit">회원가입</button>
 </div>
 </body>
