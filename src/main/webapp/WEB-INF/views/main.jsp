@@ -79,8 +79,8 @@
 
             <!-- 페이지 번호 네비게이션 -->
             <div class="pagination">
-                <c:if test="${postCount > 1}">
-                    <a href="?postCount=${postCount - 1}&
+                <c:if test="${postpageCount > 1}">
+                    <a href="?postpageCount=${postpageCount - 1}&
                         <c:if test='${not empty param.keyword}'>keyword=${fn:escapeXml(param.keyword)}</c:if>
                         <c:if test='${not empty param.position}'>position=${fn:escapeXml(param.position)}</c:if>">
                         &lt;
@@ -89,11 +89,11 @@
 
                 <c:forEach begin="1" end="${totalPages}" var="i">
                     <c:choose>
-                        <c:when test="${i == postCount}">
+                        <c:when test="${i == postpageCount}">
                             <span class="current">${i}</span>
                         </c:when>
                         <c:otherwise>
-                            <a href="?postCount=${i}
+                            <a href="?postpageCount=${i}
                                 <c:if test='${not empty param.keyword}'>${'&'}keyword=${fn:escapeXml(param.keyword)}</c:if>
                                 <c:if test='${not empty param.position}'>${'&'}position=${fn:escapeXml(param.position)}</c:if>">
                                 ${i}
@@ -102,8 +102,8 @@
                     </c:choose>
                 </c:forEach>
 
-                <c:if test="${postCount < totalPages}">
-                    <a href="?postCount=${postCount + 1}
+                <c:if test="${postpageCount < totalPages}">
+                    <a href="?postpageCount=${postpageCount + 1}
                         <c:if test='${not empty param.keyword}'> &keyword=${fn:escapeXml(param.keyword)}</c:if>
                         <c:if test='${not empty param.position}'> &position=${fn:escapeXml(param.position)}</c:if>">
                         &gt;
