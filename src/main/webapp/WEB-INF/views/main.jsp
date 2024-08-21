@@ -15,7 +15,9 @@
             // auth 객체가 존재할 경우 sessionStorage에 저장
             sessionStorage.setItem('auth', JSON.stringify({
                 user_id: "${auth != null ? auth.user_id : ''}",
-                nickname: "${auth != null ? auth.nickname : ''}"
+                nickname: "${auth != null ? auth.nickname : ''}",
+                postCount: "${postCount != null ? postCount : ''}",
+                replyCount: "${replyCount != null ? replyCount : ''}"
             }));
         }
     </script>
