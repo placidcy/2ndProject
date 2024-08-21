@@ -45,7 +45,7 @@ public class UserController {
 
             int postCount = postSO.countPostCountByUserId(request.getUser_id());
             int replyCount = replySO.countReplyCountByUserId(request.getUser_id());
-
+           
             session.setAttribute("postCount", postCount);
             session.setAttribute("replyCount", replyCount);
 
