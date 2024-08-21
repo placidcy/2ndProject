@@ -12,6 +12,9 @@
 <body>
 	<div id="container">
 		<header><a href="<c:url value='/main' />"><h1 class="logo">직장IN</h1></a></header>
+		<p>비밀번호는 8~16자 영문, 숫자, 특수문자를 사용할 수 있습니다.</p>
+		<p>비밀번호는 주기적(최소 6개월)으로 변경해 주시기 바랍니다.</p>		  
+
 		<form method="POST" action="changePasswdProcess" id="changePasswdForm">
 			<input type="password" name="oldPasswd" id="oldPasswd" placeholder="현재 비밀번호"/>
 			<br />
