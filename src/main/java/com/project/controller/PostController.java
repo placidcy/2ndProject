@@ -40,18 +40,36 @@ public class PostController {
     }
 
     @GetMapping("/search")
-    public String searchPost(String keyword, Model model) {
-        PostMainResponse postList = postSO.search(keyword);
+    public String searchPost(String keyword, @RequestParam(value = "postCount", defaultValue = "1") int postCount, Model model) {
+        PageResponse<Post> postList = postSO.searchPaginatedPost(keyword, postCount);
+        postList.getContent().forEach(post -> {
+            post.setReply_count(replySO.getReplyCount(post.getPost_id()));
+        });
+
         model.addAttribute("keyword", keyword);
-        model.addAttribute("postList", postList.getPostList());
+
+        model.addAttribute("hotPostList", postSO.getHotPost());
+        model.addAttribute("postList", postList.getContent());
+        model.addAttribute("postCount", postCount);
+        model.addAttribute("totalPages", postList.getTotalPages());
+
         return "/main";
     }
 
     @GetMapping("/search-position")
-    public String searchPosition(String position, Model model) {
-        PostMainResponse postList = postSO.searchPosition(position);
+    public String searchPosition(String position,
+                                 @RequestParam(value = "postCount", defaultValue = "1") int postCount,
+                                 Model model) {
+        PageResponse<Post> postList = postSO.searchPositionPaginatedPost(position, postCount);
+
+        postList.getContent().forEach(post -> {
+            post.setReply_count(replySO.getReplyCount(post.getPost_id()));
+        });
+
         model.addAttribute("keyword", position);
-        model.addAttribute("postList", postList.getPostList());
+        model.addAttribute("postList", postList.getContent());
+        model.addAttribute("totalPages", postList.getTotalPages());
+        model.addAttribute("postCount", postCount);
         return "/main";
     }
 
