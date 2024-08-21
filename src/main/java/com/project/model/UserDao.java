@@ -83,6 +83,23 @@ public class UserDao {
 		return user;
 	}
 	
+	public String findID(String name, String email) {
+		UserDO userID = null;
+		
+		//this.sql = "select user_id from userinfo where name = ? and email = ?";
+		this.sql = "select user_id, name, nickname, email, password, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date from userinfo where name = ? and email = ?";
+		
+		try {
+			userID = this.jdbcTemplate.queryForObject(this.sql, new UserRowMapper(), name, email);
+		}
+		
+		catch(EmptyResultDataAccessException ex) {
+			ex.getStackTrace();
+		}
+		
+		return userID.getUser_id();
+	}
+	
 	
 
 }

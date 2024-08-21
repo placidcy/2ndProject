@@ -12,6 +12,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.project.model.PostDao;
+import com.project.model.PostSO;
+import com.project.model.ReplyDO;
+import com.project.model.ReplyDao;
+import com.project.model.ReplySO;
+import com.project.model.UserSO;
+import com.project.model.UserDO;
+import com.project.model.UserDao;
+import com.project.model.response.LoginUserResponse;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
@@ -30,6 +40,9 @@ public class ModelController {
 	
 	@Autowired
 	private ReplyDao replyDao;
+	
+	@Autowired
+	private UserDao userDao;
 	
 	@Autowired
 	private ReplySO replySO;
@@ -85,12 +98,47 @@ public class ModelController {
 		return "redirect:/main";
 	}
 	
+
+	@PostMapping("/getUserID")
+	public String getUserID(@RequestParam(value = "name") String name, @RequestParam(value = "email") String email) {
+		if(this.userSO.checkIsUserID(name, email) == false) {
+			return "redirect:/findID";
+		}
+		
+		return "/findID";
+	}
+	
+	@PostMapping("/checkAgreement")
+	public String checkAgreement(@RequestParam(value = "checkBox") boolean isChecked) {
+		if(isChecked == true) {
+			return "/signup";
+		}
+		
+		return "/agreement";
+	}
+	
+	@PostMapping("/findUserID")
+	public String findUserID(String name, String email, Model model) {
+		String id = this.userDao.findID(name, email);
+		
+		if(id == null || id.equals("")) {
+			return "/findID";
+		}
+			
+		model.addAttribute("user_id", id);
+		
+		return "/findID";
+	}
+	
+	
+
 	@PostMapping("/postUpdate")
 	public String postUpdateHandler(PostDO postDO, HttpServletRequest request) {
 		postDao.updatePost(postDO);
 		return "redirect:/detailPageProcess?post_id=" + postDO.getPost_id() + "&commentCount=0";
 	}
 	
+
 	@GetMapping("/findID")
 	public String findIDHandler() {
 		return "findID";

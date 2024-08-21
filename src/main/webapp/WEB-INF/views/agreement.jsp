@@ -8,28 +8,29 @@
 	<title>회원 가입</title>
 	
 	<link rel="stylesheet" href="resources/css/agreement.css" />
-	<script src="resources/js/agree.js"></script>
+
+	<script src="resources/js/agreement.js"></script>
+
 </head>
 <body>
 	<div id="container">
 		<div class="logo">
 			<a href="<c:url value='/main' />">직장IN</a>
 		</div>
-		
-		<form action="/signup" method="GET" id="agreementForm">
+
+		<form method="POST" action="checkAgreement" id="agreementForm">
 			<div id="selectedAllSection">
-				<input type="checkbox" name="selectedAll" id="selectedAll" class="radio"/>
-				<label for="selectedAll">전체 동의하기</label>
-				
-				<p>실명 인증된 아이디로 가입, 위치기반서비스 이용약관(선택), 이벤트・혜택 정보 수신(선택) 동의를 포함합니다. </p>
-				<br />
-			</div>
-			<div id="InfoCollectionSection">
-				<input type="checkbox" name="termsOfUse" id="termsOfUse" />
-				<label for="termsOfUse"><span class="Required">[필수] </span>이용 약관</label>
-				<br />
-				
-				<pre>
+			<input type="checkbox" name="allCheckingBox" id="allCheckingBox" />
+			<label for="selectedAll">전체 동의하기</label>
+			
+			<p>실명 인증된 아이디로 가입, 위치기반서비스 이용약관(선택), 이벤트・혜택 정보 수신(선택) 동의를 포함합니다. </p>
+			<br />
+			
+			<input type="checkbox" name="checkBox" id="termsOfUse" class="radio" value="true"/>
+			<label for="termsOfUse">이용 약관</label>
+			<br />
+			
+			<pre>
 				
 제 1 장 총칙
 
@@ -63,8 +64,10 @@
 				</pre>
 			<br />
 			
-			<input type="checkbox" name="InfoCollection" id="InfoCollection" class="radio" />
-			<label for="InfoCollection"><span class="Required">[필수] </span>개인 정보 수집 및 이용</label>
+
+			<div id="InfoCollectionSection">
+			<input type="checkbox" name="checkBox" id="InfoCollection" class="radio" value="true"/>
+			<label for="InfoCollection">개인 정보 수집 및 이용</label>
 			<br />
 				
 			<pre>
@@ -97,9 +100,10 @@
 			</div>
 			<br />
 			
-		<div id="adReceptionSection">
-			<input type="checkbox" name="adReception" id="adReception" class="radio"/>
-			<label for="adReception"><span class="selection">[선택] </span>광고성 정보 수신 동의</label>
+			<div id="adReceptionSection">
+			<input type="checkbox" name="checkBox" id="adReception" class="radio"/>
+			<label for="adReception">[선택] 광고성 정보 수신 동의</label>
+
 			<br />
 							
 			<pre>
