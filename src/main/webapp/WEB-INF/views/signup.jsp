@@ -36,7 +36,7 @@
             <div class="input-group">
                 <input type="email" name="email" id="email" placeholder="이메일">
             </div>
-
+<!-- 
             <h2 class="section-title">[선택] 선호 직종</h2>
             <input type="hidden" name="preference" id="preference">
             <div class="job-preferences">
@@ -46,9 +46,9 @@
                 <button class="preference-btn" value="data" type="button">데이터</button>
                 <button class="preference-btn" value="web" type="button">웹</button>
             </div>
-
-            <button class="submit-btn" type="submit">회원가입</button>
+ -->
         </div>
+        <button class="submit-btn" type="submit">회원가입</button>
     </form>
 </div>
 </body>
