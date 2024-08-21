@@ -7,16 +7,15 @@
 
 * {
     font-family: 'Pretendard-Regular';
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
+/* 
 header, container {
     width: 1200px;
 }
-
 header {
     margin: 50px 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 a {
@@ -25,6 +24,7 @@ a {
 
 .logo {
     color: #204AB6;
+    font-weight: bold;
     float: left;
 }
 
@@ -42,11 +42,20 @@ a {
     padding: 10px;
     font-size: 14px;
 }
-
-container {
-    margin: 0;
+.searchBox input:focus {
+    outline: none;
 }
+ */
+ 
 
+/* 
+container {
+    width: 1200px;
+    margin: 0;
+    background-color: white;
+}
+ */
+/* 
 .sideNavWrap {
     float: left;
     width: 300px;
@@ -73,17 +82,111 @@ container {
 .sideNavWrap button:hover {
     background-color: #092d86;
 }
+*/
+
+body {
+	margin: 0 auto;
+	background-color: #F7F7F7;
+	
+}
+
+container {
+    display: flex;
+    padding-top: 40px;
+    gap: 50px;
+    justify-content: center;
+}
 
 .contentWrap {
-    float: right;
-    width: 850px;
-    border: 1px solid gray;
+	background-color: white;
+    max-width: 960px;
     padding: 20px;
+    flex-grow: 1; 
+    display: grid;
+	grid-template-rows: auto;
+}
+
+.top {
+	font-size: 20px;
+	font-weight: bold;
+	margin: 20px 0;
+	
+}
+
+.date {
+	color: gray;
+	margin-bottom: 10px;
+}
+
+hr {
+	height: 1px;
+	background: #c0c0c0;
+	margin: 20px 0;
+}
+
+.post {
+	width: 100%;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.author {
+	font-weight: bold;
+	width: 50%;
+	float: left;
+}
+
+.postUD {
+	float: right;
+	margin: 0 auto;
+}
+
+.postUD button {
+	margin-right: 10px;
+	padding: 8px 12px;
+
+    border: 2px solid #CDDEFF;
+    border-radius:5px;
+
+    background-color: white;
+    color: #888888;
+}
+.postUD button:hover {
+    background-color: #CDDEFF;
+}
+
+.commentBox {
+	display: flex;
+	text-align: center;
+	justify-content: center;
+}
+
+.commentBox input {
+	width: 800px;
+	height: 50px;
+	border: 2px solid #204AB6;
+	padding: 0 10px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+.commentBox input:focus {
+	outline: none;
+}
+.commentBox button {
+	width: 100px;
+	height: 52px;
+	border: 0;
+	background-color: #204AB6;
+	color: white;
+}
+.commentBox button:hover {
+	background-color: #092d86;
 }
 
 .warning {
     background-color: antiquewhite;
     padding: 20px 25px;
+    margin-bottom: 50px;
 }
 
 .warning ul {
@@ -91,6 +194,119 @@ container {
     padding-left: 0;
 }
 
-.commentWrap .page {
+.warning li {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.commentWrap {
+	padding: 10px;
+	width: 100%
+}
+
+.total-comment {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+.total-comment span {
+	font-size: 18px;
+	font-weight: bold;
+	margin-bottom: 20px;
+	color: #1f6bb1;
+}
+
+.commentProfile {
+	display: flex;
+}
+
+.comment-img {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+.comment-nickname {
+	display: block;
+	font-size: 15px;
+	text-align: left;
+}
+
+.comment P:nth-child(1) {
+	float: left;
+	width: 100%;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.comment P:nth-child(2) {
+	float: clear;
+	float: left;
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+
+.buttons a {
+	text-decoration: none;
+	float: right;
+	font-size: 16px;
+	margin: 10px;
+
+    background-color: white;
+    color: gray;
+}
+.buttons a:hover {
+	text-decoration-line: underline;
+}
+
+.reply-like {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+.replyRegister {
+	display: flex;
+	width: 100%;
+	color: gray;
+	padding-top:10px;
+}
+.replyLikeBtn {
+	width: 70px;
+	display: flex;
+	margin-right: 10px;
+	padding: 5px 10px;
+
+    border: 2px solid #CDDEFF;
+    border-radius:5px;
+
+    background-color: white;
+    color: #888888;
+}
+.reply-like button:hover {
+    background-color: #1a3e8e;
+    color: white;
+}
+
+.page {
+	float: clear;
     text-align: center;
+	display: flex;
+    justify-content: center;
+    margin: 30px 0;
+    list-style: none;
+    padding-left: 0;
+    
+}
+
+.page a {
+	margin: 0 3px;
+    padding: 4px 8px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #888;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }

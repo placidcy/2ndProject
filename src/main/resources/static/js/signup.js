@@ -2,7 +2,7 @@ function mainHandler() {
     location.href = '/main';
 }
 document.addEventListener('DOMContentLoaded', function() {
-    const logo = document.querySelector('.title');
+    const logo = document.querySelector('.logo');
     logo.addEventListener('click', mainHandler);
     //password/text 교체
     const passwordFields = document.querySelectorAll('.input-group input[type="password"]');
@@ -78,21 +78,28 @@ document.addEventListener('DOMContentLoaded', function() {
     //선호 직종 선택
     document.querySelectorAll('.preference-btn').forEach(button => {
         button.addEventListener('click', function () {
+            const isSelected = button.classList.contains('selected');
             document.querySelectorAll('.preference-btn').forEach(btn => {
-                if(!btn.classList.contains('selected'))
-                btn.classList.remove('selected')
+                btn.classList.remove('selected');
             });
 
-            button.classList.toggle('selected');
-            document.getElementById('preference').value = document.querySelector('.preference-btn.selected').value;
+            if (!isSelected) {
+                button.classList.add('selected');
+                document.getElementById('preference').value = button.value;
+            } else {
+                document.getElementById('preference').value = "";
+            }
         });
     });
+
 
 
     document.querySelector('.submit-btn').addEventListener('click', function (event) {
         if (!validateForm()) {
             event.preventDefault();
         } else {
+            const form = document.querySelector('.signup-form');
+            form.submit();
             alert("회원가입이 완료되었습니다.");
         }
     });

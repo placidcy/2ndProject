@@ -8,12 +8,16 @@
 	<title>회원 가입</title>
 	
 	<link rel="stylesheet" href="resources/css/agreement.css" />
+
 	<script src="resources/js/agreement.js"></script>
+
 </head>
 <body>
 	<div id="container">
-		<header><a href="<c:url value='/main' />">직장IN</a></header>
-		
+		<div class="logo">
+			<a href="<c:url value='/main' />">직장IN</a>
+		</div>
+
 		<form method="POST" action="checkAgreement" id="agreementForm">
 			<div id="selectedAllSection">
 			<input type="checkbox" name="allCheckingBox" id="allCheckingBox" />
@@ -57,10 +61,10 @@
 본 약관 및 차후 회사사정에 따라 변경된 약관은 이용자에게 공시함으로써 효력을 발생한다.
 제 4 조 (약관 외 준칙)
 본 약관에 명시되지 않은 사항이 전기통신기본법, 전기통신사업법, 정보통신촉진법, ‘전자상거래등에서의 소비자 보호에 관한 법률’, ‘약관의 규제에관한법률’, ‘전자거래기본법’, ‘전자서명법’, ‘정보통신망 이용촉진등에 관한 법률’, ‘소비자보호법’ 등 기타 관계 법령에 규정되어 있을 경우에는 그 규정을 따르도록 한다.
-			</pre>
-			</div>
+				</pre>
 			<br />
 			
+
 			<div id="InfoCollectionSection">
 			<input type="checkbox" name="checkBox" id="InfoCollection" class="radio" value="true"/>
 			<label for="InfoCollection">개인 정보 수집 및 이용</label>
@@ -99,6 +103,7 @@
 			<div id="adReceptionSection">
 			<input type="checkbox" name="checkBox" id="adReception" class="radio"/>
 			<label for="adReception">[선택] 광고성 정보 수신 동의</label>
+
 			<br />
 							
 			<pre>
@@ -124,11 +129,11 @@
 고객이 본 수신 동의를 철회하고자 할 경우 앱내 알림 설정 또는 고객센터를 통하여 수신 동의 철회를 요청할 수 있습니다. 
 또한 향후 마케팅정보 수신에 새롭게 동의하고자 할 경우 앱내 알림 설정에서 동의하실 수 있습니다.
 			</pre>
-			</div>
+		</div>
 			<br />
 
 			
-			<input type="submit" value="다음" id="submitBtn"/>
+			<input type="submit" value="다음" id="submitBtn" disabled />
 		</form>
 	</div>
 </body>

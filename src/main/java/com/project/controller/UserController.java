@@ -1,7 +1,11 @@
 package com.project.controller;
 
+import com.project.model.PostSO;
+import com.project.model.ReplySO;
 import com.project.model.UserDO;
 import com.project.model.UserSO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import com.project.model.request.LoginRequest;
 import com.project.model.request.SignupRequest;
 import com.project.model.request.editProfileRequest;
@@ -17,9 +21,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
 
     final UserSO userSO;
- 
-    public UserController(UserSO userSO) {
+    final PostSO postSO;
+    final ReplySO replySO;
+
+    @Autowired
+    public UserController(UserSO userSO, PostSO postSO, ReplySO replySO) {
         this.userSO = userSO;
+        this.postSO = postSO;
+        this.replySO = replySO;
     }
 
     @GetMapping("/login")
@@ -34,8 +43,12 @@ public class UserController {
 
             session.setAttribute("auth", auth);
 
-            LoginUserResponse print = (LoginUserResponse) session.getAttribute("auth");
-            System.out.println("session = " + print.getUser_id());
+            int postCount = postSO.countPostCountByUserId(request.getUser_id());
+            int replyCount = replySO.countReplyCountByUserId(request.getUser_id());
+           
+            session.setAttribute("postCount", postCount);
+            session.setAttribute("replyCount", replyCount);
+
             Cookie cookie = new Cookie("user_id", request.getUser_id());
             if(request.isRememberId()) {
             	cookie.setMaxAge(24*60*60*30);
@@ -51,10 +64,10 @@ public class UserController {
             return "redirect:/login";
         }
     }
-
+    
     @GetMapping("/signup")
     public String signupHandler() {
-        return "signup";
+    	return "signup";
     }
 
     @PostMapping("/signupProgress")
@@ -64,22 +77,40 @@ public class UserController {
             return "redirect:/main";
         } catch (Exception e) {
             session.setAttribute("signupFailMsg", "회원가입에 실패했습니다. 다시 시도해주세요.");
+
             return "redirect:/signup";
         }
     }
 
     @GetMapping("/editProfile")
-    public String editProfileHandler() {
+    public String editProfileHandler(HttpSession session, Model model) {
+        LoginUserResponse user = (LoginUserResponse) session.getAttribute("auth");
+
+        model.addAttribute("nickname", user.getNickname());
+        model.addAttribute("user_id", user.getUser_id());
+        model.addAttribute("email", user.getEmail());
+        model.addAttribute("name", user.getName());
+
         return "editProfile";
     }
 
     @PostMapping("/editProfileProgress")
-    public String editProfileHandler(UserDO userDO, editProfileRequest request, HttpSession session) {
+    public String editProfileHandler(editProfileRequest request, HttpSession session) {
         try {
-            LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
-            String user_id = user.getUser_id();
-            userSO.editProfile(user_id, request);
-            return "redirect:/editProfile";
+            userSO.editProfile(request);
+
+            LoginUserResponse auth = (LoginUserResponse) session.getAttribute("auth");
+
+            UserDO updatedUser = userSO.getUserById(auth.getUser_id());
+            LoginUserResponse updatedAuth = new LoginUserResponse(
+                    updatedUser.getUser_id(),
+                    updatedUser.getNickname(),
+                    updatedUser.getName(),
+                    updatedUser.getEmail()
+            );
+
+            session.setAttribute("auth", updatedAuth);
+            return "redirect:/main";
         }
         catch(Exception e) {
             session.setAttribute("editProfileFailMsg", "프로필 수정에 실패했습니다. 다시 시도해주세요.");

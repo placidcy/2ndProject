@@ -1,167 +1,46 @@
+/* Font face */
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* General styling */
+* {
+    font-family: 'Pretendard-Regular', sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
+    margin: 0 auto;
     padding: 0;
     background-color: #f7f7f7;
-}
-/** 헤더 */
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: white;
-    padding: 10px 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-    color: #204AB6;
-}
-
-.search {
-    display: flex;
-    align-items: center;
-    margin-left: 70px;
-    margin-right: 300px;
-    height: 20px;
-    width: 400px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.search input {
-    flex-grow: 1;
-    padding: 8px;
-    border-radius: 4px 0 0 4px;
-    outline: none;
-    border: none;
-}
-
-.search button {
-    align-items: flex-end;
-    margin-top: 0;
-    border: none;
-    color: #888888;
-    border-radius: 0 4px 4px 0;
-    cursor: pointer;
-}
-
-.button-container {
-    display: flex;
-    justify-content: flex-end;
-}
-
-header button {
-    margin-top: 20px;
-    margin-left: 10px;
-    padding: 8px 12px;
-
-    border: 2px solid #CDDEFF;
-    border-radius: 10px;
-
-    background-color: white;
-    color: #888888;
-}
-
-.logo {
-    font-size: 25px;
-    font-weight: bold;
-    color: #204AB6;
-}
-
-
-
-.sidebar {
-    margin-left: 60px;
-    margin-top: 50px;
-    margin-right: 20px;
-    width: 200px;
-    background-color: white;
-    box-shadow: 1px 0px 2px rgba(0, 0, 0, 0.1);
-}
-
-.sidebar-container {
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-
-
-.writeBtn {
-    padding: 10px;
-    width: 100%;
-    border-radius: 12px;
-    background-color: #204AB6;
-
-    color: white;
-    font-size: 20px;
-}
-.profile {
-    padding: 30px 20px;
-    margin-top: 20px;
-    font-size: 14px;
-    color: #888;
-    background-color: #F0F0F0;
-    margin-bottom: 20px;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-
-.profile-image img {
-    width: 100px;
-    height: 100px;
-    object-fit: contain;
-    margin-bottom: 20px;
-}
-
-.profile-info {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-}
-
-.profile-info div {
-    margin-bottom: 10px;
-}
-
-
-.best-post {
-    padding-top: 20px;
-    margin-bottom: 20px;
-
-    border-top: 1px solid #ddd;
-}
-
-main {
-    background-color: white;
-
-}
-
-.content {
-    flex-grow: 1;
-    padding: 20px;
 }
 
 .container {
     background-color: #F7F7F7;
     display: flex;
-    margin-top: 40px;
-    margin-right: 20px;
+    margin: 40px auto;
+    gap: 50px;
+    justify-content: center;
+}
+
+main {
+    background-color: white;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    max-width: 960px;
 }
 
 .list-title {
-    font-size: 20px;
+    font-size: 15px;
     margin-left: 20px;
-    /*color: #888;*/
 }
+
+
 
 .post {
     padding: 10px;
@@ -174,7 +53,6 @@ main {
     margin-bottom: 10px;
     font-size: 15px;
 }
-
 .tags a {
     text-decoration: none;
     color: black;
@@ -199,8 +77,34 @@ main {
     margin-bottom: 20px;
 }
 
+
 .info {
     font-size: 13px;
     color: #888;
 }
 
+/* 페이지 번호 네비게이션 스타일 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+    list-style: none;
+    padding-left: 0;
+}
+
+.pagination a {
+    margin: 0 3px;
+    padding: 4px 8px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #888;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.pagination .current {
+    margin: 0 3px;
+    padding: 4px 8px;
+    color: #007bff;
+    font-size: 18px;
+    font-weight: bold;
+}

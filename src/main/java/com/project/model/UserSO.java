@@ -20,6 +20,10 @@ public class UserSO {
 	public UserSO() {
 	}
 
+	public UserDO getUserById(String userId) {
+		return userDao.selectById(userId);
+	}
+
 	@Transactional
 	public void SignupUser(SignupRequest request) {
 		UserDO user = new UserDO(request.getUser_id(), request.getName(), request.getNickname(), request.getEmail(), request.getPassword(), null);
@@ -27,8 +31,8 @@ public class UserSO {
 	}
 
 	@Transactional
-	public void editProfile(String userId, editProfileRequest request) {
-		UserDO user = new UserDO(userId, request.getName(), request.getNickname(), request.getEmail());
+	public void editProfile(editProfileRequest request) {
+		UserDO user = new UserDO(request.getUser_id(), request.getName(), request.getNickname(), request.getEmail());
 		userDao.updateUser(user);
 	}
 
@@ -49,7 +53,7 @@ public class UserSO {
 	public LoginUserResponse findUser(String user_id) {
 		UserDO user = userDao.selectById(user_id);
 
-		return new LoginUserResponse(user.getUser_id(), user.getNickname());
+		return new LoginUserResponse(user.getUser_id(), user.getNickname(), user.getName(), user.getEmail());
   	}
 	
 	public boolean checkLogin(String user_id, String password) {
@@ -73,7 +77,7 @@ public class UserSO {
 			throw new WrongIdPasswordException();
 		}
 
-		return new LoginUserResponse(user.getUser_id(), user.getNickname());
+		return new LoginUserResponse(user.getUser_id(), user.getNickname(), user.getName(), user.getEmail());
 	}
 	
 	public boolean checkIsUserID(String name, String email) {

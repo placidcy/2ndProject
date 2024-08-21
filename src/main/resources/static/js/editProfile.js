@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
 
     const photoPlaceholder = document.querySelector('.photo-placeholder');
@@ -23,42 +22,52 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 경력 추가 버튼 기능
+    let careerIndex = 0;
     const addBtn = document.querySelector('.add-btn');
     addBtn.addEventListener('click', () => {
-        const careerInputs = document.querySelector('.career-inputs');
-        const newCareerSection = document.createElement('div');
-        newCareerSection.classList.add('career-section');
-        newCareerSection.innerHTML = `
-            <div class="input-group">
-                <input type="text" name="companyName" placeholder="회사명">
-            </div>
-            <div class="input-group">
-                <input type="text" name="jobTitle" placeholder="담당직무">
-            </div>
-            <div class="input-group">
-                <input type="text" name="startDate" placeholder="입사년월">
-            </div>
-            <div class="input-group">
-                <input type="text" name="endDate" placeholder="퇴사년월">
-            </div>
-            <div class="input-group checkbox-group">
-                <input type="checkbox" id="current" name="isEmployed">
-                <label for="current">재직</label>
-            </div>
-            <button class="remove-btn" type="button">- 제거</button>
-        `;
+        const careerSection = document.querySelector('.career-section');
+        const newCareerInput = document.createElement('div');
+        newCareerInput.classList.add('career-inputs');
 
+        newCareerInput.innerHTML = `
+        <div class="input-group">
+            <input type="text" name="careers[${careerIndex}].companyName" placeholder="회사명">
+        </div>
+        <div class="input-group">
+            <input type="text" name="careers[${careerIndex}].jobTitle" placeholder="담당직무">
+        </div>
+        <div class="input-group">
+            <input type="text" name="careers[${careerIndex}].startDate" placeholder="입사년월">
+        </div>
+        <div class="input-group">
+            <input type="text" name="careers[${careerIndex}].endDate" placeholder="퇴사년월">
+        </div>
+        <div class="input-group checkbox-group">
+            <input type="checkbox" class="current-checkbox" name="careers[${careerIndex}].isEmployed">
+            <label>재직</label>
+            <button class="remove-btn" type="button">- 제거</button>
+        </div>
+    `;
         // 제거 버튼 기능 추가
-        newCareerSection.querySelector('.remove-btn').addEventListener('click', () => {
-            newCareerSection.remove();
+        newCareerInput.querySelector('.remove-btn').addEventListener('click', () => {
+            newCareerInput.remove();
+        });
+        newCareerInput.querySelector('.current-checkbox').addEventListener('change', (event) => {
+            if (event.target.checked) {
+                document.querySelectorAll('.current-checkbox').forEach(checkbox => {
+                    if (checkbox !== event.target) {
+                        checkbox.checked = false;
+                    }
+                });
+            }
         });
 
-        careerInputs.appendChild(newCareerSection);
+        careerSection.appendChild(newCareerInput);
+        careerIndex++;
     });
 
-    // 폼 제출
-    const submitBtn = document.querySelector('.submit-btn');
-    submitBtn.addEventListener('click', (event) => {
-        event.preventDefault();
+
+    document.querySelector('.submit-btn').addEventListener('click', function (event) {
+        alert("수정이 완료되었습니다.");
     });
 });

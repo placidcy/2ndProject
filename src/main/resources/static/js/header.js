@@ -1,4 +1,6 @@
-
+function logoHandler() {
+    location.href = '/main';
+}
 function loginHandler() {
     location.href = '/login';
 }
@@ -9,27 +11,24 @@ function logoutHandler() {
 }
 
 function mypageHandler() {
-    location.href = '/mypage';
+    location.href = '/editProfile';
 }
 
 function signUpHandler() {
-    location.href = '/signup';
+    location.href = '/agreement';
+}
+
+function changePassWordHandler() {
+    location.href = '/changePasswd';
 }
 
 function init() {
-    let profile = document.querySelector('#profile');
     let loginBtn = document.querySelector('#loginBtn');
     let signUpOrMyPageBtn = document.querySelector('#signUpOrMyPageBtn');
 
     let user = JSON.parse(sessionStorage.getItem('auth'));
     if (user != null) {
-        profile.innerHTML = "<div class='profile-image'>\n" +
-            "    <img src='resources/images/anonymous.jpg' alt='profile'>\n" +
-            "</div>\n" +
-            "<div class='profile-info'>\n" +
-            "    <div>닉네임 : " + user.nickname + "</div>\n" +
-            "    <div>게시글 : ??</div>\n" +
-            "</div>";
+        let changePassWordBtn = document.querySelector('#changePassWordBtn');
 
         loginBtn.innerHTML = '로그아웃';
         loginBtn.removeEventListener('click', loginHandler);
@@ -38,9 +37,9 @@ function init() {
         signUpOrMyPageBtn.innerHTML = '마이페이지';
         signUpOrMyPageBtn.addEventListener('click', mypageHandler);
 
-    } else {
-        profile.innerHTML = '로그인 후 이용하세요.';
+        changePassWordBtn.addEventListener('click', changePassWordHandler);
 
+    } else {
         loginBtn.innerHTML = '로그인';
         loginBtn.addEventListener('click', loginHandler);
 

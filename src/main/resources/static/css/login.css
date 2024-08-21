@@ -1,7 +1,5 @@
 
-
 body {
-    font-family: Arial, sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -23,7 +21,9 @@ body {
     margin-bottom: 20px;
     align-content: center;
 }
-
+a{
+	text-decoration: none;
+}
 
 form {
     display: flex;

@@ -9,15 +9,15 @@
 /* General styling */
 * {
     font-family: 'Pretendard-Regular', sans-serif;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    /*box-sizing: border-box;*/
+    /*margin: 0;*/
+    /*padding: 0;*/
 }
 
 body {
     background-color: #f7f7f7;
-    max-width: 1200px;
     margin: 0 auto;
+    padding: 0;
 }
 
 a {
@@ -26,109 +26,26 @@ a {
 }
 
 /* Container */
-#container {
-    width: 940px;
-    background-color: #f7f7f7;
-    margin: auto;
-}
-
-/* Header */
-header {
-    padding: 20px;
-    margin: 0 auto 40px;
-    background-color: white;
-    box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.1);
-}
-
-header .logo {
-    color: #204AB6;
-    float: left;
-}
-
-.searchBox {
-    display: inline-block;
-    position: relative;
-    width: 400px;
-    margin-left: 40px;
-}
-
-.searchBox input {
-    width: 100%;
-    border: 2px solid #204AB6;
-    border-radius: 10px;
-    padding: 10px;
-    font-size: 14px;
-}
-
-.searchBox button {
-    position: absolute;
-    right: 0;
-    top: 0;
-    height: 100%;
-    border: none;
-    border-radius: 10px;
-    background-color: #204AB6;
-    color: white;
-    cursor: pointer;
+.container {
+    background-color: #F7F7F7;
+    display: flex;
+    /*margin-top: 40px;*/
+    margin: 40px  auto;
+    gap: 50px;
+    justify-content: center;
 }
 
 /* Main content */
-.main {
-    display: flex;
-    gap: 20px; /* 20px 간격 추가 */
-}
 
-/* Sidebar */
-.sidebar {
-    width: 200px;
+main {
     background-color: white;
-    box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.1);
 }
-
-.sidebar-container {
-    margin: 10px;
-}
-
-/* Button */
-.writeBtn {
-    padding: 10px;
-    width: 100%;
-    border-radius: 12px;
-    background-color: #204AB6;
-    color: white;
-    font-size: 20px;
-    border: none;
-    cursor: pointer;
-}
-
-/* Profile */
-.profile {
+.content {
+    flex: 1;
     padding: 20px;
-    font-size: 14px;
-    color: #888;
-    background-color: lightgray;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.profile img {
-    width: 80%;
-    margin: 0 auto;
-    display: block;
-}
-
-.best-post {
-    padding-top: 20px;
-    border-top: 1px solid #ddd;
-}
-
-/* Section Box */
-#sectionBox {
-    flex: 1; /* Fill remaining space */
-    background-color: white;
     border-radius: 10px;
-    box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+    max-width: 960px;
 }
 
 /* Form styling */
@@ -139,14 +56,15 @@ header .logo {
 }
 
 #title, #tags, select, textarea {
-    width: 100%;
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
+    margin-left: 20px;
 }
 
 textarea {
     height: 200px;
+	resize: none;
 }
 
 header input[type="submit"] {
@@ -172,8 +90,9 @@ header input[type="submit"] {
 	background-color: #1a3e8e;
 }
 #btnBox{
-	margin-left:180px;
 	padding:30px;
+    display: flex;
+    justify-content: center;
 }
 input[type="submit"]:hover {
     background-color: #1a3e8e;
@@ -190,9 +109,6 @@ button {
     font-size: 14px;
 }
 
-header button:hover {
-    background-color: #1a3e8e;
-}
 .hotTopic{
 	margin-top:5px;
 }
