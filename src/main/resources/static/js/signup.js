@@ -98,6 +98,8 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!validateForm()) {
             event.preventDefault();
         } else {
+            const form = document.querySelector('.signup-form');
+            form.submit();
             alert("회원가입이 완료되었습니다.");
         }
     });
