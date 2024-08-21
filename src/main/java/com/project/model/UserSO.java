@@ -1,5 +1,6 @@
 package com.project.model;
 
+import com.project.model.request.Career;
 import com.project.model.request.editProfileRequest;
 import com.project.model.response.LoginUserResponse;
 import com.project.model.request.SignupRequest;
@@ -11,11 +12,16 @@ import org.springframework.transaction.annotation.Transactional;
 import com.project.exception.MemberNotFoundException;
 import com.project.exception.WrongIdPasswordException;
 
+import java.util.List;
+
 @Service
 public class UserSO {
 
 	@Autowired
 	private UserDao userDao;
+
+	@Autowired
+	private CareerDao careerDao;
 	
 	public UserSO() {
 	}
@@ -34,6 +40,13 @@ public class UserSO {
 	public void editProfile(editProfileRequest request) {
 		UserDO user = new UserDO(request.getUser_id(), request.getName(), request.getNickname(), request.getEmail());
 		userDao.updateUser(user);
+	}
+
+	@Transactional
+	public void getCareer(List<Career> careers, editProfileRequest request) {
+		System.out.println("가보자");
+		UserDO user = new UserDO(request.getUser_id(), request.getName(), request.getNickname(), request.getEmail());
+		careerDao.insertCareer(careers, user);
 	}
 
 

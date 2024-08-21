@@ -4,6 +4,7 @@ import com.project.model.PostSO;
 import com.project.model.ReplySO;
 import com.project.model.UserDO;
 import com.project.model.UserSO;
+import com.project.model.request.Career;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import com.project.model.request.LoginRequest;
@@ -16,6 +17,8 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -97,7 +100,10 @@ public class UserController {
     @PostMapping("/editProfileProgress")
     public String editProfileHandler(editProfileRequest request, HttpSession session) {
         try {
+            List<Career> careers = request.getCareers();
+
             userSO.editProfile(request);
+            userSO.getCareer(careers, request);
 
             LoginUserResponse auth = (LoginUserResponse) session.getAttribute("auth");
 
@@ -113,6 +119,7 @@ public class UserController {
             return "redirect:/main";
         }
         catch(Exception e) {
+            System.out.println(e);
             session.setAttribute("editProfileFailMsg", "프로필 수정에 실패했습니다. 다시 시도해주세요.");
             return "redirect:/editProfile";
         }
