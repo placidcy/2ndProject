@@ -10,10 +10,12 @@ body {
 }
 
 .container {
+    width: 800px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     padding: 30px;
     border-radius: 10px;
+
 }
 
 .title {
@@ -103,6 +105,7 @@ body {
 }
 
 .career-section {
+    width: 100%;
     margin-top: 20px;
     background-color: #f9f9f9;
 }
@@ -116,25 +119,26 @@ body {
 
 .career-inputs {
     display: grid;
-    grid-template-columns: repeat(4, 1fr) auto;
+    grid-template-columns: repeat(5, 1fr);
     grid-gap: 10px;
     margin-bottom: 20px;
-
 }
 
 .career-inputs .input-group {
-    position: relative;
     background-color: #f9f9f9;
 }
 
 .career-inputs .input-group input[type="text"] {
-    width: 100px;
+    width: 100%; /* 전체 칼럼의 너비를 차지 */
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
     background-color: #f9f9f9;
     color: #333;
+    font-size: 14px;
+    line-height: 1.2;
+    text-align: center;
 }
 
 .checkbox-group {
@@ -143,8 +147,30 @@ body {
     padding: 0 5px;
 }
 
+.checkbox-group .remove-btn {
+    margin-left: 10px;
+    background-color: #fff;
+    border: 2px solid #e57373;
+    border-radius: 4px;
+    padding: 2px 6px;
+    font-size: 14px;
+    color: #e57373;
+    cursor: pointer;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.checkbox-group .remove-btn:hover {
+    background-color: #e57373;
+    color: #fff;
+    border-color: #e57373;
+}
+
 .checkbox-group input {
     width: 30%;
+    cursor: pointer;
 }
 
 .input-group.checkbox-group {
