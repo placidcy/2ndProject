@@ -1,24 +1,16 @@
 package com.project.controller;
 
 import com.project.exception.UnExpectedAccessException;
-import com.project.model.PostDO;
+import com.project.model.*;
+import com.project.model.response.LoginUserResponse;
 
-
+import com.project.model.ReplyDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import com.project.model.PostDao;
-import com.project.model.PostSO;
-import com.project.model.ReplyDO;
-import com.project.model.ReplyDao;
-import com.project.model.ReplySO;
-import com.project.model.UserSO;
-import com.project.model.UserDO;
-import com.project.model.response.LoginUserResponse;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -41,8 +33,8 @@ public class ModelController {
 	
 	@Autowired
 	private ReplySO replySO;
-	
-	@GetMapping("/changePasswd")	 
+
+	@GetMapping("/changePasswd")
 	public String changePasswdHandler() {
 		return "changePasswd";
 	}
@@ -62,15 +54,8 @@ public class ModelController {
 	}
 	
 	@GetMapping("/postForm")	 
-	public String postFormHandler(HttpServletRequest request, Model model) {
-		HttpSession session = request.getSession();
-		
-		if(session != null) {
-			LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
-			model.addAttribute("postCount", postDao.countPost(user.getUser_id()));	
-			model.addAttribute("replyCount", replyDao.countReply(user.getUser_id()));
-			model.addAttribute("hotPostList", postDao.hotPost());
-		}
+	public String postFormHandler(Model model) {
+		model.addAttribute("hotPostList", postDao.hotPost());
 		return "postForm";
 	}
 	
@@ -81,8 +66,6 @@ public class ModelController {
 		PostDO post = postDao.getPostById(post_id);
 		if(user_id != null && user_id.equals(post.getUser_id())) {
 			model.addAttribute("postInfo", post);
-			model.addAttribute("postCount", postDao.countPost(user.getUser_id()));	
-			model.addAttribute("replyCount", replyDao.countReply(user.getUser_id()));
 			model.addAttribute("hotPostList", postDao.hotPost());
 			return "postForm";	
 		}
@@ -96,12 +79,14 @@ public class ModelController {
 		if(session != null) {
 			LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
 			postDao.insertPost(postDO, user.getUser_id());
+			int postCount = postSO.countPostCountByUserId(user.getUser_id()); 
+	        session.setAttribute("postCount", postCount);
 		}
 		return "redirect:/main";
 	}
 	
 	@PostMapping("/postUpdate")
-	public String postUpdateHandler(PostDO postDO) {
+	public String postUpdateHandler(PostDO postDO, HttpServletRequest request) {
 		postDao.updatePost(postDO);
 		return "redirect:/detailPageProcess?post_id=" + postDO.getPost_id() + "&commentCount=0";
 	}
@@ -115,13 +100,15 @@ public class ModelController {
 	public String agreementHandler() {
 		return "agreement";
 	}
-  
+	
 	@GetMapping("/postDelete")
 	public String postDeleteHandler(@RequestParam(value="post_id") long post_id, HttpSession session) {
 		LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
 		String user_id = user.getUser_id();
 		try {
 			postSO.deletePostService(post_id, user_id);	
+			int postCount = postSO.countPostCountByUserId(user.getUser_id()); 
+	        session.setAttribute("postCount", postCount);
 			return "redirect:/main";
 		}
 		catch(UnExpectedAccessException e) {
@@ -145,7 +132,7 @@ public class ModelController {
 		LoginUserResponse auth = (LoginUserResponse) session.getAttribute("auth");
 		
 		if(auth.getUser_id() != null && auth.getUser_id().equals(reply.getUser_id())) {
-			replyDao.updateReply(reply);	
+			replyDao.updateReply(reply);
 			return "redirect:/detailPageProcess?post_id=" + reply.getPost_id() + "&commentCount=" + commentCount;
 		}
 		return "redirect:/detailPageProcess?post_id=" + reply.getPost_id() + "&commentCount=" + commentCount;
@@ -157,11 +144,14 @@ public class ModelController {
 		LoginUserResponse user = (LoginUserResponse)session.getAttribute("auth");
 		String user_id = user.getUser_id();
 		try {
-			replySO.deleteReplyService(reply.getReply_id(), user_id);	
+			replySO.deleteReplyService(reply.getReply_id(), user_id);
+			int replyCount = replySO.countReplyCountByUserId(user.getUser_id());
+			session.setAttribute("replyCount", replyCount);
 		}
 		catch(UnExpectedAccessException e) {
 			e.printStackTrace();
 		}
 		return "redirect:/detailPageProcess?post_id=" + reply.getPost_id() + "&commentCount=0";
 	}
+	
 }

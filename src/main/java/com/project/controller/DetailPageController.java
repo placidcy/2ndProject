@@ -45,7 +45,7 @@ public class DetailPageController {
 		
 		model.addAttribute("commentCount", commentCount);
 
-		//model.addAttribute("postList", postSO.updateViewCount(replyDO.getPost_id()).getPostList());
+		model.addAttribute("postList", postSO.updateViewCount(replyDO.getPost_id()).getPostList());
 
 		return "detailPage";
 	}
@@ -65,7 +65,8 @@ public class DetailPageController {
 //			model.addAttribute("repliesList", repliesList);
 
 			replyDao.insertReply(reply);	
-			
+			int replyCount = replySO.countReplyCountByUserId(auth.getUser_id());
+			session.setAttribute("replyCount", replyCount);
 			return "redirect:/detailPageProcess?post_id=" + reply.getPost_id() + "&commentCount=" + commentCount;
 		}
 	}		

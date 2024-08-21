@@ -18,7 +18,10 @@ public class ReplySO {
 	public void likeReply(int replyId, String userId) {
 		replyDao.likeReply(replyId, userId);
 	}
-	
+
+	public int countReplyCountByUserId(String userId) {
+		return replyDao.countReplyByUserId(userId);
+	}
 	public void deleteReplyService(int reply_id, String user_id) {
 		ReplyDO reply = replyDao.getReplyById(reply_id);
 		if(user_id != null && user_id.equals(reply.getUser_id())) {
@@ -30,7 +33,7 @@ public class ReplySO {
 	}
 
 	public int getReplyCount(long postId) {
-		return replyDao.selectReplyCount(postId);
+		return replyDao.countReplyByPostId(postId);
 	}
 
 }

@@ -1,4 +1,5 @@
 function init() {
+	/*
     let profile = document.querySelector('#profile');
 
     let user = JSON.parse(sessionStorage.getItem('auth'));
@@ -12,12 +13,15 @@ function init() {
             "</div>\n" +
             "<div class='profile-info'>\n" +
             "    <div>닉네임 : " + user.nickname + "</div>\n" +
-            "    <div>게시글 : ??</div>\n" +
+            "    <div>게시글 : "+"${postCount}"+"</div>\n" +
+            "    <div>댓글 : "+"${replyCount}"+"</div>\n" +
             "</div>";
 
     } else {
         profile.innerHTML = '로그인 후 이용하세요.';
     }
+	*/
 }
+// <%--<p class="profileText">게시글: ${postCount} 댓글: ${replyCount}</p>--%>
 
 window.addEventListener('load',  init);

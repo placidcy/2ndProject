@@ -13,10 +13,10 @@
     </form>
 
     <div class="button-container">
-        <a><button id = "loginBtn">로그인</button></a>
-        <a><button id = "signUpOrMyPageBtn">회원가입</button></a>
-        <c:if test="${nickname ne null}">
-            <a><button id = "changePassWordBtn">비밀번호 변경</button></a>
+        <a><button class="header-button" id = "loginBtn">로그인</button></a>
+        <a><button class="header-button" id = "signUpOrMyPageBtn">회원가입</button></a>
+        <c:if test="${auth != null}">
+            <a><button class="header-button" id = "changePassWordBtn">비밀번호 변경</button></a>
         </c:if>
     </div>
 

@@ -37,15 +37,14 @@ public class PostDao {
 	}
 
 	public PageResponse<PostDO> selectPaginatedPost(int page) {
-		int size = 15; // 페이지당 데이터 수를 15로 고정
+		int size = 15;
 		int startRow = (page - 1) * size + 1;
 		int endRow = page * size;
 
-		// 전체 데이터 수를 계산하는 쿼리
 		String countSql = "SELECT COUNT(*) FROM post";
 		Long totalElements = jdbcTemplate.queryForObject(countSql, Long.class);
 
-		// 페이징된 데이터를 가져오는 쿼리
+		// Paging data
 		String sql = "SELECT * FROM (" +
 				"SELECT post_id, position, title, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') AS created_date, " +
 				"user_id, content, tags, view_count, " +
@@ -55,7 +54,6 @@ public class PostDao {
 
 		List<PostDO> content = jdbcTemplate.query(sql, new Object[]{startRow, endRow}, new PostRowMapper());
 
-		// PageResponse 객체를 생성하여 반환
 		return new PageResponse<>(content, page, size, totalElements);
 	}
 
@@ -65,7 +63,7 @@ public class PostDao {
 		return this.jdbcTemplate.queryForObject(sql, new PostRowMapper(), post_id);
 	}
 	
-	public int countPost(String user_id) {
+	public int countPostByUserId(String user_id) {
 		this.sql = "select count(*) from post where user_id = ?";
 		return this.jdbcTemplate.queryForObject(sql, Integer.class, user_id);	
 	}
@@ -100,5 +98,49 @@ public class PostDao {
 		this.sql = "update post set view_count = view_count + 1 where post_id = ?";
 		this.jdbcTemplate.update(sql, postId);
 		return this.selectAllPost();
+	}
+
+	public PageResponse<PostDO> searchPaginatedPost(String keyword, int page) {
+		int size = 15;
+		int startRow = (page - 1) * size + 1;
+		int endRow = page * size;
+
+		String countSql = "SELECT COUNT(*) FROM post WHERE title LIKE ? OR content LIKE ?";
+		String keywordPattern = "%" + keyword + "%";
+		Long totalElements = jdbcTemplate.queryForObject(countSql, new Object[]{keywordPattern, keywordPattern}, Long.class);
+
+		String sql =
+				"SELECT * FROM (" +
+					"SELECT post_id, position, title, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') AS created_date, " +
+						"user_id, content, tags, view_count, " +
+						"ROW_NUMBER() OVER (ORDER BY created_date DESC) AS rn " +
+					"FROM post WHERE title LIKE ? OR content LIKE ?" +
+				") " +
+				"WHERE rn BETWEEN ? AND ?";
+
+		List<PostDO> content = jdbcTemplate.query(sql,
+				new Object[]{keywordPattern, keywordPattern, startRow, endRow},
+				new PostRowMapper());
+
+		return new PageResponse<>(content, page, size, totalElements);
+	}
+
+	public PageResponse<PostDO> searchPositionPaginatedPost(String position, int page) {
+		int size = 15;
+		int startRow = (page - 1) * size + 1;
+		int endRow = page * size;
+
+		String countSql = "SELECT COUNT(*) FROM post WHERE position = ?";
+		Long totalElements = jdbcTemplate.queryForObject(countSql, Long.class, position);
+
+		//paging
+		this.sql = "SELECT * FROM ("
+					+ "SELECT post_id, position, title, to_char(created_date, 'YYYY-MM-DD HH24:MI:SS') created_date, user_id, content, tags, view_count, "
+					+ "ROW_NUMBER() OVER (ORDER BY created_date DESC) AS rn "
+					+ "FROM post WHERE position = ?) "
+				+ "WHERE rn BETWEEN ? AND ?";
+
+		List<PostDO> content = this.jdbcTemplate.query(sql, new Object[]{position, startRow, endRow}, new PostRowMapper());
+		return new PageResponse<>(content, page, size, totalElements);
 	}
 }

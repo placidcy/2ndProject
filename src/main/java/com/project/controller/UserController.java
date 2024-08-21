@@ -1,7 +1,10 @@
 package com.project.controller;
 
+import com.project.model.PostSO;
+import com.project.model.ReplySO;
 import com.project.model.UserDO;
 import com.project.model.UserSO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import com.project.model.request.LoginRequest;
 import com.project.model.request.SignupRequest;
@@ -18,9 +21,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
 
     final UserSO userSO;
- 
-    public UserController(UserSO userSO) {
+    final PostSO postSO;
+    final ReplySO replySO;
+
+    @Autowired
+    public UserController(UserSO userSO, PostSO postSO, ReplySO replySO) {
         this.userSO = userSO;
+        this.postSO = postSO;
+        this.replySO = replySO;
     }
 
     @GetMapping("/login")
@@ -35,8 +43,12 @@ public class UserController {
 
             session.setAttribute("auth", auth);
 
-            LoginUserResponse print = (LoginUserResponse) session.getAttribute("auth");
-            System.out.println("session = " + print.getUser_id());
+            int postCount = postSO.countPostCountByUserId(request.getUser_id());
+            int replyCount = replySO.countReplyCountByUserId(request.getUser_id());
+           
+            session.setAttribute("postCount", postCount);
+            session.setAttribute("replyCount", replyCount);
+
             Cookie cookie = new Cookie("user_id", request.getUser_id());
             if(request.isRememberId()) {
             	cookie.setMaxAge(24*60*60*30);

@@ -26,32 +26,50 @@ public class PostController {
     }
 
     @GetMapping("/main")
-    public String mainPagingHandler(@RequestParam(value = "postCount", defaultValue = "1") int postCount,
+    public String mainPagingHandler(@RequestParam(value = "postpageCount", defaultValue = "1") int postpageCount,
                                     Model model) {
-        PageResponse<Post> postList = postSO.getPaginatedPost(postCount);
+        PageResponse<Post> postList = postSO.getPaginatedPost(postpageCount);
         postList.getContent().forEach(post -> {
             post.setReply_count(replySO.getReplyCount(post.getPost_id()));
         });
         model.addAttribute("hotPostList", postSO.getHotPost());
         model.addAttribute("postList", postList.getContent());
-        model.addAttribute("postCount", postCount);
+        model.addAttribute("postpageCount", postpageCount);
         model.addAttribute("totalPages", postList.getTotalPages());
         return "/main";
     }
 
     @GetMapping("/search")
-    public String searchPost(String keyword, Model model) {
-        PostMainResponse postList = postSO.search(keyword);
+    public String searchPost(String keyword, @RequestParam(value = "postpageCount", defaultValue = "1") int postpageCount, Model model) {
+        PageResponse<Post> postList = postSO.searchPaginatedPost(keyword, postpageCount);
+        postList.getContent().forEach(post -> {
+            post.setReply_count(replySO.getReplyCount(post.getPost_id()));
+        });
+
         model.addAttribute("keyword", keyword);
-        model.addAttribute("postList", postList.getPostList());
+
+        model.addAttribute("hotPostList", postSO.getHotPost());
+        model.addAttribute("postList", postList.getContent());
+        model.addAttribute("postpageCount", postpageCount);
+        model.addAttribute("totalPages", postList.getTotalPages());
+
         return "/main";
     }
 
     @GetMapping("/search-position")
-    public String searchPosition(String position, Model model) {
-        PostMainResponse postList = postSO.searchPosition(position);
+    public String searchPosition(String position,
+                                 @RequestParam(value = "postpageCount", defaultValue = "1") int postpageCount,
+                                 Model model) {
+        PageResponse<Post> postList = postSO.searchPositionPaginatedPost(position, postpageCount);
+
+        postList.getContent().forEach(post -> {
+            post.setReply_count(replySO.getReplyCount(post.getPost_id()));
+        });
+
         model.addAttribute("keyword", position);
-        model.addAttribute("postList", postList.getPostList());
+        model.addAttribute("postList", postList.getContent());
+        model.addAttribute("totalPages", postList.getTotalPages());
+        model.addAttribute("postpageCount", postpageCount);
         return "/main";
     }
 

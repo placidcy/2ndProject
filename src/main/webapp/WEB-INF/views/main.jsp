@@ -1,5 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -15,7 +17,9 @@
             // auth 객체가 존재할 경우 sessionStorage에 저장
             sessionStorage.setItem('auth', JSON.stringify({
                 user_id: "${auth != null ? auth.user_id : ''}",
-                nickname: "${auth != null ? auth.nickname : ''}"
+                nickname: "${auth != null ? auth.nickname : ''}",
+                postCount: "${postCount != null ? postCount : ''}",
+                replyCount: "${replyCount != null ? replyCount : ''}"
             }));
         }
     </script>
@@ -42,49 +46,71 @@
                         </c:otherwise>
                     </c:choose>
                 </div>
-                <c:forEach items="${postList}" var="post">
-                    <div class="post">
-                        <div class="tags">
-                             <a href="<c:url value="/search-position?position=${post.position}"/>">
-                                 # ${post.position}
-                             </a>
+                <c:choose>
+                    <c:when test="${postList.size() == 0}">
+                        <div class="empty-post">
+                            <span>글이 없습니다.</span>
                         </div>
-                        <div class="title">
-                            <a href="/detailPageProcess?post_id=${post.post_id}&commentCount=0">${post.title}</a>
-                        </div>
-                        <div class="post-content">
-                            ${post.content}
-                        </div>
-                        <div class="info">
-                            <span> 조회수 ${post.view_count} </span>
-                            <span>댓글수 ${post.reply_count} </span>
-                            <span>  ${post.created_date} </span>
-                        </div>
-                    </div>
-                </c:forEach>
+                    </c:when>
+                    <c:otherwise>
+                        <c:forEach items="${postList}" var="post">
+                            <div class="post">
+                                <div class="tags">
+                                    <a href="<c:url value="/search-position?position=${post.position}"/>">
+                                        # ${post.position}
+                                    </a>
+                                </div>
+                                <div class="title">
+                                    <a href="/detailPageProcess?post_id=${post.post_id}&commentCount=0">${post.title}</a>
+                                </div>
+                                <div class="post-content">
+                                        ${post.content}
+                                </div>
+                                <div class="info">
+                                    <span> 조회수 ${post.view_count} </span>
+                                    <span>댓글 ${post.reply_count} </span>
+                                    <span>  ${post.created_date} </span>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </c:otherwise>
+                </c:choose>
             </div>
 
             <!-- 페이지 번호 네비게이션 -->
             <div class="pagination">
-                <c:if test="${postCount > 1}">
-                    <a href="?postCount=${postCount - 1}"> < </a>
+                <c:if test="${postpageCount > 1}">
+                    <a href="?postpageCount=${postpageCount - 1}&
+                        <c:if test='${not empty param.keyword}'>keyword=${fn:escapeXml(param.keyword)}</c:if>
+                        <c:if test='${not empty param.position}'>position=${fn:escapeXml(param.position)}</c:if>">
+                        &lt;
+                    </a>
                 </c:if>
 
                 <c:forEach begin="1" end="${totalPages}" var="i">
                     <c:choose>
-                        <c:when test="${i == postCount}">
+                        <c:when test="${i == postpageCount}">
                             <span class="current">${i}</span>
                         </c:when>
                         <c:otherwise>
-                            <a href="?postCount=${i}">${i}</a>
+                            <a href="?postpageCount=${i}
+                                <c:if test='${not empty param.keyword}'>${'&'}keyword=${fn:escapeXml(param.keyword)}</c:if>
+                                <c:if test='${not empty param.position}'>${'&'}position=${fn:escapeXml(param.position)}</c:if>">
+                                ${i}
+                            </a>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
 
-                <c:if test="${postCount < totalPages}">
-                    <a href="?postCount=${postCount + 1}"> > </a>
+                <c:if test="${postpageCount < totalPages}">
+                    <a href="?postpageCount=${postpageCount + 1}
+                        <c:if test='${not empty param.keyword}'> &keyword=${fn:escapeXml(param.keyword)}</c:if>
+                        <c:if test='${not empty param.position}'> &position=${fn:escapeXml(param.position)}</c:if>">
+                        &gt;
+                    </a>
                 </c:if>
             </div>
+
         </main>
     </div>
 </body>

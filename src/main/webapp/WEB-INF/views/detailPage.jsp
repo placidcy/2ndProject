@@ -106,6 +106,8 @@
 						</c:if>
 						<div class="reply-like">
 	                        <form action="reply-like" method="POST">
+								<input type="hidden" name="post_id" value="${postInfo.post_id}" />
+								<input type="hidden" name="reply_id" value="${reply.reply_id}" />
 	                       		<input type="hidden" name="commentCount" value="${commentCount}" />
 	                            <button type="submit">좋아요 <span>${reply.likes}</span></button>
 	                        </form>
