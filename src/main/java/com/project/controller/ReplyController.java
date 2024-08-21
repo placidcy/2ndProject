@@ -28,8 +28,11 @@ public class ReplyController {
     
     @PostMapping("/reply-like")
     public String likeReply(@RequestParam(value="reply_id") int reply_id, HttpSession session, @RequestParam(value="post_id") long post_id, long commentCount) {
-
-        LoginUserResponse auth = (LoginUserResponse) session.getAttribute("auth");
+    	LoginUserResponse auth = (LoginUserResponse) session.getAttribute("auth");
+    	if(auth == null) {
+    		return "redirect:/login";
+    	}
+        
         String user_id = auth.getUser_id();
         replySO.likeReply(reply_id, user_id);
         return "redirect:/detailPageProcess?post_id=" + post_id + "&commentCount=" + commentCount;
