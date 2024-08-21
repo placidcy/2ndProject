@@ -216,6 +216,24 @@ hr {
 	color: #1f6bb1;
 }
 
+.commentProfile {
+	display: flex;
+}
+
+.comment-img {
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+.comment-nickname {
+	display: block;
+	font-size: 15px;
+	text-align: left;
+}
+
 .comment P:nth-child(1) {
 	float: left;
 	width: 100%;
@@ -228,11 +246,7 @@ hr {
 	width: 100%;
 	margin-bottom: 10px;
 }
-.replyRegister {
-	width: 100%;
-	color: gray;
-	margin-bottom: 10px;
-}
+
 
 .buttons a {
 	text-decoration: none;
@@ -247,10 +261,22 @@ hr {
 	text-decoration-line: underline;
 }
 
-.reply-like button {
-	float: clear;
-	display: block;
-	margin-top: 10px;
+.reply-like {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	margin-bottom: 10px;
+}
+
+.replyRegister {
+	display: flex;
+	width: 100%;
+	color: gray;
+	padding-top:10px;
+}
+.replyLikeBtn {
+	width: 70px;
+	display: flex;
 	margin-right: 10px;
 	padding: 5px 10px;
 

@@ -1,5 +1,6 @@
 package com.project.controller;
 
+import com.project.model.response.ReplyResponse;
 import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,8 @@ import jakarta.servlet.http.*;
 
 @Controller
 public class DetailPageController {
+	@Autowired
+	private UserSO userSO;
 
 	@Autowired
 	private PostDao postDao;
@@ -31,11 +34,16 @@ public class DetailPageController {
 
 		PostDO postInfo = postDao.getPostById(replyDO.getPost_id());
 		model.addAttribute("postInfo", postInfo);
-		
-		List<ReplyDO> repliesList = replySO.getRepliesByPostId(replyDO.getPost_id());
-		model.addAttribute("repliesList", repliesList);
 
+		model.addAttribute("postAuthor", userSO.getUserById(postInfo.getUser_id()).getNickname());
 		
+
+		List<ReplyResponse> replyResponseList = replySO.getRepliesByPostId(replyDO.getPost_id())
+				.stream().map(
+						reply -> new ReplyResponse(reply, userSO.getUserById(reply.getUser_id()).getNickname())
+				).toList();
+		model.addAttribute("repliesList", replyResponseList);
+
 		model.addAttribute("commentCount", commentCount);
     
 		if(replyDO.getReply_id() != 0) {

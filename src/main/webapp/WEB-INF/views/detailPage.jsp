@@ -41,7 +41,7 @@
                     <p>${postInfo.content}</p>
                 </div>
                 <div  class="author">
-                    <p>작성자: ${postInfo.user_id}</p>
+                    <p>작성자: ${postAuthor}</p>
                 </div>
 				<c:if test="${postInfo.user_id == auth.user_id}">
 				<div  class="postUD">
@@ -95,9 +95,11 @@
                 <h4 class="total-comment">답변 <span>${repliesList.size()}</span></h4>
                 <c:forEach var="reply" items="${repliesList}" begin="${commentCount*10}" end="${commentCount*10 + 9}">
 	                <div class="comment">
-	                    <p>${reply.user_id} <%-- <span>${reply.career}</span> --%></p>
+                        <div class="commentProfile">
+                            <img class="comment-img" src='resources/images/anonymous.jpg' alt='profile'>
+                            <p class="comment-nickname">${reply.nickname} <%-- <span>${reply.career}</span> --%></p>
+                        </div>
 	                    <p>${reply.content}</p>
-	                    <span class="replyRegister">${reply.created_at}</span>
 						<c:if test="${reply.user_id == auth.user_id}">
 	                        <div class="buttons">
 			                    <a href="<c:url value='/replyDelete?post_id=${postInfo.post_id}&reply_id=${reply.reply_id}' />"><span>삭제</span></a>
@@ -105,11 +107,12 @@
 		                    </div>
 						</c:if>
 						<div class="reply-like">
+                            <span class="replyRegister">${reply.created_at}</span>
 	                        <form action="reply-like" method="POST">
 								<input type="hidden" name="post_id" value="${postInfo.post_id}" />
 								<input type="hidden" name="reply_id" value="${reply.reply_id}" />
 	                       		<input type="hidden" name="commentCount" value="${commentCount}" />
-	                            <button type="submit">좋아요 <span>${reply.likes}</span></button>
+	                            <button class="replyLikeBtn" type="submit">좋아요  ${reply.likes} </button>
 	                        </form>
 						</div>
 						<hr />
