@@ -34,7 +34,14 @@ document.addEventListener('DOMContentLoaded', () => {
             <input type="text" name="careers[${careerIndex}].companyName" placeholder="회사명">
         </div>
         <div class="input-group">
-            <input type="text" name="careers[${careerIndex}].jobTitle" placeholder="담당직무">
+            <select name="careers[${careerIndex}].jobTitle" placeholder="담당직무">
+                <option value="">담당직무 선택</option>
+                <option value="웹">웹</option>
+                <option value="보안">보안</option>
+                <option value="게임">게임</option>
+                <option value="데이터">데이터</option>
+                <option value="서버">서버</option>
+            </select>
         </div>
         <div class="input-group">
             <input type="date" name="careers[${careerIndex}].startDate" placeholder="입사년월">
