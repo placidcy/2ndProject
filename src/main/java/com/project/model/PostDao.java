@@ -65,7 +65,7 @@ public class PostDao {
 		return this.jdbcTemplate.queryForObject(sql, new PostRowMapper(), post_id);
 	}
 	
-	public int countPost(String user_id) {
+	public int countPostByUserId(String user_id) {
 		this.sql = "select count(*) from post where user_id = ?";
 		return this.jdbcTemplate.queryForObject(sql, Integer.class, user_id);	
 	}

@@ -41,7 +41,7 @@ public class PostSO {
 				postPage.getTotalElements()
 		);
 	}
-	
+
 //	public PostDO getPostById(long post_id) {
 //		return postDao.selectPostById(post_id);
 //	}
@@ -67,11 +67,11 @@ public class PostSO {
     @Transactional
 	public void deletePostService(long post_id, String user_id) {
 		PostDO post = postDao.getPostById(post_id);
+
 		if(user_id != null && user_id.equals(post.getUser_id())) {
 			replyDao.deleteReplyByPostId(post_id);
 			postDao.deletePost(post_id);
-		}
-		else {
+		} else {
 			throw new UnExpectedAccessException();
 		}
 	}
@@ -80,10 +80,7 @@ public class PostSO {
 		return postDao.hotPost();
 	}
 
-	/* 
-	검사할게 있다면 넣고 아니면 그냥 PostDao 사용
-	public int getPostCount(UserDO userInfo) {
-		return postDao.countPost(userInfo);
+	public int countPostCountByUserId(String user_id) {
+		return postDao.countPostByUserId(user_id);
 	}
-	 */
 }

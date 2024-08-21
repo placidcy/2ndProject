@@ -57,16 +57,17 @@ public class ReplyDao {
 		this.sql = "select reply_id, user_id, content, to_char(created_at,'YYYY-MM-DD HH24:MI:SS') created_at, likes, post_id from reply where reply_id=?";
 		return this.jdbcTemplate.queryForObject(sql,new ReplyRowMapper(), reply_id);
 	}
-	
+
 	public void updateReply(ReplyDO reply) {
 		this.sql = "update reply set content = ?, created_at=sysdate where reply_id = ?";
 		this.jdbcTemplate.update(sql, reply.getContent(), reply.getReply_id());
 	}
-	
+
 	public void deleteReply(int reply_id) {
 		this.sql = "delete from reply where reply_id = ?";
 		this.jdbcTemplate.update(sql, reply_id);
 	}
+
 	
 	public void deleteReplyByPostId(long post_id) {
 		this.sql = "delete from reply where post_id = ?";
@@ -79,11 +80,11 @@ public class ReplyDao {
 		this.jdbcTemplate.update(sql, likes, reply_id);
 	}
 	
-	public int countReply(String user_id,Long post_id) {
+	public int countReply(String user_id, Long post_id) {
 		this.sql = "select count(*) from reply where user_id = ? and post_id = ?";
 		return this.jdbcTemplate.queryForObject(sql, Integer.class, user_id, post_id);	
 	}
-	public int countReply(String user_id) {
+	public int countReplyByUserId(String user_id) {
 		this.sql = "select count(*) from reply where user_id = ?";
 		return this.jdbcTemplate.queryForObject(sql, Integer.class, user_id);	
 	}
@@ -107,12 +108,8 @@ public class ReplyDao {
 		}
 	}
 
-	public int selectReplyCount(long postId) {
+	public int countReplyByPostId(long post_id) {
 		this.sql = "select count(*) from reply where post_id = ?";
-		try {
-			return this.jdbcTemplate.queryForObject(sql, Integer.class, postId);
-		} catch (Exception e) {
-			return 0;
-		}
+		return this.jdbcTemplate.queryForObject(sql, Integer.class, post_id);
 	}
 }
