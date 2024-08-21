@@ -11,7 +11,7 @@
 </head>
 <body>
 <div id="container">
-    <div id="logo">직장IN</div>
+    <a href="<c:url value='/main' />"><div id="logo">직장IN</div></a>
     <form action="loginProcess" method="POST" >
         <div class="input-section">
             <input type="text" name="user_id" id="userId" placeholder="아이디"/>
@@ -27,9 +27,9 @@
     </form>
 
     <div id="help-links">
-        <a href="#">아이디 찾기</a>
-        <a href="#">비밀번호 찾기</a>
-        <a href="#">회원가입</a>
+        <a href="<c:url value='/findID' />">아이디 찾기</a>
+        <a href="<c:url value='/findPasswd' />">비밀번호 찾기</a>
+        <a href="<c:url value='/agreement' />">회원가입</a>
     </div>
 </div>
 </body>
