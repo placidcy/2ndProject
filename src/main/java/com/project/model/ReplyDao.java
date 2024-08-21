@@ -68,12 +68,19 @@ public class ReplyDao {
 		this.jdbcTemplate.update(sql, reply_id);
 	}
 
+	
+	public void deleteReplyByPostId(long post_id) {
+		this.sql = "delete from reply where post_id = ?";
+		this.jdbcTemplate.update(sql, post_id);
+	}
+	
+	
 	public void updateLikes(int likes, int reply_id) {
 		this.sql = "update reply set likes = ? where reply_id = ?";
 		this.jdbcTemplate.update(sql, likes, reply_id);
 	}
 	
-	public int countReplyByUserId(String user_id, Long post_id) {
+	public int countReply(String user_id, Long post_id) {
 		this.sql = "select count(*) from reply where user_id = ? and post_id = ?";
 		return this.jdbcTemplate.queryForObject(sql, Integer.class, user_id, post_id);	
 	}

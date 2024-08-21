@@ -87,6 +87,8 @@
 	                    <p>${reply.content}</p>
 	                    <span>${reply.created_at}</span>
                         <form action="reply-like" method="POST">
+							<input type="hidden" name="post_id" value="${postInfo.post_id}" />
+							<input type="hidden" name="reply_id" value="${reply.reply_id}" />
                        		<input type="hidden" name="commentCount" value="${commentCount}" />
                             <button type="submit">좋아요</button>
                         </form>

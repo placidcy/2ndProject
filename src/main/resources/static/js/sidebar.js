@@ -4,8 +4,11 @@ function init() {
     let user = JSON.parse(sessionStorage.getItem('auth'));
     if (user != null) {
 
-        profile.innerHTML = "<div class='profile-image'>\n" +
-            "    <img src='resources/images/anonymous.jpg' alt='profile'>\n" +
+        profile.innerHTML =
+            "<div class='profile-image'>\n" +
+            "    <a href='/editProfile'>" +
+            "        <img src='resources/images/anonymous.jpg' alt='profile'>\n" +
+            "    </a>\n" +
             "</div>\n" +
             "<div class='profile-info'>\n" +
             "    <div>닉네임 : " + user.nickname + "</div>\n" +
